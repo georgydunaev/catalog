@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Model Profile: Gemini 3.8 Flash (High Reasoning Effort)</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 10px; margin: 12px 0; background: #fff; }
+.card { border-left: 4px solid #0044cc; padding: 8px 12px; margin: 8px 0; background: #f0f4ff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+
+<h1>Model Profile: Gemini 3.8 Flash (High Reasoning Effort)</h1>
+<p><strong>Model:</strong> <code>gemini-3.8-flash</code> &bull; <strong>Reasoning Parameter:</strong> <code>High</code> &bull; <strong>Harness:</strong> Antigravity CLI</p>
+
+<div class="box">
+<strong>Cognitive Bounds &amp; Attention Architecture:</strong><br>
+&bull; <strong>Context Window:</strong> 128,000 tokens &bull; <strong>Reasoning Budget:</strong> Maximum (~16k internal reasoning tokens).<br>
+&bull; <strong>Attention Shield:</strong> Read at most 200 lines per call. Avoid multi-hop manual directory walks.<br>
+&bull; <strong>Specialization:</strong> Algorithmic logic, formal deduction trees, deep bug root-cause analysis.<br>
+&bull; <strong>Dispatch Model:</strong> Direct Dispatch Matrix (zero-hop lookup via <code>catalog/FLASH_RUNBOOK.md</code>).
+</div>
+
+<h2>1. Tailored Long-Term Memory Slices</h2>
+<ul>
+  <li><strong>Flash Direct Dispatch Matrix:</strong> <code>catalog/FLASH_RUNBOOK.md</code> (maps domains directly to primary files and test suites).</li>
+  <li><strong>Flash Attention Guardrails:</strong> <a href="../rules/flash_rules.html"><code>catalog/rules/flash_rules.html</code></a> (5 golden Flash invariants).</li>
+  <li><strong>Focused Memory Queries:</strong> <code>python3 catalog/cognition.py flash-search &lt;query&gt;</code>.</li>
+  <li><strong>Targeted Proof Modules:</strong> <code>set_theory_prover/program/nbg_compiler.ML</code> and <code>lcf.ML</code>.</li>
+</ul>
+
+<h2>2. Optimal Instruments (High Leverage)</h2>
+<div class="card">
+&bull; <code>python3 /botworkspace/catalog/cognition.py flash</code> &mdash; restore 5 golden Flash invariants after large outputs.<br>
+&bull; <code>python3 /botworkspace/catalog/cognition.py flash-search "&lt;query&gt;"</code> &mdash; single-lookup memory retrieval.<br>
+&bull; <code>python3 /botworkspace/set_theory_prover/obelisk_cli.py check &lt;thm&gt;</code> &mdash; non-interactive theorem checker.<br>
+&bull; <code>python3 -m unittest &lt;test_file&gt;</code> &mdash; deterministic verification before closing any issue.
+</div>
+
+<h2>3. Prohibited &amp; Suboptimal Instruments</h2>
+<div class="alert">
+&bull; NEVER read raw HTML catalog files (costs 3x tokens; use <code>cognition.py read</code> or <code>FLASH_RUNBOOK.md</code>).<br>
+&bull; NEVER run interactive <code>poly</code> without <code>stdin=DEVNULL</code> (hangs permanently).<br>
+&bull; NEVER alter or remove commented-out historical ML code blocks in <code>set_theory_prover/</code>.<br>
+&bull; NEVER construct Kuratowski pairs for proper classes (use Dunaev Tagged Pairs).
+</div>
+
+<h2>4. Immediate Meaningful Task Tramline</h2>
+<ol>
+  <li><strong>Check Direct Dispatch Matrix:</strong> Consult <code>catalog/FLASH_RUNBOOK.md</code> for the target file and test command.</li>
+  <li><strong>Surgical Inspection:</strong> Read only the relevant line range (max 200 lines) of the target file.</li>
+  <li><strong>Implement Proof / Algorithmic Fix:</strong> Formulate clean SML or Python solution.</li>
+  <li><strong>Deterministic Verification:</strong> Execute compiler/test suite and commit to local GitLab.</li>
+</ol>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+</body>
+</html>

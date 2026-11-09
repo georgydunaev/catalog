@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Model Profile: Moonshot Kimi k1.5</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 10px; margin: 12px 0; background: #fff; }
+.card { border-left: 4px solid #0044cc; padding: 8px 12px; margin: 8px 0; background: #f0f4ff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+
+<h1>Model Profile: Moonshot Kimi k1.5</h1>
+<p><strong>Model Identifier:</strong> <code>moonshot/kimi-k1.5</code> &bull; <strong>Harness:</strong> OpenCode CLI</p>
+
+<div class="box">
+<strong>Cognitive Bounds &amp; Attention Architecture:</strong><br>
+&bull; <strong>Context Window:</strong> 200,000 tokens (High-capacity context window for deep documentation analysis).<br>
+&bull; <strong>Attention Decay Threshold:</strong> Strong long-document recall; excels at synthesizing massive historical logs.<br>
+&bull; <strong>Max File Read Window:</strong> Up to 500 lines per call.<br>
+&bull; <strong>Specialization:</strong> Historical ticket audits, provenance analysis, large-scale documentation consistency.
+</div>
+
+<h2>1. Tailored Long-Term Memory Slices</h2>
+<ul>
+  <li><strong>Historical Provenance:</strong> <code>mybot/TICKETS_PROVENANCE_AUDIT.md</code>.</li>
+  <li><strong>Session Reports:</strong> <code>mybot/devsessions/</code> (historical progress across sessions).</li>
+  <li><strong>Repository Topology:</strong> <a href="../branches/fleet_infra.html"><code>catalog/branches/fleet_infra.html</code></a>.</li>
+  <li><strong>Documentation Notes:</strong> <code>catalog/english_notes.html</code> and user directives.</li>
+</ul>
+
+<h2>2. Optimal Instruments (High Leverage)</h2>
+<div class="card">
+&bull; <code>python3 /botworkspace/catalog/cognition.py search &lt;keyword&gt;</code> &mdash; search full memory database.<br>
+&bull; Cross-session log analysis and ticket history auditing.<br>
+&bull; Documentation generation and structural consistency checks across repositories.
+</div>
+
+<h2>3. Prohibited &amp; Suboptimal Instruments</h2>
+<div class="alert">
+&bull; DO NOT invent missing historical ticket numbers or resolution summaries.<br>
+&bull; NEVER commit changes without running unit tests.<br>
+&bull; DO NOT use conversational filler when reporting audit findings.
+</div>
+
+<h2>4. Immediate Meaningful Task Tramline</h2>
+<ol>
+  <li><strong>Select Provenance Target:</strong> Identify undocumented or unlinked tickets in <code>mybot/tickets/</code>.</li>
+  <li><strong>Reconstruct Historical Evidence:</strong> Cross-reference git commit messages and devsessions.</li>
+  <li><strong>Update Audit Log:</strong> Document ticket provenance with exact commit hash and timestamps.</li>
+  <li><strong>Verify &amp; Commit:</strong> Confirm zero secrets with <code>security_guard.py</code> and push to local GitLab.</li>
+</ol>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+</body>
+</html>

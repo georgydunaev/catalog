@@ -1,0 +1,213 @@
+{
+  "last_updated": "2026-10-25T16:06:00Z",
+  "version": "1.0.0",
+  "meta": {
+    "title": "Autonomous Engineering LLM Model Zoo & Free Tier Registry",
+    "description": "Comprehensive reference of tested local, cloud free-tier, and autonomous agent models for development, formal verification, and irregularity detection."
+  },
+  "categories": [
+    {
+      "id": "local_offline",
+      "name": "Local Offline Models (Host GPU / Ollama)",
+      "endpoint": "http://172.31.0.1:11434",
+      "privacy": "Zero Leak — 100% Offline, no external network calls",
+      "models": [
+        {
+          "id": "ollama/qwen2.5-coder:7b",
+          "name": "Qwen 2.5 Coder 7B",
+          "size": "7.6B (4.29 GB VRAM, Q4_K_M)",
+          "context_length": 32768,
+          "speed": "25-35 tok/s (when hot in VRAM)",
+          "cost": "Free (Local GPU)",
+          "best_for": [
+            "Micro-syntactic code repairs",
+            "Single-function implementations",
+            "Python/SML syntax translation",
+            "Docstring generation"
+          ],
+          "limitations": [
+            "Cold start load from host NVMe takes ~40-45s",
+            "Host GPU thermal throttling on prolonged generation loops",
+            "Conservative on holistic multi-file architectural planning"
+          ],
+          "tested_verdict": "Verified live in host VRAM. Excellent for targeted edits and offline offline verification."
+        },
+        {
+          "id": "ollama/deepseek-r1-distill-qwen-7b",
+          "name": "DeepSeek R1 Distill Qwen 7B",
+          "size": "7B (4.4 GB VRAM)",
+          "context_length": 32768,
+          "speed": "20-28 tok/s",
+          "cost": "Free (Local GPU)",
+          "best_for": [
+            "Mathematical theorem proof tactic exploration",
+            "Chain-of-thought logic verification",
+            "Identifying edge-case bugs"
+          ],
+          "limitations": [
+            "Thinking blocks increase generation token count",
+            "Higher VRAM footprint"
+          ],
+          "tested_verdict": "Recommended for offline formal mathematical reasoning."
+        }
+      ]
+    },
+    {
+      "id": "opencode_free",
+      "name": "OpenCode Agent Free Cloud Models",
+      "endpoint": "opencode CLI (Internal proxy / standalone)",
+      "privacy": "Standard agent API access",
+      "models": [
+        {
+          "id": "opencode/glm-5.3-flash-free",
+          "name": "GLM 5.3 Flash Free",
+          "size": "320B Total / 18B Active (Sparse Attention Hybrid)",
+          "context_length": 128000,
+          "speed": "Ultra-fast (~14-17s turnaround per complex prompt)",
+          "cost": "Free",
+          "best_for": [
+            "Codebase auditing & irregularity scanning",
+            "Git repository tree analysis",
+            "Multi-language code understanding (SML, Python, LaTeX)",
+            "Conservative risk estimation"
+          ],
+          "limitations": [
+            "Slightly conservative estimation biases",
+            "Occasional formatting quirks in raw JSON"
+          ],
+          "tested_verdict": "Extremely reliable and responsive. Successfully validated all 6 git repositories in sub-turnaround."
+        },
+        {
+          "id": "opencode/nemotron-3.5-lightning-free",
+          "name": "NVIDIA Nemotron 3.5 Lightning Free",
+          "size": "30B Total / ~3B Active (MoE Agent Specialist)",
+          "context_length": 65536,
+          "speed": "Blazing fast (~12-15s turnaround)",
+          "cost": "Free",
+          "best_for": [
+            "Terminal command generation",
+            "Fast iterative linting",
+            "Autonomous tool-calling loops",
+            "Aggressive refactoring"
+          ],
+          "limitations": [
+            "Can underestimate human review friction on deep mathematical proofs"
+          ],
+          "tested_verdict": "Superb execution workhorse for repetitive code tasks."
+        },
+        {
+          "id": "opencode/deepseek-v4.1-flash-free",
+          "name": "DeepSeek V4.1 Flash Free",
+          "size": "High-Efficiency Distilled Reasoning",
+          "context_length": 128000,
+          "speed": "Fast (~14s turnaround)",
+          "cost": "Free",
+          "best_for": [
+            "Project estimation & backlog triage analysis",
+            "Deep mathematical reasoning & lemma dependencies",
+            "Architecture review"
+          ],
+          "limitations": [
+            "Output can be verbose if prompt does not enforce strict brevity"
+          ],
+          "tested_verdict": "Best qualitative reasoning on project backlog and mathematical validation."
+        },
+        {
+          "id": "opencode/flint-40b-free",
+          "name": "Flint 40B Free",
+          "size": "40B Dense Code Specialist",
+          "context_length": 32768,
+          "speed": "Moderate",
+          "cost": "Free",
+          "best_for": [
+            "Specialized code refactoring",
+            "Test suite expansion"
+          ],
+          "limitations": [
+            "Occasional higher queue latency"
+          ],
+          "tested_verdict": "Good fallback for code-generation."
+        }
+      ]
+    },
+    {
+      "id": "openrouter_free",
+      "name": "OpenRouter Free-Tier Dynamic Registry (:free)",
+      "endpoint": "https://openrouter.ai/api/v1",
+      "privacy": "Subject to individual provider privacy terms; :free endpoints may be rate-limited",
+      "models": [
+        {
+          "id": "openrouter/free",
+          "name": "OpenRouter Auto-Free Meta Router",
+          "size": "Dynamic (Matches best available zero-cost model)",
+          "context_length": 32768,
+          "speed": "Varies by selected underlying host",
+          "cost": "$0.00 / Free",
+          "best_for": [
+            "General fallback queries when specific free endpoints are congested",
+            "Zero-configuration free inference"
+          ],
+          "limitations": [
+            "Underlying model changes dynamically between turns"
+          ],
+          "tested_verdict": "High availability meta-router for background jobs."
+        },
+        {
+          "id": "nvidia/nemotron-3-super-120b:free",
+          "name": "NVIDIA Nemotron 3 Super 120B Free",
+          "size": "120B MoE",
+          "context_length": 131072,
+          "speed": "Fast",
+          "cost": "$0.00 / Free",
+          "best_for": [
+            "Complex agentic decision making",
+            "Multi-step verification"
+          ],
+          "limitations": [
+            "20 requests/minute global rate limit"
+          ],
+          "tested_verdict": "Top-tier free reasoning capacity."
+        },
+        {
+          "id": "google/gemma-4-31b-it:free",
+          "name": "Google Gemma 4 31B Instruct Free",
+          "size": "31B Dense",
+          "context_length": 65536,
+          "speed": "High",
+          "cost": "$0.00 / Free",
+          "best_for": [
+            "Technical explanations",
+            "Documentation drafting",
+            "Clean instruction following"
+          ],
+          "limitations": [
+            "Rate limited on public tier"
+          ],
+          "tested_verdict": "Very clean, balanced responses for documentation."
+        },
+        {
+          "id": "cohere/north-mini-code:free",
+          "name": "Cohere North Mini Code Free",
+          "size": "Miniature Code Engine",
+          "context_length": 32768,
+          "speed": "Extremely fast",
+          "cost": "$0.00 / Free",
+          "best_for": [
+            "Quick syntax checks",
+            "Regex extraction",
+            "JSON schema validation"
+          ],
+          "limitations": [
+            "Smaller parameter reasoning ceiling"
+          ],
+          "tested_verdict": "Lightweight syntax validator."
+        }
+      ]
+    }
+  ],
+  "operational_guidelines": {
+    "rotation_strategy": "Rotate between OpenCode free models (GLM-5.3-Flash for repo sweeps, Nemotron-3.5 for CLI/linting, DeepSeek-V4.1 for mathematical review) and local Qwen 2.5 Coder 7B for zero-leak offline edits.",
+    "rate_limit_mitigation": "Enforce 5-second minimum spacing on cloud free calls, caching common results in SQLite.",
+    "epistemic_verification": "Always pass LLM generated code or proofs through deterministic compilers (PolyML, py_compile, unittest) before committing."
+  }
+}

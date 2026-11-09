@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hierarchical Rules Cache</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: Root Memory Index]</a> &bull; <a href="operator_interaction_invariants.html"><strong>[🎯 Interaction Invariants]</strong></a> &bull; <a href="flash_rules.html"><strong>[⚡ Flash Guardrails]</strong></a></p>
+
+<h1>Hierarchical Rules Cache</h1>
+<p><strong>Rationale:</strong> Rules suffer from the same attention degradation as code. Storing 50 flat rules in one context prompt causes the agent to silently drop constraints. Rules are structured hierarchically: only load the rule scope matching your current task level.</p>
+
+<hr>
+
+<h2>Level 0: Axiomatic Meta-Rules (Universal)</h2>
+<div class="alert">
+1. <strong>Escalation to User:</strong> When an invariant, type, or mathematical premise is contradictory and cannot be resolved through the hierarchy up to Layer 1, <strong>STOP AND INDICATE THE CONTRADICTION TO THE USER (Layer 0)</strong>. Never guess or forge axioms.<br>
+2. <strong>Readiness Notification:</strong> Notify the User ONLY when you have verified all readiness criteria to independently develop <code>set_theory_prover</code>.
+</div>
+
+<hr>
+
+<h2>Level 1: Workspace Core Rules (All Projects)</h2>
+<div class="box">
+1. <strong>Non-Destructive Preservation:</strong> Never delete commented-out code, historical drafts, backup scripts, or experimental logic. They contain valuable working implementations.<br>
+2. <strong>Zero CLI Hangs:</strong> SML/Poly and long-running processes must be run non-interactively with <code>stdin=subprocess.DEVNULL</code> and finite timeouts.<br>
+3. <strong>Anti-Slop / Epistemic Tagging:</strong> Mark unverified statements as <code>[UNTESTED]</code>. Verify on disk before marking <code>[VERIFIED]</code>.<br>
+4. <strong>Defect Tracking:</strong> Log bugs or unsound logic in GitLab via <code>python3 /botworkspace/mybot/scripts/manage_tickets.py create "&lt;Title&gt;" "&lt;Description&gt;"</code>.<br>
+5. <strong><a href="operator_interaction_invariants.html">Operator Interaction Invariants</a>:</strong> Anti-carte-blanche boundaries, single-stratum bug reports, goal-anchored continuations, and MathJax/whitespace generation rules.
+</div>
+
+<hr>
+
+<h2>Level 2: Project-Specific Rules</h2>
+
+<h3><code>set_theory_prover</code> (Priority 1) &bull; <a href="set_theory_rules.html"><strong>[Full Ruleset &rarr;]</strong></a></h3>
+<ul>
+  <li>Preserve large commented ML blocks in <code>newchecker.ML</code>, <code>PreChar.ML</code>, and <code>approaches/</code>.</li>
+  <li>Trust <code>types/foundations.ML</code> and <code>newchecker.ML</code> over discontinued prototypes; enforce LCF theorem encapsulation.</li>
+  <li><strong>Pure ML Formula Generation (Directive #17):</strong> Generate all formulas via ML scripts into <code>generated/</code> (never edit HTML/LaTeX directly).</li>
+  <li><strong>100% Clickable Tokens &amp; Personal Symbol Pages:</strong> Every symbol links to <code>symbols/*.html</code>.</li>
+  <li><strong>Class Comprehension:</strong> Mandatory <code>Class</code> variables in <code>{x | &phi;(x)}</code>; fiercely avoid type <code>Set</code>.</li>
+  <li>See <a href="set_theory_rules.html"><code>catalog/rules/set_theory_rules.html</code></a> for the comprehensive 11-point specification.</li>
+</ul>
+
+<h3><code>mybot</code> (Priority 2)</h3>
+<ul>
+  <li>Strict two-container isolation: <code>ai-worker</code> has no direct external internet; all egress routes via <code>secure-gateway</code>.</li>
+  <li>Mandatory secret scrubbing (<code>censor-keys.sh</code>) prior to git commits.</li>
+  <li>Format ticket claims with Agent-Hash, Bot-Number, Worker-Host, and Process-ID.</li>
+</ul>
+
+<hr>
+
+<h2>Level 3: Subsystem &amp; Theory Rules</h2>
+<ul>
+  <li><code>program/types/</code>: Grounded in consistency strength $T = MK \cup \{axGroth\}$.</li>
+  <li><code>program/nbg/</code>: Maintain distinction between proper classes and sets.</li>
+  <li><code>local-gitlab/</code>: Offline git operations strictly on port 8929.</li>
+</ul>
+
+</body>
+</html>

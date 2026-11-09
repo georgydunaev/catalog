@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>File: demo.ML</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: types/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover]</a> &bull; <a href="../../../../index.html">[UP: Root Index]</a></p>
+
+<h1>File: demo.ML (Interactive Entry Inspector)</h1>
+<p><strong>Filesystem Path:</strong> <code>/botworkspace/set_theory_prover/program/types/demo.ML</code><br>
+<strong>Size:</strong> 7,977 bytes (359 lines SML)<br>
+<strong>Role:</strong> Comprehensive demonstration and sanity suite for <code>types/foundations.ML</code> and <code>types/entries.ML</code>.</p>
+
+<div class="box">
+<strong>PURPOSE:</strong><br>
+Executes symbol table traversals across all logical theories formalized in Obelisk's dependent typing foundation.
+</div>
+
+<hr>
+
+<h2>Demonstration Suites</h2>
+<ul>
+  <li><code>example_AllPropositionalLogic ()</code>: Displays all propositional logic axioms and inference rules from <code>allPropEntriesU</code>.</li>
+  <li><code>example_AllPredicateLogic ()</code>: Displays all predicate logic axioms and quantification rules from <code>allPredEntriesU</code>.</li>
+  <li><code>example_AllSetTheory ()</code>: Displays all set-theoretic axioms (Extensionality, Pairing, Union, Power Set, Foundation) from <code>allSetTheoryEntriesU</code>.</li>
+  <li><code>example_WIP_003 ()</code> &bull; <code>example_WIP_004 ()</code>: Work-in-progress proof reconstruction sketches for set comprehension.</li>
+</ul>
+
+<hr>
+
+<h2>Execution Command</h2>
+<p>Run non-interactively via Poly/ML:</p>
+<pre>cd /botworkspace/set_theory_prover/program &amp;&amp; poly -q --eval 'use "types/demo.ML"; OS.Process.exit OS.Process.success;'</pre>
+
+</body>
+</html>

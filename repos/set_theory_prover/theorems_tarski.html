@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Certified Tarski Schemas & Proof Suites</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.badge { display: inline-block; padding: 1px 5px; border-radius: 4px; font-size: 0.8em; font-weight: bold; background: #e1bee7; color: #4a148c; }
+</style>
+</head>
+<body>
+
+<p><a href="theorems.html">[UP: Theorems Index]</a> &bull; <a href="index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Certified Tarski Schemas &amp; Additional Suites</h1>
+
+<h2>1. Stage III: Staged Quotation &amp; Antiquotation Schemas (7)</h2>
+<ul>
+  <li><code>separation_russell</code> [<span class="badge">TARSKI</span>]: <code>~(Set(R_A) /\ R_A in A)</code> where <code>R_A = {x in A | x notin x}</code></li>
+  <li><code>lem</code> [<span class="badge">TARSKI</span>]: Law of Excluded Middle schema <code>&lt;&lt; [[P]] \/ ([[P]] -> _|_) &gt;&gt;</code></li>
+  <li><code>contraposition</code> [<span class="badge">TARSKI</span>]: <code>&lt;&lt; ([[A]] -> [[B]]) -> ((~[[B]]) -> (~[[A]])) &gt;&gt;</code></li>
+  <li><code>binary_inter</code> [<span class="badge">TARSKI</span>]: Binary intersection commutativity schema</li>
+  <li><code>eq_refl</code> &bull; <code>eq_sym</code> &bull; <code>syllogism</code>: Staged equality and hypothetical syllogism schemas</li>
+</ul>
+
+<hr>
+
+<h2>2. Verified Proof Suites in Filesystem</h2>
+<ul>
+  <li><code>program/verified_theorems.ML</code>: 63/63 Morse-Kelley &amp; Dunaev Tagged Pair theorems.</li>
+  <li><code>program/ordinal_theorems.ML</code>: 12/12 Transfinite Ordinal Arithmetic theorems.</li>
+  <li><code>examples/nbg_verified_programs.nbg</code>: 15/15 Surface .nbg theorem programs.</li>
+  <li><code>examples/cognitive_synthesis_theorems.nbg</code>: 4/4 Synthesized constructive theorems.</li>
+</ul>
+
+</body>
+</html>

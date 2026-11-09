@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Modular NewChecker Architecture (program/newchecker/)</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+th { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: kernel/ Subsystem]</a> &bull; <a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Modular NewChecker Architecture (<code>program/newchecker/</code>)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/newchecker/</code><br>
+<strong>Variant:</strong> MKTD1 (1st-Order Proof Assistant Kernel)<br>
+<strong>Master Loader:</strong> <code>program/newchecker/all.ML</code> &amp; top-level <code>program/newchecker.ML</code></p>
+
+<div class="box">
+<strong>PURPOSE &amp; PERFORMANCE MOTIVATION:</strong><br>
+Originally authored as a 14,033-line monolith, <code>newchecker.ML</code> previously took ~12–15 seconds to evaluate in Poly/ML because compiling it also triggered <code>types/demo.ML</code> (which loaded <code>foundations.ML</code> and <code>entries.ML</code> and executed interactive test examples). By decomposing the kernel into 12 modular units under <code>program/newchecker/</code>, developers and AI agents can load only the exact layers required (AST, printers, rules, definitions, or PDF generator) in <strong>0.3 to 1.5 seconds</strong>.
+</div>
+
+<hr>
+
+<h2>1. The 12 Modular Files</h2>
+<table>
+  <tr>
+    <th>Module</th>
+    <th>Lines</th>
+    <th>Core Responsibilities</th>
+  </tr>
+  <tr>
+    <td><code>00_preamble.ML</code></td>
+    <td>~160</td>
+    <td>Compiler options (<code>reportUnreferencedIds</code>), ANSI colors, error handling, and <code>libs/000_use_all_libs.ML</code>.</td>
+  </tr>
+  <tr>
+    <td><code>01_core_ast.ML</code></td>
+    <td>~2,370</td>
+    <td>Core AST types, judgments, de Bruijn operators, <code>typetheory.ML</code>, <code>lense.ML</code>, <code>Nat.ML</code>, <code>Unit.ML</code>, and the delimited PDF generation source marker block (<code>(*** TO PDF PART BEGIN ***)</code> to <code>(*** TO PDF PART END ***)</code>).</td>
+  </tr>
+  <tr>
+    <td><code>02_globvars.ML</code></td>
+    <td>~700</td>
+    <td>Global variables (<code>GlobVar</code>: <code>vx</code>, <code>vy</code>, <code>vz</code>, <code>vA</code>, <code>vB</code>, <code>vphi</code>, <code>vpsi</code>, <code>tA</code>, <code>tB</code>), <code>FormulaASCII</code>, and sequent notation shortcuts.</td>
+  </tr>
+  <tr>
+    <td><code>03_printers.ML</code></td>
+    <td>~3,160</td>
+    <td>Pretty printing system: <code>dStr_init</code>, <code>Truth_Expre_dStr</code>, <code>Class_Expre_dStr</code>, <code>TyVariable_Expre_dStr</code>, <code>Assign1</code> functors, and <code>show</code> helpers.</td>
+  </tr>
+  <tr>
+    <td><code>04_subst.ML</code></td>
+    <td>~1,960</td>
+    <td>Free-variable analysis (<code>isFree</code>), capture-avoiding simultaneous substitution (<code>simSubst</code>), and alpha-equivalence (<code>alpha_eq</code>).</td>
+  </tr>
+  <tr>
+    <td><code>05_rules.ML</code></td>
+    <td>~1,300</td>
+    <td>Axioms A01–A13, Gentzen inference rules (<code>Ident</code>, <code>Cut</code>, <code>Weakening</code>, <code>ImplL</code>, <code>ImplR</code>, <code>AndR</code>, <code>ForaR</code>, <code>ExisR</code>), and the 3-pass verification pipeline (<code>check</code>, <code>checkPlus</code>, <code>checkPipeline</code>). Preserves Category B (Hilbert calculus).</td>
+  </tr>
+  <tr>
+    <td><code>06_definitions.ML</code></td>
+    <td>~630</td>
+    <td>Conservative definition store (<code>signature KERNEL_DEFINITIONS</code>, <code>structure KernelDefinitions :> KERNEL_DEFINITIONS</code>). Checks closedness, parameter matching, and non-circularity.</td>
+  </tr>
+  <tr>
+    <td><code>07_theorems.ML</code></td>
+    <td>~950</td>
+    <td>Milner LCF theorem encapsulation (<code>signature THMS</code>, <code>structure ThmWithPrf</code>, <code>structure Thm</code>). Preserves Category C (<code>structure ThmWithoutPrf</code>).</td>
+  </tr>
+  <tr>
+    <td><code>08_tactics.ML</code></td>
+    <td>~1,240</td>
+    <td>Backward tactics (<code>Ident_tac</code>, <code>Cut_tac</code>, <code>ImplR_tac</code>, <code>AndR_tac</code>), tacticals (<code>THEN</code>, <code>ORELSE</code>), <code>GoalTree</code> interactive proof calculus (<code>set_goal</code>, <code>ee</code>, <code>ss</code>, <code>get_thm</code>), and computable side-condition evaluator (<code>NoncomputableSideCondition</code>).</td>
+  </tr>
+  <tr>
+    <td><code>09_entries.ML</code></td>
+    <td>~1,470</td>
+    <td>Catalog entity specifications (<code>signature Entry</code>, <code>Sortnames</code>, <code>structure Entry</code>). Preserves Category A (Morse-Kelley + Tarski specification).</td>
+  </tr>
+  <tr>
+    <td><code>10_pdf_generator.ML</code></td>
+    <td>~40</td>
+    <td>PDF / LaTeX listing extraction engine: <code>copyContentBetweenMarkers</code> scans code between <code>(*** TO PDF PART BEGIN ***)</code> and <code>(*** TO PDF PART END ***)</code>, emitting <code>CONTENT.ML</code> and parsing <code>**L</code> / <code>L**</code> comments into LaTeX documentation.</td>
+  </tr>
+  <tr>
+    <td><code>11_meta_and_main.ML</code></td>
+    <td>~70</td>
+    <td>Metatheoretic helpers (<code>CMetaTruth_Expression</code>), <code>constV</code>, loads <code>types/demo.ML</code>, and defines <code>structure NewChecker</code>.</td>
+  </tr>
+  <tr>
+    <td><code>all.ML</code></td>
+    <td>~25</td>
+    <td>Master topological loader compiling all 12 modules in sequence.</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>2. How to Use: Fast Incremental Recipes</h2>
+<p>Agents and developers should use targeted loading recipes instead of loading the entire monolith:</p>
+
+<h3>A. Testing Core AST &amp; Variables (~0.3s)</h3>
+<pre><code>PolyML.use "newchecker/00_preamble.ML";
+PolyML.use "newchecker/01_core_ast.ML";
+PolyML.use "newchecker/02_globvars.ML";</code></pre>
+
+<h3>B. Pretty-Printing Expressions (~0.6s)</h3>
+<pre><code>PolyML.use "newchecker/00_preamble.ML";
+PolyML.use "newchecker/01_core_ast.ML";
+PolyML.use "newchecker/02_globvars.ML";
+PolyML.use "newchecker/03_printers.ML";</code></pre>
+
+<h3>C. Substitution &amp; Free Variables (~0.9s)</h3>
+<pre><code>PolyML.use "newchecker/00_preamble.ML";
+PolyML.use "newchecker/01_core_ast.ML";
+PolyML.use "newchecker/02_globvars.ML";
+PolyML.use "newchecker/03_printers.ML";
+PolyML.use "newchecker/04_subst.ML";</code></pre>
+
+<h3>D. Testing Definitions (<code>KernelDefinitions</code>) (~1.2s)</h3>
+<pre><code>PolyML.use "newchecker/00_preamble.ML";
+PolyML.use "newchecker/01_core_ast.ML";
+PolyML.use "newchecker/02_globvars.ML";
+PolyML.use "newchecker/03_printers.ML";
+PolyML.use "newchecker/04_subst.ML";
+PolyML.use "newchecker/05_rules.ML";
+PolyML.use "newchecker/06_definitions.ML";</code></pre>
+
+<h3>E. Deduction &amp; LCF Theorems (~1.5s)</h3>
+<pre><code>PolyML.use "newchecker/00_preamble.ML";
+PolyML.use "newchecker/01_core_ast.ML";
+PolyML.use "newchecker/02_globvars.ML";
+PolyML.use "newchecker/03_printers.ML";
+PolyML.use "newchecker/04_subst.ML";
+PolyML.use "newchecker/05_rules.ML";
+PolyML.use "newchecker/06_definitions.ML";
+PolyML.use "newchecker/07_theorems.ML";</code></pre>
+
+<h3>F. Interactive Tactics &amp; GoalTree (~1.8s)</h3>
+<pre><code>PolyML.use "newchecker/00_preamble.ML";
+PolyML.use "newchecker/01_core_ast.ML";
+PolyML.use "newchecker/02_globvars.ML";
+PolyML.use "newchecker/03_printers.ML";
+PolyML.use "newchecker/04_subst.ML";
+PolyML.use "newchecker/05_rules.ML";
+PolyML.use "newchecker/06_definitions.ML";
+PolyML.use "newchecker/07_theorems.ML";
+PolyML.use "newchecker/08_tactics.ML";</code></pre>
+
+<h3>G. PDF Extraction Only (~0.2s)</h3>
+<pre><code>PolyML.use "newchecker/10_pdf_generator.ML";
+copyContentBetweenMarkers "newchecker/01_core_ast.ML";</code></pre>
+
+<hr>
+
+<h2>3. Preservation &amp; Compatibility Invariants</h2>
+<ul>
+  <li><strong>Top-Level <code>newchecker.ML</code> Delegation:</strong> The file <code>program/newchecker.ML</code> delegates cleanly to <code>PolyML.use "newchecker/all.ML";</code> and defines <code>structure NewChecker</code>, preserving 100% backward compatibility for existing callers (such as <code>program/html_generator.ML</code>).</li>
+  <li><strong>Preservation of Commented Historical Blocks:</strong>
+    <ul>
+      <li>Category A (Morse-Kelley + Tarski) is preserved in <code>newchecker/09_entries.ML</code>.</li>
+      <li>Category B (Hilbert calculus) is preserved in <code>newchecker/05_rules.ML</code>.</li>
+      <li>Category C (<code>ThmWithoutPrf</code> optimization) is preserved in <code>newchecker/07_theorems.ML</code>.</li>
+    </ul>
+  </li>
+  <li><strong>PDF &amp; Binaries Immutability Rule:</strong> The module <code>10_pdf_generator.ML</code> extracts listing source to <code>CONTENT.ML</code>. In accordance with platform rules, already compiled and stored PDF documents and binaries across all repositories must never be mutated or overwritten.</li>
+</ul>
+
+</body>
+</html>

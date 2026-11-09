@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ModelProfile",
+  "description": "JSON Schema definition for botworkspace model dispatch profiles in catalog/model_dispatch.py",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "tier",
+    "context_window",
+    "max_read_lines",
+    "tramline"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Canonical identifier for the model profile"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable display name for the model"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Command-line aliases for model resolution"
+    },
+    "tier": {
+      "type": "string",
+      "description": "Model capability tier (e.g. Tier 1 — Frontier Architecture, Tier 2 — Pair Programmer)"
+    },
+    "context_window": {
+      "type": "integer",
+      "minimum": 1000,
+      "description": "Effective context window size in tokens"
+    },
+    "max_read_lines": {
+      "type": "integer",
+      "minimum": 10,
+      "description": "Attention shield maximum read lines per turn"
+    },
+    "reasoning_effort": {
+      "type": "string",
+      "description": "Configured reasoning effort level (e.g. Low, Medium, High, Maximum)"
+    },
+    "html_doc": {
+      "type": "string",
+      "description": "Relative filename of HTML documentation in catalog/models/"
+    },
+    "memory_entrypoint": {
+      "type": "string",
+      "description": "Tailored long-term memory entrypoint document"
+    },
+    "optimal_instruments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Recommended tools and commands for this model"
+    },
+    "prohibited_instruments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Prohibited or suboptimal actions for this model"
+    },
+    "tramline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "Sequential 4-step execution tramline instructions"
+    }
+  },
+  "additionalProperties": true
+}

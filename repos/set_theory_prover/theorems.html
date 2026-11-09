@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Certified Theorems Index (Obelisk)</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Certified Theorems Index (Obelisk)</h1>
+<p><strong>Verification Backend:</strong> Poly/ML 5.7.1 via <code>obelisk_cli.py theorem &lt;name&gt;</code>.<br>
+<strong>Rule:</strong> Do NOT re-prove theorems that already exist. Use these certified caches to inspect machine-checked proofs and construct higher-level derivations.</p>
+
+<div class="box">
+<strong>TOKEN ECONOMY MODULARIZATION:</strong><br>
+The theorem library is partitioned into focused sub-nodes to preserve working memory:
+</div>
+
+<hr>
+
+<h2>Theorem Sub-Caches</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="theorems_nbg.html">theorems_nbg.html (STAGE I &amp; II: NBG / MK)</a></strong><br>
+    <em>Contents:</em> 34 certified propositions-as-types theorems in predicative NBG and impredicative Morse-Kelley (Empty Class, Russell Class, Cantor Diagonal with Dunaev Tagged Pairs, Limitation of Size, Choice, Regularity, Transitivity, Ordinals).</p>
+  </li>
+
+  <li>
+    <p><strong><a href="theorems_tarski.html">theorems_tarski.html (STAGE III &amp; SUITES)</a></strong><br>
+    <em>Contents:</em> 7 Stage III Tarski staged quotation schemas (<code>separation_russell</code>, <code>lem</code>, <code>contraposition</code>, <code>syllogism</code>), 90 Morse-Kelley theorems in <code>program/verified_theorems.ML</code> (67 derived + 16 definitional + 7 axiomatic), 1st-order class proofs in <code>program/types/foundations.ML</code>, and 12 ordinal arithmetic theorems in <code>program/ordinal_theorems.ML</code>.</p>
+  </li>
+</ul>
+
+</body>
+</html>

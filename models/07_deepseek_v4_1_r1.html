@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Model Profile: DeepSeek V4.1 / R1 &amp; DeepCode CLI</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 10px; margin: 12px 0; background: #fff; }
+.card { border-left: 4px solid #0044cc; padding: 8px 12px; margin: 8px 0; background: #f0f4ff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+
+<h1>Model Profile: DeepSeek V4.1 / R1 &amp; DeepCode CLI</h1>
+<p><strong>Model Identifiers:</strong> <code>deepseek-v4.1-flash-free</code>, <code>deepseek-r1</code> &bull; <strong>Harnesses:</strong> DeepCode CLI, OpenCode</p>
+
+<div class="box">
+<strong>Cognitive Bounds &amp; Attention Architecture:</strong><br>
+&bull; <strong>Context Window:</strong> 128,000 tokens &bull; <strong>Reasoning Profile:</strong> Deep mathematical and formal logic chain-of-thought.<br>
+&bull; <strong>Attention Shield:</strong> Read at most 250 lines per call. Output must remain concise and free of conversational filler.<br>
+&bull; <strong>Specialization:</strong> Morse-Kelley class theory, sequent calculus, SML theorem compilation, proof tree viewer.
+</div>
+
+<h2>1. Tailored Long-Term Memory Slices</h2>
+<ul>
+  <li><strong>Free &amp; Subagent Operational Rules:</strong> <code>catalog/FREE_MODEL_RULES.md</code> (strict Morse-Kelley axioms).</li>
+  <li><strong>Set Theory Prover Architecture:</strong> <a href="../repos/set_theory_prover/index.html"><code>catalog/repos/set_theory_prover/index.html</code></a>.</li>
+  <li><strong>Worker Epistemic Memory:</strong> <code>python3 catalog/worker_memory.py query &lt;lemma&gt;</code>.</li>
+  <li><strong>Theorem Catalog:</strong> <code>obeliskproofassistant.github.io/docs/axioms_catalog.md</code>.</li>
+</ul>
+
+<h2>2. Optimal Instruments (High Leverage)</h2>
+<div class="card">
+&bull; <code>deepcode -x -p "&lt;prompt&gt;"</code> &mdash; headless execution using DeepCode vibe-coding engine.<br>
+&bull; <code>python3 /botworkspace/set_theory_prover/obelisk_cli.py check &lt;thm&gt;</code> &mdash; formal theorem checking.<br>
+&bull; <code>poly -q --use &lt;file.ML&gt;</code> &mdash; pure Standard ML 97 syntax verification.<br>
+&bull; <code>python3 /botworkspace/catalog/worker_memory.py note ...</code> &mdash; record hypothesis trails without polluting canonical consciousness.
+</div>
+
+<h2>3. Prohibited &amp; Suboptimal Instruments</h2>
+<div class="alert">
+&bull; NEVER construct Kuratowski pairs $\{\{A\}, \{A, B\}\}$ for proper classes (strictly use Dunaev Tagged Pairs).<br>
+&bull; NEVER modify or delete commented-out code blocks in ML files (enforced by <code>test_commented_blocks_audit.py</code>).<br>
+&bull; NEVER emit OCaml (<code>;;</code>) or Haskell syntax in Standard ML 97 files.
+</div>
+
+<h2>4. Immediate Meaningful Task Tramline</h2>
+<ol>
+  <li><strong>Query Verified Axioms:</strong> Run <code>python3 catalog/worker_memory.py query "Morse-Kelley"</code>.</li>
+  <li><strong>Inspect Proof Invariant:</strong> Check target ML theorem or lemma in <code>set_theory_prover/program/</code>.</li>
+  <li><strong>Construct Proof Tree:</strong> Author pure SML proof term using Dunaev Tagged Pairs.</li>
+  <li><strong>Check &amp; Log Result:</strong> Verify with <code>obelisk_cli.py check</code> and log progress via <code>worker_memory.py note</code>.</li>
+</ol>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+</body>
+</html>

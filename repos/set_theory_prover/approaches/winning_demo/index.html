@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approach: Winning Demonstration Engine</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; padding: 1.5rem; max-width: 52rem; margin: 0 auto; color: #1a1a1a; background: #fdfdfd; }
+h1, h2, h3 { color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+ul { padding-left: 1.25rem; }
+.meta-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 0.75rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[[UP: Approaches Taxonomy]]</a> &bull; <a href="../../../../index.html">[[UP: Root Memory Index]]</a></p>
+
+<h1>Approach: Winning Demonstration Engine</h1>
+<p><strong>Path:</strong> <code>program/</code> &bull; <code>program/types/</code> &bull; <code>program/kernel/</code><br>
+<strong>Status:</strong> ACTIVE &bull; PRIMARY DEVELOPMENT TARGET</p>
+
+<div class="meta-box">
+  <p><strong>The Breakthrough:</strong> This is the singular line of evolution that successfully produced the working Obelisk Demonstration, certifying 42 formal theorems as executable dependent programs in Poly/ML.</p>
+</div>
+
+<h2>Core Architectural Strata</h2>
+<ul>
+  <li><code>program/types/foundations.ML</code> (95KB, Jul 28 2026): Higher-order class/set foundation defining judgements, classes, conglomerates, and universes.</li>
+  <li><code>program/newchecker.ML</code> (335KB, Mar 13 2026): Classical sequent calculus proof engine with backward <code>GoalTree</code> tactics (<code>ee</code>, <code>ss</code>, <code>set_goal</code>).</li>
+  <li><code>program/dependent_*.ML</code>: SML-syntax value-dependent type system checking proofs as programs without bytecode compilation ("compile to check").</li>
+  <li><code>program/nbg_compiler.ML</code>: 3-stage NBG/MK compiler with Dunaev Tagged Pairs <code>[A, B]_D</code> and Tarski reflection schemas.</li>
+  <li><code>program/verified_theorems.ML</code>: 40 certified formal mathematical proofs checked under Poly/ML.</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+../.agents/skills/hierarchical-cognition/scripts/navigate.py

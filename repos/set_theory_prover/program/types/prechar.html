@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>File: PreChar.ML</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: types/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover]</a> &bull; <a href="../../../../index.html">[UP: Root Index]</a></p>
+
+<h1>File: PreChar.ML (Primitive Character Encodings)</h1>
+<p><strong>Filesystem Path:</strong> <code>/botworkspace/set_theory_prover/program/types/PreChar.ML</code><br>
+<strong>Size:</strong> 3,614 bytes (225 lines SML)<br>
+<strong>Preservation Invariant:</strong> Comment Block #3 (lines 1–225) must NEVER be deleted.</p>
+
+<div class="alert">
+<strong>HISTORICAL INVARIANT (PRESERVED CODE BLOCK #3):</strong><br>
+This file was authored by Georgy Dunaev and commented out with <code>(*** Not used currently ... for the faster development ***)</code>. It contains working inductive types for Alphabet, Digits, and formatting delimiters.
+</div>
+
+<hr>
+
+<h2>Key Definitions &amp; Author's Design Insights</h2>
+<ul>
+  <li><strong>Inductive Alphabet &amp; Digits:</strong> <code>structure Alphabet</code> (constructors <code>lA</code>..<code>lZ</code>) and <code>structure Digit</code> (constructors <code>D0</code>..<code>D9</code>) with pretty printers (<code>upper_dstr</code>, <code>lower_dstr</code>, <code>Digit_dstr</code>).</li>
+  <li><strong>Author's Delimiter Specification (Lines 80–87):</strong>
+    <pre>xxx_dstr converts content to fancy string, while xxx_qdstr puts inside delimiters:
+" " for strings
+' ' for chars
+&lt; &gt; for terms / quotation
+[| |] for antiquotations</pre>
+  </li>
+  <li><strong>Standard ML Signatures:</strong> Signature <code>CHAR</code> and structure <code>Char : CHAR</code> defining abstract equality types <code>t</code> and <code>expre</code>.</li>
+</ul>
+
+</body>
+</html>

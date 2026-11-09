@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Obelisk Approaches Taxonomy</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; padding: 1.5rem; max-width: 52rem; margin: 0 auto; color: #1a1a1a; background: #fdfdfd; }
+h1, h2, h3 { color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+ul { padding-left: 1.25rem; }
+.meta-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; border-radius: 4px; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[[UP: set_theory_prover Repo]]</a> &bull; <a href="../../../index.html">[[UP: Root Memory Index]]</a></p>
+
+<h1>Obelisk Approaches Taxonomy</h1>
+<p><strong>Context:</strong> Multi-year solo pet project evolution. Multiple parallel variants co-exist without git branching. Organized into architectural folders to separate dead-ends from the active winning core.</p>
+
+<div class="meta-box">
+  <p><strong>User Directive #15 (Authoritative):</strong> You are allowed to create subprojects and copy code, so all of set_theory_prover has various approaches, and all are implemented. Do not restrict development to a single approach; maintain and develop higher-order types (<code>foundations.ML</code>), sequent calculus (<code>newchecker.ML</code>), and Morse-Kelley calculus (<code>checker.ML</code>) in parallel.</p>
+</div>
+
+<h2>Architectural Approaches (Folders)</h2>
+<ul>
+  <li>
+    <p><strong><a href="winning_demo/index.html">winning_demo/ (FOUNDATIONAL DEMONSTRATION ENGINE)</a></strong><br>
+    <em>The Winning Core:</em> <code>types/foundations.ML</code>, <code>newchecker.ML</code>, and the dependent type system (<code>dependent_typechecker.ML</code>, <code>obelisk_compiler.ML</code>, <code>verified_theorems.ML</code>). Produces machine-checked proofs.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="early_checker/index.html">early_checker/ (FIRST-GEN MORSE-KELLEY CHECKER)</a></strong><br>
+    <em>Prototype:</em> <code>early_checker_prototype/checker.ML</code> (5,177 lines). Early sequent calculus engine with 4,941 lines of restored working code preserved for speed/reference.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="lambda_calculus_strings/index.html">lambda_calculus_strings/ (STRING-AST EXPERIMENTS)</a></strong><br>
+    <em>Dead-End / Archived:</em> String manipulation of lambda terms (<code>lang.ML</code>, <code>lambda.ML</code>). Archived when typed ASTs replaced string syntax.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="coq_rocq_transpiler/index.html">coq_rocq_transpiler/ (EXPERIMENTAL COQ/ROCQ BRIDGE)</a></strong><br>
+    <em>Bridge:</em> Transpilation experiments targeting Rocq/Coq inductive set definitions.</p>
+  </li>
+</ul>
+
+</body>
+</html>

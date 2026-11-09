@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Subsystem: mybot/scripts & Platform Diagnostics</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: mybot Repo]</a> &bull; <a href="../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Subsystem: mybot/scripts &amp; Platform Diagnostics</h1>
+<p><strong>Path:</strong> <code>/botworkspace/mybot/scripts</code><br>
+<strong>Diagnostic Command:</strong> <code>bash scripts/doctor.sh</code> (Verified: 10/10 PASS, 0 warnings)</p>
+
+<div class="box">
+<strong>PLATFORM HEALTH STATUS:</strong><br>
+- Local GitLab CE running responsive on <code>http://127.0.0.1:8929</code>.<br>
+- Python 3.12 runtime healthy.<br>
+- Secret scanner (<code>check-secrets.sh</code>) active.<br>
+- Git pre-push anti-spam hook active in <code>.git/hooks/pre-push</code>.<br>
+- Message box clean (0 unhandled errors).
+</div>
+
+<hr>
+
+<h2>Operational Scripts Breakdown</h2>
+<ul>
+  <li>
+    <p><strong><code>doctor.sh</code> (5.7KB):</strong><br>
+    System health diagnostic suite. Verifies Python runtime, GitLab endpoint responsiveness, file permissions, secret scanners, and git hooks.</p>
+  </li>
+
+  <li>
+    <p><strong><code>manage_tickets.py</code> (11KB):</strong><br>
+    Terminal CLI for local GitLab issue tracking. Queries REST API and local state.<br>
+    - <code>manage_tickets.py list [--open]</code><br>
+    - <code>manage_tickets.py show &lt;iid&gt;</code><br>
+    - <code>manage_tickets.py create "&lt;Title&gt;" "&lt;Desc&gt;"</code><br>
+    - <code>manage_tickets.py close &lt;iid&gt;</code></p>
+  </li>
+
+  <li>
+    <p><strong><code>health-monitor.sh</code> (6.3KB) &bull; <code>fleet-top.py</code> (8.1KB):</strong><br>
+    Live resource monitoring for container fleet (CPU, RAM, task queues, zombie process detection).</p>
+  </li>
+
+  <li>
+    <p><strong><code>check-secrets.sh</code> &bull; <code>censor-keys.sh</code>:</strong><br>
+    Pre-commit regex scanners intercepting API keys (OpenAI, Anthropic, Gemini, GitLab private tokens) to prevent leaks.</p>
+  </li>
+
+  <li>
+    <p><strong><code>backup-gitlab.sh</code> (3.5KB):</strong><br>
+    Creates timestamped JSON and git bundle backups of the local GitLab issue database.</p>
+  </li>
+
+  <li>
+    <p><strong><code>rotate-worker-token.sh</code> (3.2KB):</strong><br>
+    Rotates IPC shared secrets between <code>secure-gateway</code> and <code>ai-worker</code>.</p>
+  </li>
+</ul>
+
+</body>
+</html>

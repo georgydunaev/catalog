@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Certified NBG & MK Theorems (Stage I & II)</title>
+<style>
+body{font-family:monospace;max-width:950px;margin:20px auto;padding:0 10px;line-height:1.4;color:#111;background:#fafafa}
+a{color:#0044cc;text-decoration:none}hr{border:0;border-top:1px solid #ccc;margin:15px 0}
+code{background:#eee;padding:1px 3px}
+table{width:100%;border-collapse:collapse;font-size:0.88em;margin:10px 0;background:#fff}
+th,td{border:1px solid #ccc;padding:3px 5px;text-align:left}th{background:#eee}
+.nbg,.mk{display:inline-block;padding:1px 4px;border-radius:3px;font-size:0.8em;font-weight:bold}
+.nbg{background:#d0e8ff;color:#004488}.mk{background:#ffe0b2;color:#b75500}
+</style>
+</head>
+<body>
+
+<p><a href="theorems.html">[UP: Theorems Index]</a> &bull; <a href="index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Certified NBG &amp; MK Theorems (Stage I &amp; II)</h1>
+<p>Certified NBG propositions-as-types theorems in Obelisk.</p>
+
+<table>
+<tr><th>#</th><th>Name</th><th>Stage</th><th>Formal Statement</th></tr>
+<tr><td>1</td><td><code>proofEmptyClassNoElements</code></td><td><span class="nbg">N</span></td><td><code>forall x. ~(x in 0)</code></td></tr>
+<tr><td>2</td><td><code>proofEmptySetSubclass</code></td><td><span class="nbg">N</span></td><td><code>forall A z. z in 0 -> z in A</code></td></tr>
+<tr><td>3</td><td><code>proofUniversalClassChar</code></td><td><span class="nbg">N</span></td><td><code>forall x. x in V &lt;-&gt; Set(x)</code></td></tr>
+<tr><td>4</td><td><code>proofRussellClassNotSet</code></td><td><span class="nbg">N</span></td><td><code>~Set({x | x notin x})</code></td></tr>
+<tr><td>5</td><td><code>proofCantorDiagonal</code></td><td><span class="nbg">N</span></td><td>Cantor's Diagonal Theorem</td></tr>
+<tr><td>6</td><td><code>proofBinInterComm</code></td><td><span class="nbg">N</span></td><td><code>z in (A n B) -> z in (B n A)</code></td></tr>
+<tr><td>7</td><td><code>proofBinUnionComm</code></td><td><span class="nbg">N</span></td><td><code>z in (A u B) -> z in (B u A)</code></td></tr>
+<tr><td>8</td><td><code>proofEqSym</code> &bull; <code>proofEqTrans</code></td><td><span class="nbg">N</span></td><td><code>x = y -> y = x</code> &amp; transitivity</td></tr>
+<tr><td>9</td><td><code>proofQuantifierSwap</code></td><td><span class="nbg">N</span></td><td><code>(forall x y. x in y) -> (forall y x. x in y)</code></td></tr>
+<tr><td>10</td><td><code>proofDunaevPairProjections</code></td><td><span class="nbg">N</span></td><td><code>pr1([A,B]_D) = A /\ pr2([A,B]_D) = B</code></td></tr>
+<tr><td>11</td><td><code>proofDunaevPairCongruence</code></td><td><span class="nbg">N</span></td><td><code>(a1 = a2 /\ b1 = b2) -> [a1,b1]_D = [a2,b2]_D</code></td></tr>
+<tr><td>12</td><td><code>proofSelfInSingleton</code></td><td><span class="nbg">N</span></td><td><code>Set(x) -> x in {x}</code></td></tr>
+<tr><td>13</td><td><code>proofSelfInSucc</code> &bull; <code>proofSubSucc</code></td><td><span class="nbg">N</span></td><td><code>Set(x) -> x in Succ(x)</code> and <code>Set(x) -> x c= Succ(x)</code></td></tr>
+<tr><td>14</td><td><code>proofDiffExcludesRight</code></td><td><span class="nbg">N</span></td><td><code>(z in (A \ B) /\ z in B) -> _|_</code></td></tr>
+<tr><td>15</td><td><code>proofSubclassTrans</code> &bull; <code>proofSubRefl</code></td><td><span class="nbg">N</span></td><td>Class inclusion trans &amp; refl</td></tr>
+<tr><td>16</td><td><code>proofSelfInPower</code> &bull; <code>proofPowerElimSub</code></td><td><span class="mk">M</span></td><td><code>Set(A) -> A in P(A)</code> and <code>u in P(A) -> u c= A</code></td></tr>
+<tr><td>17</td><td><code>proofNoSelfMembership</code></td><td><span class="nbg">N</span></td><td><code>Set(a) -> ~(a in a)</code></td></tr>
+<tr><td>18</td><td><code>proofNoTwoCycle</code></td><td><span class="nbg">N</span></td><td>No &isin;-2-cycles: <code>(Set(a) /\ Set(b)) -> ~(a in b /\ b in a)</code></td></tr>
+<tr><td>19</td><td><code>proofChoiceFromNonEmptyClass</code></td><td><span class="nbg">N</span></td><td><code>z in A -> (Set(eps x. x in A) /\ (eps x. x in A) in A)</code></td></tr>
+<tr><td>20</td><td><code>proofRussellInjectsUniv</code></td><td><span class="nbg">N</span></td><td><code>exists F. Injective(F, V, R)</code></td></tr>
+<tr><td>21</td><td><code>proofUnivInjectionImpliesNotSet</code></td><td><span class="nbg">N</span></td><td><code>(exists F. Injective(F, V, X)) -> ~Set(X)</code></td></tr>
+<tr><td>22</td><td><code>proofEmptyIsTransitive</code></td><td><span class="nbg">N</span></td><td><code>Tr(0)</code></td></tr>
+<tr><td>23</td><td><code>proofOmegaIsSet</code> &bull; <code>proofZeroInOmega</code></td><td><span class="nbg">N</span></td><td><code>Set(omega)</code> and <code>0 in omega</code></td></tr>
+<tr><td>24</td><td><code>proofOmegaSuccClosed</code></td><td><span class="nbg">N</span></td><td><code>forall y:Set. y in omega -> Succ(y) in omega</code></td></tr>
+<tr><td>25</td><td><code>proofSubclassAntisym</code></td><td><span class="nbg">N</span></td><td><code>(X c= Y /\ Y c= X) -> X = Y</code></td></tr>
+<tr><td>26</td><td><code>proofEmptySetUnique</code></td><td><span class="nbg">N</span></td><td><code>(Empty(e1) /\ Empty(e2)) -> e1 = e2</code></td></tr>
+<tr><td>27</td><td><code>proofUniversalClassNotSet</code></td><td><span class="nbg">N</span></td><td><code>V = {x|Top} -> ~Set(V)</code></td></tr>
+<tr><td>28</td><td><code>proofSuccPreservesTrans</code></td><td><span class="nbg">N</span></td><td><code>Tr(x) -> Tr(Succ(x))</code></td></tr>
+</table>
+
+</body>
+</html>

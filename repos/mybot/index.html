@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Repo: mybot</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../../branches/fleet_infra.html">[UP: Fleet &amp; Security Branch]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Repository: mybot (Priority 2)</h1>
+<p><strong>Filesystem:</strong> <code>/botworkspace/mybot</code><br>
+<strong>Core Role:</strong> Multi-Agent Fleet Platform. Manages containerized autonomous bots (<code>bot0001</code>–<code>bot0005</code>), strict 2-container security isolation, local GitLab server, and fleet lifecycle.</p>
+
+<div class="alert">
+<strong>SECURITY INVARIANT:</strong><br>
+1. <code>ai-worker</code> containers NEVER contact external networks directly. All egress routes strictly through <code>secure-gateway</code>.<br>
+2. Run secret scrubbing (<code>censor-keys.sh</code>) before committing.<br>
+3. Claims in <code>tickets/</code> must format headers with Agent-Hash, Bot-Number, and Process-ID.
+</div>
+
+<hr>
+
+<h2>Sub-Pages for this Repository</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="secure_gateway/index.html">secure_gateway/ (SECURITY EGRESS PROXY)</a></strong><br>
+    <em>Navigate here for:</em> Two-container security model, token scrubbing, egress filtering in <code>gateway.py</code>.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="local_gitlab/index.html">local_gitlab/ (SELF-HOSTED GITLAB)</a></strong><br>
+    <em>Navigate here for:</em> Local GitLab server running on port <code>8929</code>, backup scripts, and offline git synchronization.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="scripts/index.html">scripts/ &amp; test-all.sh (FLEET AUTOMATION &amp; TESTS)</a></strong><br>
+    <em>Navigate here for:</em> <code>test-all.sh</code> (59KB master test harness), fleet health monitors, ticket dispatchers, and doctor scripts.</p>
+  </li>
+</ul>
+
+</body>
+</html>

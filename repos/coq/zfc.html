@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Repo: zfc (Aczel Sets & ZFC in Coq)</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="../../branches/coq_formalizations.html">[UP: Coq Theories Branch]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Repository: zfc (Aczel Sets &amp; ZFC in Coq)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/zfc</code><br>
+<strong>Language:</strong> Coq (12 files)<br>
+<strong>Model:</strong> Peter Aczel's constructive encoding of Zermelo-Fraenkel set theory inside inductive type theory.</p>
+
+<div class="box">
+<strong>THE ACZEL INDUCTIVE SET MODEL (<code>Sets.v</code>):</strong><br>
+<pre>Inductive Ens : Type := sup (A : Type) (f : A -&gt; Ens).</pre>
+A set is represented as an inductive tree indexed by a carrier type <code>A</code> with branching function <code>f</code>.
+</div>
+
+<hr>
+
+<h2>Key Theorems &amp; Files</h2>
+<ul>
+  <li>
+    <p><strong><code>Russell.v</code>:</strong><br>
+    <code>Theorem Russell : forall E : Ens, (forall E' : Ens, IN E' E) -&gt; False.</code><br>
+    Constructive proof of the non-existence of a universal set via Russell's paradox on <code>Ens</code>.</p>
+  </li>
+
+  <li>
+    <p><strong><code>Axioms.v</code>:</strong><br>
+    Constructs the empty set (<code>Vide : Ens</code>), pairing (<code>Paire</code>), union (<code>Union</code>), comprehension (<code>Comp</code>), and powerset (<code>P</code>).</p>
+  </li>
+
+  <li>
+    <p><strong><code>Replacement.v</code> &bull; <code>Cartesian.v</code>:</strong><br>
+    Axiom schema of replacement, functional relations, and cartesian products.</p>
+  </li>
+
+  <li>
+    <p><strong><code>3_Regularity.v</code>:</strong><br>
+    Proof of the Foundation/Regularity axiom: &epsilon;-induction over well-founded trees.</p>
+  </li>
+
+  <li>
+    <p><strong><code>Omega.v</code> &bull; <code>Ordinal_theory.v</code> &bull; <code>Hierarchy.v</code>:</strong><br>
+    The axiom of infinity (&omega; as smallest inductive set), transitive sets, and the cumulative von Neumann hierarchy $V_\alpha$.</p>
+  </li>
+</ul>
+
+</body>
+</html>

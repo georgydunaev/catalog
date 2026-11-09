@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>File: foundations.ML</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: types/ Subsystem]</a> &bull; <a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>File: foundations.ML (95KB)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/types/foundations.ML</code><br>
+<strong>Role:</strong> Priority ground truth for dependent type theory in Obelisk.</p>
+
+<div class="box">
+<strong>CORE MOTTO:</strong><br>
+<em>"Verification of all theorem's proofs is too time consuming. Writing its statement formally is a reasonable compromise."</em>
+</div>
+
+<hr>
+
+<h2>Exported Structures &amp; Core Constructs</h2>
+<ul>
+  <li>
+    <p><strong>Context Encodings:</strong><br>
+    - <code>empctx</code>: Empty typing context (<code>Ctx_Expre_id LpNil</code>).<br>
+    - <code>VCtx ce</code>: Lifts context expression <code>ce</code> to small universe object (<code>VSmall_Obj</code>).<br>
+    - <code>VCtx_Expression ce</code>: Context expression constructor.</p>
+  </li>
+
+  <li>
+    <p><strong>Variables &amp; Binders:</strong><br>
+    - <code>locavari</code>: Local variable constructor (<code>IVariable_t (EVar GlobVar.vx)</code>).<br>
+    - <code>mkka vx cofo</code>: Bound variable formula constructor (<code>Fm_LBound_id (LBound_id (LVariable_id vx))</code>).</p>
+  </li>
+
+  <li>
+    <p><strong>Universe Lifting:</strong><br>
+    - <code>VSmall_Obj</code>: Constructor for small universe objects.<br>
+    - <code>HSO</code> / <code>HLO</code> / <code>HHI</code>: Hierarchical stratified universe operators (Small Object, Large Object, Huge Object).</p>
+  </li>
+</ul>
+
+<hr>
+<p><strong>Verification:</strong> Tested by <code>tests/test_demo_types.py</code> and <code>demo.ML</code>.</p>
+</body>
+</html>

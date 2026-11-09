@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Questions for User &amp; Architectural Decisions</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.4; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+code { background: #eee; padding: 2px 4px; }
+.card { border: 1px solid #ccc; padding: 8px 12px; margin: 8px 0; background: #fff; border-radius: 4px; }
+.priority { border-left: 4px solid #0044cc; }
+</style>
+</head>
+<body>
+<p><a href="index.html">[UP: Root Index]</a></p>
+<h1>Questions for User &amp; Architectural Decisions</h1>
+<p>Synced with <code>/botworkspace/QUESTIONS_FOR_USER.md</code> and GitLab Dashboard.</p>
+
+<div class="card priority">
+<h3>1. Host Local LLM Acceleration</h3>
+<p>To enable 7B GPU acceleration on host: <code>./mybot/host-local-llm/setup-local-llm.sh --model 7b &amp;&amp; ollama serve</code></p>
+</div>
+
+<div class="card priority">
+<h3>2. Foundational Axiom System [RESOLVED]</h3>
+<p><strong>[SELECTED] Option A (Morse-Kelley / NBG):</strong> Finite classes, impredicative comprehension, Dunaev tagged pairs.</p>
+</div>
+
+<div class="card">
+<h3>3. Physical Strata in <code>program/approaches/</code></h3>
+<p>Preserved chronological layers: <code>01_lambda_calculus_strings</code>, <code>02_early_checker_prototype</code>, <code>03_coq_rocq_transpiler</code>, <code>04_winning_demo</code>, <code>05_lcf_microkernel</code>.</p>
+</div>
+
+<div class="card">
+<h3>4. Obelisk Portals [RESOLVED: Classic Default]</h3>
+<p><strong>[DEFAULT] Classic Author Portal:</strong> <code>index.html</code> / <code>classic.html</code> with toggle to <strong>Modern AI Portal:</strong> <code>obelisk_ai.html</code> / <code>ai.html</code>.</p>
+</div>
+
+<div class="card priority">
+<h3>5. Ordinal Induction (∈-Ind): Theorem vs Axiom (#19)</h3>
+<p>In MK theory, <code>On</code> is a class object, not a syntactic type. Formulas with variables are formulas.<br>
+&bull; <strong>(Recommended) Option A:</strong> Derive Ordinal Induction formally as a Theorem Schema from Set Foundation and Class Comprehension.<br>
+&bull; <strong>Option B:</strong> Retain as primitive rule <code>PEpsIndAx</code> in <code>newchecker.ML</code>.<br>
+&bull; <strong>Option C:</strong> Treat as side-condition formula in <code>metatheory.html</code>.</p>
+</div>
+
+<div class="card priority">
+<h3>6. Proper Classes &amp; Pairing: Dunaev vs Kuratowski (#20)</h3>
+<p>Kuratowski pairs fail for proper classes. Dunaev Tagged Pairs <code>(A, B)_D = ({0} x A) U ({1} x B)</code> allow class pairing.<br>
+&bull; <strong>(Recommended) Option A:</strong> Delineate constructors into <code>SetOPair</code> (sets) and <code>ClassOPair</code> (classes).<br>
+&bull; <strong>Option B:</strong> Standardize all pairing kernel-wide on Dunaev pairs.<br>
+&bull; <strong>Option C:</strong> Dynamically lower <code>ClassOPair</code> to Kuratowski when components are sets.</p>
+</div>
+
+<div class="card priority">
+<h3>7. Incompleteness Statements in Section 6 (#21)</h3>
+<p>Section 6 (Löb's and Gödel's second incompleteness theorems) is WIP without full proof derivations.<br>
+&bull; <strong>(Recommended) Option A:</strong> Isolate Section 6 into <code>program/incompleteness.ML</code>, keeping core kernel clean.<br>
+&bull; <strong>Option B:</strong> Fully formalize Henkin extension <code>F</code> within <code>newchecker.ML</code>.<br>
+&bull; <strong>Option C:</strong> Refactor into reflected side conditions on <code>metatheory.html</code>.</p>
+</div>
+
+<div class="card priority">
+<h3>8. Web REPL Architecture: JS vs PolyML Backend (#22)</h3>
+<p><code>obelisk_engine.js</code> lacks recent AST constructors (<code>EIf</code>). Backend hosts <code>/api/obelisk/compile</code>.<br>
+&bull; <strong>(Recommended) Option A:</strong> Hybrid architecture: connect to <code>/api/obelisk/compile</code> on GitLab with JS fallback.<br>
+&bull; <strong>Option B:</strong> Port complete PolyML AST to JS.<br>
+&bull; <strong>Option C:</strong> Compile PolyML to WebAssembly (Wasm) via Emscripten.</p>
+</div>
+
+<div class="card priority">
+<h3>9. Elevating manual.html as Primary Showcase (#23)</h3>
+<p>Manual contains 49 machine-checked statements, reflected metatheory, and proof certificates.<br>
+&bull; <strong>(Recommended) Option A:</strong> Full Elevation: Feature manual.html as primary hero CTA and dedicated interactive showcase section on obelisk_ai.html.<br>
+&bull; <strong>Option B:</strong> Make manual.html root index.html.<br>
+&bull; <strong>Option C:</strong> Keep narrative landing page as default.</p>
+</div>
+
+<div class="card priority">
+<h3>10. Declarative Proofs (Isar/Mizar) vs Procedural Tactics (#24)</h3>
+<p>Proof assistant authoring paradigms: structured declarative vs low-level backward tactics.<br>
+&bull; <strong>(Recommended) Option A:</strong> Hybrid: LCF tactics microkernel core + lightweight Isar-style declarative wrapper (assume/have/show/qed).<br>
+&bull; <strong>Option B:</strong> Pure procedural tactics combinators (THEN, ORELSE, REPEAT).<br>
+&bull; <strong>Option C:</strong> Pure forward Hilbert-style deduction steps.</p>
+</div>
+
+<div class="card priority">
+<h3>11. Automated SMT / ATP 'Hammer' Bridge (#25)</h3>
+<p>Exporting Morse–Kelley class sequents to external automated provers (Vampire, E, Z3).<br>
+&bull; <strong>(Recommended) Option A:</strong> Implement TPTP-THF/FOF exporter for automated proof discovery + PolyML kernel reconstruction.<br>
+&bull; <strong>Option B:</strong> Build pure SML superposition prover inside set_theory_prover.<br>
+&bull; <strong>Option C:</strong> Defer automated hammers until Web REPL reaches version 3.0.</p>
+</div>
+
+<div class="card priority">
+<h3>12. Web REPL Multi-Pane Goal State &amp; Infoview (#26)</h3>
+<p>Live interactive goal viewer showing hypotheses, target sequents, and derivation branching.<br>
+&bull; <strong>(Recommended) Option A:</strong> Implement 2-pane Infoview in repl.html with live sequent goal states and tactic derivation tree.<br>
+&bull; <strong>Option B:</strong> Retain console terminal stream output.<br>
+&bull; <strong>Option C:</strong> Add SVG interactive proof tree graph visualizer.</p>
+</div>
+
+<hr>
+<p><a href="index.html">[UP: Root Index]</a></p>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Model Profile: Claude Sonnet 5.5 / 3.5 High Reasoning</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 10px; margin: 12px 0; background: #fff; }
+.card { border-left: 4px solid #0044cc; padding: 8px 12px; margin: 8px 0; background: #f0f4ff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+
+<h1>Model Profile: Claude Sonnet 5.5 / 3.5 (High Reasoning)</h1>
+<p><strong>Model Identifiers:</strong> <code>claude-sonnet-5-5-high</code>, <code>claude-3-5-sonnet</code> &bull; <strong>Harnesses:</strong> Antigravity, OpenCode</p>
+
+<div class="box">
+<strong>Cognitive Bounds &amp; Attention Architecture:</strong><br>
+&bull; <strong>Context Window:</strong> 200,000 tokens (Balanced high-speed execution &amp; deep coding precision).<br>
+&bull; <strong>Attention Decay Threshold:</strong> Reliable up to 80,000 tokens; optimal under targeted 200&ndash;300 line reads.<br>
+&bull; <strong>Max File Read Window:</strong> 300 lines per call.<br>
+&bull; <strong>Reasoning Effort:</strong> High reasoning with focused pragmatic execution.
+</div>
+
+<h2>1. Tailored Long-Term Memory Slices</h2>
+<ul>
+  <li><strong>Subproject Catalogs:</strong> <a href="../repos/mybot/index.html"><code>catalog/repos/mybot/index.html</code></a> &amp; <a href="../branches/fleet_infra.html"><code>Fleet Infra</code></a>.</li>
+  <li><strong>Tickets Backlog:</strong> <code>mybot/tickets/</code> and local GitLab API issues.</li>
+  <li><strong>Fleet Management Guides:</strong> <code>mybot/docs/guides/HOST_COMMANDS.txt</code> and <code>mybot/ARCHITECTURE.md</code>.</li>
+  <li><strong>FTS5 Semantic Search:</strong> <code>python3 catalog/cognition.py search &lt;term&gt;</code>.</li>
+</ul>
+
+<h2>2. Optimal Instruments (High Leverage)</h2>
+<div class="card">
+&bull; <code>python3 -m unittest discover -s mybot/tests -p "test_*.py"</code> &mdash; automated regression testing.<br>
+&bull; <code>python3 mybot/test-offline-resilience.sh</code> &mdash; Rule 10 offline compliance benchmark.<br>
+&bull; <code>python3 mybot/test-harness-install.sh</code> &mdash; multi-harness verification.<br>
+&bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; Zero Committed Secrets scanner.<br>
+&bull; <code>git -C mybot push gitlab main</code> &mdash; decoupled safe push to local GitLab container.
+</div>
+
+<h2>3. Prohibited &amp; Suboptimal Instruments</h2>
+<div class="alert">
+&bull; NEVER run <code>docker</code> commands directly inside containers (Docker CLI is intentionally absent).<br>
+&bull; NEVER push directly to public GitHub (violates rate-limit and offline containment policies).<br>
+&bull; NEVER commit files without running <code>security_guard.py scan</code> first (Rule 5).<br>
+&bull; Avoid reading raw minified or vendor bundles (e.g. <code>dist/</code> or <code>node_modules/</code>).
+</div>
+
+<h2>4. Immediate Meaningful Task Tramline</h2>
+<ol>
+  <li><strong>Select Highest Priority Ticket:</strong> Identify open tickets in <code>mybot/tickets/</code>.</li>
+  <li><strong>Verify Baseline Suite:</strong> Run existing unittest to confirm clean working tree.</li>
+  <li><strong>Implement Contiguous Edits:</strong> Apply atomic edits and verify syntax with <code>bash -n</code> or <code>python3 -m py_compile</code>.</li>
+  <li><strong>Security Scan &amp; Commit:</strong> Scan modified files with <code>security_guard.py</code> and push strictly to local GitLab.</li>
+</ol>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+</body>
+</html>

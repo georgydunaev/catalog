@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rules: Operator Interaction &amp; Command Invariants</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+.success { border: 2px solid #15803d; padding: 8px; margin: 10px 0; background: #f0fdf4; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: Hierarchical Rules Cache]</a> &bull; <a href="../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Operator Interaction &amp; Command Invariants</h1>
+<p><strong>Rationale:</strong> Distilled from empirical analysis of historical user command trajectories, model outcomes, and regression cycles (especially sessions <code>b183e4f4</code> and <code>5b94e013</code>). These invariants govern command interpretation, task scoping, and delivery gates to eliminate conversational friction, token waste, and recurring regressions.</p>
+
+<hr>
+
+<h2>Category 1: Command Scoping &amp; Anti-Drift Invariants</h2>
+<div class="alert">
+<ol>
+  <li><strong>Boundary Invariant (Anti-"Carte Blanche"):</strong>
+    Never interpret open-ended permission phrases (e.g., <em>"do whatever you want, but be reasonable"</em>) as license to alter established syntax styling, invent ad-hoc compound Unicode notations, or merge separate conceptual theories. Always define and respect explicit boundaries and preserve existing aesthetics.
+  </li>
+  <li><strong>Single-Layer Separation Invariant:</strong>
+    Decouple changes across architectural strata:
+    <ul>
+      <li><em>Stratum A: Mathematical AST / SML Kernel</em> (e.g., constructors, proof rules in <code>set_theory_prover</code>).</li>
+      <li><em>Stratum B: SML Formula / LaTeX Emitters</em> (e.g., <code>html_generator.ML</code>, <code>nbg_html_generator.ML</code>).</li>
+      <li><em>Stratum C: Web Presentation / CSS &amp; DOM</em> (e.g., <code>embedding.html</code>, MathJax configuration, mobile responsive panels).</li>
+      <li><em>Stratum D: Infrastructure / Git / Platforms</em> (e.g., reverse proxy, GitLab, backup scripts).</li>
+    </ul>
+    Never execute multi-stratum compound bug reports in an unverified single turn.
+  </li>
+  <li><strong>Goal-Anchored Continuation Invariant:</strong>
+    Never treat a bare <code>continue</code> command as an open-ended refactoring license. Every continuation must anchor to a concrete ticket, subsystem, or file, run required tests, and immediately stop once verified.
+  </li>
+  <li><strong>Curated External Critique Invariant:</strong>
+    When external AI evaluations (e.g., Claude tickets T1&ndash;T6, W1&ndash;W6) are pasted, audit them against <a href="../index.html"><code>/botworkspace/FACTBOOK.md</code></a> and user directives before acting. Reject suggestions that assume incomplete repository context (e.g., replacing Dunaev pairs with Kuratowski pairs, or erasing MK/NBG distinction).
+  </li>
+</ol>
+</div>
+
+<hr>
+
+<h2>Category 2: Rendering &amp; Syntax Generation Invariants</h2>
+<div class="box">
+<ol>
+  <li><strong>MathJax TeX Catcode 6 Invariant (No Raw <code>#</code> in Math Mode):</strong>
+    TeX reserves <code>#</code> for macro parameters inside math delimiters <code>\( ... \)</code> and <code>$$ ... $$</code>. SML generators must NEVER output literal <code>#</code> inside math mode (such as <code>\color{#60a5fa}</code> or anchor tags <code>#DefOrdinalClass</code>). Use CSS classes or <code>\color[RGB]{r,g,b}</code> where required.
+  </li>
+  <li><strong>Formula Token Whitespace Invariant:</strong>
+    In LaTeX mode, always preserve intentional whitespace between identifiers, constants, and binders (e.g., <code>plan_ord_def \omega</code> rather than collapsed <code>plan_ord_def\omega</code>).
+  </li>
+  <li><strong>Variant Independence Invariant:</strong>
+    Keep Variant 1 (<code>MKTD1</code> &mdash; First-Order NBG/MK Statements) and Variant 2 (<code>MKTD2</code> &mdash; Formulas-as-Types / Constructive Dependent Proofs) strictly separated in titles, documentation, and AST tables. Never merge them into conflated headers like <code>(MKTD1 / MKTD2)</code>.
+  </li>
+  <li><strong>End-to-End Visual Render-Verification Invariant:</strong>
+    A change is NOT complete merely because compiler syntax (<code>poly -q</code>) or Python tests pass. All generated HTML files must be inspected for valid DOM structure, working relative links (0 broken hyperlinks or 404s), and zero MathJax console/rendering errors.
+  </li>
+</ol>
+</div>
+
+<hr>
+
+<h2>Category 3: Autonomous Epistemic Discipline</h2>
+<div class="success">
+<ol>
+  <li><strong>Step 0 Memory Check:</strong>
+    Always inspect <a href="../index.html"><code>/botworkspace/catalog/</code></a> and run self-configuration at task start. Do not rely on conversational prompts to remind you.
+  </li>
+  <li><strong>Immutable Fact Preservation:</strong>
+    Never modify <a href="../index.html"><code>/botworkspace/FACTBOOK.md</code></a> to weaken facts. When user commands or test demands conflict with the Fact Book, escalate immediately as an architectural question.
+  </li>
+</ol>
+</div>
+
+</body>
+</html>

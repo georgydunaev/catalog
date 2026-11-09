@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approach: Coq/Rocq Transpiler</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; padding: 1.5rem; max-width: 52rem; margin: 0 auto; color: #1a1a1a; background: #fdfdfd; }
+h1, h2, h3 { color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+ul { padding-left: 1.25rem; }
+.meta-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; border-radius: 4px; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[[UP: Approaches Taxonomy]]</a> &bull; <a href="../../../../index.html">[[UP: Root Memory Index]]</a></p>
+
+<h1>Approach: Coq/Rocq Transpiler</h1>
+<p><strong>Path:</strong> <code>program/approaches/coq_rocq_transpiler/</code><br>
+<strong>Status:</strong> EXPERIMENTAL EXPORT BRIDGE</p>
+
+<div class="meta-box">
+  <p><strong>Purpose:</strong> Cross-system validation by mapping Obelisk set/class terms into Rocq/Coq inductive types (e.g. Aczel's inductive set trees in Coq's <code>Ens</code> model).</p>
+</div>
+
+<h2>Components</h2>
+<ul>
+  <li><code>rocq/</code>: Source prototypes attempting to transpile Morse-Kelley derivations into Coq/Rocq vernacular.</li>
+  <li>Related: Master exporter later standardized on <code>export_dedukti.ML</code> and <code>nbg_dedukti_exporter.ML</code> (LambdaPi format) for CakeML/Dedukti verification.</li>
+</ul>
+
+</body>
+</html>

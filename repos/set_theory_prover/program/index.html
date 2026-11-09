@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Subsystem: set_theory_prover/program</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Subsystem: set_theory_prover/program/</h1>
+<p><strong>Filesystem:</strong> <code>/botworkspace/set_theory_prover/program</code><br>
+<strong>Language:</strong> Standard ML (Poly/ML)<br>
+<strong>Role:</strong> Core logic implementation of Obelisk. Contains the verification kernels, dependent type theory, NBG compilers, and verified theorem library.</p>
+
+<div class="alert">
+<strong>INVARIANT:</strong> Do not modify kernel files directly without verifying against <code>demo_newchecker.ML</code> and running tests via <code>obelisk_cli.py</code>.
+</div>
+
+<hr>
+
+<h2>Sub-Areas in program/</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="kernel/index.html">kernel/ (NEWCHECKER &amp; LCF)</a></strong><br>
+    <em>Navigate here for:</em> <code>newchecker.ML</code> (335KB Morse-Kelley verification kernel) and <code>lcf.ML</code> (sound theorem abstraction).</p>
+  </li>
+
+  <li>
+    <p><strong><a href="types/index.html">types/ (DEPENDENT TYPE SYSTEM)</a></strong><br>
+    <em>Navigate here for:</em> <code>foundations.ML</code> (95KB foundational dependent types, &Pi;, &Sigma;, universes), <code>typetheory.ML</code>, and inductive types.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="nbg/index.html">nbg/ (NBG COMPILERS &amp; THEOREMS)</a></strong><br>
+    <em>Navigate here for:</em> <code>nbg_compiler.ML</code> (76KB), surface syntax parsers, and verified NBG mathematical theorems (choice, limitation of size, ordinals).</p>
+  </li>
+
+  <li>
+    <p><strong><a href="approaches/index.html">approaches/ &amp; DEPRECATED/</a></strong><br>
+    <em>Navigate here for:</em> Historical sequent calculus prototypes and early checkers. Reference only.</p>
+  </li>
+</ul>
+
+</body>
+</html>

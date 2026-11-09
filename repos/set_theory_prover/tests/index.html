@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tests: Obelisk Verification Test Suite</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Tests: Obelisk Verification Test Suite</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/tests</code><br>
+<strong>Role:</strong> Machine-checked regression suite (28 test files) verifying kernel soundness, inference rules, and Poly/ML execution.</p>
+
+<div class="alert">
+<strong>MEANING &amp; PHILOSOPHY:</strong><br>
+A proof assistant is only as good as its soundness. If a contradiction or false theorem can be proven, the entire system collapses. These tests ensure the LCF kernel strictly rejects invalid derivations while correctly validating true theorems of class-set theory.
+</div>
+
+<hr>
+
+<h2>Key Test Modules &amp; What They Prove</h2>
+
+<ul>
+  <li>
+    <p><strong><code>test_soundness_audit.py</code> (Ran &amp; Passed):</strong><br>
+    <em>Purpose:</em> The soundness firewall. Deliberately attempts to feed fallacious proofs (e.g. invalid inferences, Russell's paradox violations) to the kernel, ensuring the kernel refuses to create a <code>thm</code> object.</p>
+  </li>
+
+  <li>
+    <p><strong><code>test_verified_theorems.py</code> (35KB):</strong><br>
+    <em>Purpose:</em> Executes all verified mathematical theorems in <code>program/verified_theorems.ML</code> to prevent regression when refactoring.</p>
+  </li>
+
+  <li>
+    <p><strong>Axiom Verification Suites:</strong><br>
+    - <code>test_nbg_limitation_of_size.py</code>: Verifies proper class / set bijection logic.<br>
+    - <code>test_nbg_regularity.py</code>: Verifies Foundation axiom (no infinite descending &isin;-chains).<br>
+    - <code>test_nbg_choice_theorems.py</code>: Verifies Axiom of Choice and well-ordering proofs.<br>
+    - <code>test_nbg_power_theorems.py</code>: Verifies powerset existence and subsets.<br>
+    - <code>test_nbg_ordinal_properties.py</code> &bull; <code>test_ordinal_theorems.py</code>: Transitive ordinals.</p>
+  </li>
+
+  <li>
+    <p><strong>Type Foundations Suites:</strong><br>
+    - <code>test_demo_types.py</code> &bull; <code>test_dependent_compiler.py</code>: Validates Martin-L&ouml;f dependent type checker rules.</p>
+  </li>
+
+  <li>
+    <p><strong>Subsumption &amp; Unification:</strong><br>
+    - <code>test_unification.py</code> &bull; <code>test_subsumption.py</code>: First-order term unification and pattern subsumption.</p>
+  </li>
+</ul>
+
+<hr>
+<p><strong>Running Tests:</strong> <code>python3 -m unittest discover /botworkspace/set_theory_prover/tests</code></p>
+</body>
+</html>

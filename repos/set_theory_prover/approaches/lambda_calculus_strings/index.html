@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approach: Lambda Calculus Strings</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; padding: 1.5rem; max-width: 52rem; margin: 0 auto; color: #1a1a1a; background: #fdfdfd; }
+h1, h2, h3 { color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+ul { padding-left: 1.25rem; }
+.meta-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 0.75rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[[UP: Approaches Taxonomy]]</a> &bull; <a href="../../../../index.html">[[UP: Root Memory Index]]</a></p>
+
+<h1>Approach: Lambda Calculus Strings</h1>
+<p><strong>Path:</strong> <code>program/approaches/lambda_calculus_strings/</code><br>
+<strong>Status:</strong> CONCLUDED EXPLORATORY DEAD-END</p>
+
+<div class="meta-box">
+  <p><strong>Why Concluded:</strong> Early attempts represented lambda calculus syntax directly via string tokens (<code>lang.ML</code>, <code>QUOTE_SML_DEADEND.ML</code>). The author recognized that manipulating formulas as strings causes capture errors, slow evaluation, and fragile typing.</p>
+</div>
+
+<h2>Archived Components</h2>
+<ul>
+  <li><code>lang.ML</code> &bull; <code>language.ML</code> &bull; <code>lambda.ML</code>: Untyped and simply-typed lambda terms encoded via string representations.</li>
+  <li><code>QUOTE_SML_DEADEND.ML</code>: Experimental quotation parsing directly into SML source code. Concluded as impractical.</li>
+  <li><code>untyped_lam.ML</code> &bull; <code>program.ML</code>: Redundant lambda normalization evaluators.</li>
+</ul>
+
+<h2>Lessons Learned</h2>
+<p>String ASTs were abandoned in favor of structured SML datatypes (<code>datatype Term</code> in <code>dependent_syntax.ML</code> and <code>nbg_compiler.ML</code>), enabling capture-avoiding substitution and Milner-style LCF kernel invariants.</p>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CLI Harness: obelisk_cli</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>CLI Harness: obelisk_cli.py</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/obelisk_cli.py</code><br>
+<strong>Symlink:</strong> <code>/botworkspace/installed/obelisk</code> (available in PATH)<br>
+<strong>Role:</strong> Python 3 command-line interface and automation harness for the Obelisk Proof Assistant.</p>
+
+<div class="alert">
+<strong>EXECUTION INVARIANT:</strong> Always invoke Poly/ML non-interactively with <code>stdin=subprocess.DEVNULL</code>. Never launch interactive Poly/ML sessions directly.
+</div>
+
+<hr>
+
+<h2>Commands &amp; Subsystems</h2>
+
+<ul>
+  <li>
+    <p><strong><code>obelisk_cli.py</code> (v3.2.0, Poly/ML 5.7.1):</strong><br>
+    <em>Universal Commands:</em><br>
+    - <code>obelisk status</code>: Reports Poly/ML compiler engine, 3-stage NBG/MK/Tarski health, and theorem stats.<br>
+    - <code>obelisk repl</code>: Launches interactive NBG + Tactic proof shell with goal display and backtracking.<br>
+    - <code>obelisk check &lt;file|thm&gt;</code> (or <code>obelisk verify</code>): Checks a .nbg/.odl/.ML file or named theorem.<br>
+    - <code>obelisk theorem &lt;name&gt;</code>: Fuzzy-resolves, normalizes, and inspects certified NBG proof terms.<br>
+    - <code>obelisk test [filter]</code>: Runs the 73 automated unit &amp; regression tests in <code>tests/</code>.<br>
+    - <code>obelisk list [--category]</code>: Displays certified NBG theorems, MK suites, and Stage III schemas.<br>
+    - <code>obelisk demo</code>: Runs full 3-stage propositions-as-types verification suite in Poly/ML.<br>
+    - <code>obelisk bundle</code> (or <code>obelisk build</code>): Compiles single-file monolith into <code>dist/obelisk_unfolded.ML</code>.<br>
+    - <code>obelisk quote &lt;schema&gt;</code>: Evaluates Stage III meta-schemas under Tarski stratification.<br>
+    - <code>obelisk export-lp</code>: Exports Dedukti / LambdaPi (.lp) formal proof certificates.</p>
+  </li>
+
+  <li>
+    <p><strong><code>obelisk_kernel.py</code> (11KB):</strong><br>
+    <em>Role:</em> Python wrapper handling SML process pipes, error code parsing, and term string sanitation.</p>
+  </li>
+
+  <li>
+    <p><strong><code>obelisk_tactics.py</code> (13KB):</strong><br>
+    <em>Role:</em> High-level proof tactics engine implemented in Python.</p>
+  </li>
+</ul>
+
+</body>
+</html>

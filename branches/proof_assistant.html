@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Branch: Proof Assistant Core</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Branch: Proof Assistant Core (Priority 1)</h1>
+<p>This branch contains the Obelisk Proof Assistant project repositories. Obelisk is a minimalist formal verification system designed for Morse-Kelley class theory, NBG set theory, and dependent type theory.</p>
+
+<div class="alert">
+<strong>CORE INVARIANT:</strong><br>
+All active development, verification tests, and theorem proving must focus on <code>set_theory_prover</code>. Do not edit <code>set_theory_prover_AUDIT</code> (it is a frozen snapshot).
+</div>
+
+<hr>
+
+<h2>Sub-Pages in this Branch</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="../repos/set_theory_prover/index.html">set_theory_prover/ (ACTIVE OBELISK REPOSITORY)</a></strong><br>
+    <em>Navigate here for:</em> The live codebase. Contains the Poly/ML kernel (<code>program/</code>), Python CLI (<code>obelisk_cli.py</code>), test suites, tactics, and ticket queue.</p>
+  </li>
+  <li>
+    <p><strong><a href="../repos/archives/set_theory_prover_audit.html">set_theory_prover_AUDIT/ (FROZEN AUDIT)</a></strong><br>
+    <em>Navigate here for:</em> The historical pre-refactoring codebase snapshot used to verify provenance or compare legacy implementations.</p>
+  </li>
+</ul>
+
+</body>
+</html>

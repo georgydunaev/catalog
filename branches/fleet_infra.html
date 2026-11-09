@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Branch: Multi-Agent Fleet & Security</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Branch: Multi-Agent Fleet &amp; Security (Priority 2)</h1>
+<p>This branch covers containerized agent fleet management, security egress proxies, local GitLab, and automated fleet testing.</p>
+
+<div class="alert">
+<strong>SECURITY INVARIANT:</strong><br>
+The worker containers (<code>ai-worker</code>) must never access the open internet directly. All external communication is routed through <code>secure-gateway</code>. Do not bypass or remove this boundary.
+</div>
+
+<hr>
+
+<h2>Sub-Pages in this Branch</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="../repos/mybot/index.html">mybot/ (PLATFORM CORE)</a></strong><br>
+    <em>Navigate here for:</em> Multi-agent fleet platform, Docker Compose service definitions, <code>secure-gateway/</code>, <code>local-gitlab/</code>, and test harnesses (<code>test-all.sh</code>).</p>
+  </li>
+  <li>
+    <p><strong><a href="../repos/tools_infra/installed.html">installed/ (LOCAL BINARIES)</a></strong><br>
+    <em>Navigate here for:</em> Local binaries maintained in workspace PATH (<code>agy</code>, <code>poly</code>, <code>obelisk</code> symlink).</p>
+  </li>
+</ul>
+
+</body>
+</html>

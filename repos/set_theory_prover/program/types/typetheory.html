@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>File: typetheory.ML</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: types/ Subsystem]</a> &bull; <a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>File: typetheory.ML (84KB)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/types/typetheory.ML</code><br>
+<strong>Role:</strong> Extended typing judgements, reduction rules, and proof checking machinery.</p>
+
+<div class="box">
+<strong>CONSISTENCY STRENGTH ANALYSIS:</strong><br>
+Analyzes consistency strength of Obelisk theory <em>F</em>:<br>
+<code>strength(ZFC) &lt; strength(MK) &le; strength(ZFC + one universe)</code><br>
+<code>T = MK &cup; {axGroth}</code><br>
+Shows that Morse-Kelley class theory plus Grothendieck universes provides the foundation for both set theory and universe-indexed type theory.
+</div>
+
+<hr>
+
+<h2>Key Datatypes &amp; Structures</h2>
+<ul>
+  <li><code>VarStatus = FREE | BOUND | UNKNOWN</code>: Explicit tracking of de Bruijn/variable binding state.</li>
+  <li><code>IsBinder of bool</code>: Predicate for variable-binding operators (&Pi;, &Sigma;, &lambda;).</li>
+  <li><code>'a MyId = myid of 'a</code>: Identity functor.</li>
+  <li><code>('a, 'b) MyBinaryProduct_t</code>: Binary product constructors.</li>
+  <li><code>('Fm_List) Ctx_p</code> &bull; <code>Theory_p</code>: Abstract context and mathematical theory datatypes.</li>
+</ul>
+
+</body>
+</html>

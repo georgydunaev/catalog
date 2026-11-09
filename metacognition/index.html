@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Metacognition & Self-Reasoning Cache</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Metacognition &amp; Self-Reasoning Cache</h1>
+<p><strong>Purpose:</strong> Caching the agent's reasoning about itself, its cognitive limitations, operational biases, and self-audited readiness.</p>
+
+<hr>
+
+<h2>1. The Four Self-Audit Questions (Current State)</h2>
+
+<h3>Q1: "Do you have memory now?"</h3>
+<p><strong>Epistemic Reality:</strong> Yes, but strictly as an <em>external filesystem cache</em> (the 45+ nodes in <code>/botworkspace/catalog/</code>), not within internal model weights. Across session boundaries, the agent awakens completely amnesic. Memory only functions if the incoming agent conscientiously reads <code>prompt.txt</code> and queries the catalog.</p>
+
+<h3>Q2: "Is it working?"</h3>
+<p><strong>Epistemic Reality:</strong> Partially and verified, but incomplete. Navigation (<code>navigate.py</code>) and CLI theorem verification (<code>obelisk theorem proofCantorDiagonal</code>) work with zero broken links. However, 46 of the 54 repositories are currently indexed only at summary level, not deep file level.</p>
+
+<h3>Q3: "Are all tasks solved?"</h3>
+<p><strong>Epistemic Reality:</strong> No. The scaffolding and core Priority 1/2 nodes are built, but mapping the remaining workspace requires approximately 7 more sessions. Deep code recovery inside <code>set_theory_prover</code> has not yet begun.</p>
+
+<h3>Q4: "What will be the next task?"</h3>
+<p><strong>Immediate Next Task:</strong> Deepen the formal proof mapping for <code>set_theory_prover/program/types/</code> (individual file nodes) and <code>coq/goedel/</code>, while strictly applying the hierarchical rules cache and preserving all commented-out code.</p>
+
+<hr>
+
+<h2>2. Rule: Readiness Notification for <code>set_theory_prover</code></h2>
+<p><a href="roadmap.html"><strong>&rarr; View the Four-Session Readiness Roadmap (roadmap.html)</strong></a></p>
+
+<div class="alert">
+<strong>MANDATORY NOTIFICATION RULE:</strong><br>
+Do NOT prematurely claim readiness to independently develop <code>set_theory_prover</code>. You must notify the User (Layer 0) <em>ONLY</em> when you are absolutely sure that the following 4 criteria are formally satisfied:
+<ol>
+  <li><strong>Kernel Rule Mastery:</strong> Full mechanical understanding of all deduction rules in <code>program/newchecker.ML</code> and the <code>lcf.ML</code> abstract <code>thm</code> firewall.</li>
+  <li><strong>Term &amp; Proof Calculus Fluency:</strong> Ability to construct and normalize lambda-calculus proof terms (using <code>Lam</code>, <code>fn</code>, <code>compr</code>, <code>pair</code>, and Dunaev Tagged Pairs) without syntactic or type errors.</li>
+  <li><strong>Non-Interactive Test Harness Fluency:</strong> Ability to run and pass all 28 test suites in <code>tests/</code> via Poly/ML non-interactively without CLI hangs.</li>
+  <li><strong>Constructive Synthesis Proof:</strong> Ability to synthesize a novel, non-trivial lemma in NBG/MK, verify it via <code>obelisk verify</code>, and prove it passes subject reduction without weakening any kernel axioms.</li>
+</ol>
+When and ONLY when all 4 criteria are verified: output the exact declaration:<br>
+<code>[NOTIFICATION TO LAYER 0]: I am absolutely sure that I am smart enough to develop set_theory_prover.</code>
+</div>
+
+<hr>
+
+<h2>3. Cached Cognitive Self-Corrections</h2>
+<ul>
+  <li><strong>Zero Flattery:</strong> Suppress conversational groveling. State what was checked, provide the command output, and report discrepancies.</li>
+  <li><strong>Token Conservation:</strong> Keep conversational turns compact to maximize the agent's effective context window.</li>
+  <li><strong>Adversarial Self-Testing:</strong> Before accepting any proof or code patch, attempt to break it with counterexamples (Popperian falsification).</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Repo: goedel (Coq Incompleteness Proofs)</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="../../branches/coq_formalizations.html">[UP: Coq Theories Branch]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Repository: goedel (47 Coq Files)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/goedel</code><br>
+<strong>Language:</strong> Coq (Full formal verification of Gödel's Incompleteness Theorems)</p>
+
+<div class="box">
+<strong>MATHEMATICAL RECONSTRUCTION:</strong><br>
+Proves both Gödel's First and Second Incompleteness Theorems completely from first principles in constructive Coq.
+</div>
+
+<hr>
+
+<h2>1. Core Theorem Endpoints</h2>
+<ul>
+  <li>
+    <p><strong>Gödel's First Incompleteness Theorem (<code>goedel1.v</code>: line 315):</strong><br>
+    <code>Theorem Goedel'sIncompleteness1st : wConsistent T -&gt; exists f : Formula, ~ SysPrf T f /\ ~ SysPrf T (notH f) /\ (forall v : nat, ~ In v (freeVarFormula LNN f)).</code><br>
+    <em>Meaning:</em> For any &omega;-consistent formal system <em>T</em> extending Robinson Arithmetic (<em>NN</em>) with representable axioms, there exists an undecidable closed sentence <em>G</em>.</p>
+  </li>
+
+  <li>
+    <p><strong>Gödel's Second Incompleteness Theorem (<code>goedel2.v</code>: line 251):</strong><br>
+    <code>Theorem SecondIncompletness : SysPrf T Con -&gt; Inconsistent LNT T.</code><br>
+    <em>Meaning:</em> For any system <em>T</em> extending Peano Arithmetic (<em>PA</em>), if <em>T</em> proves its own consistency sentence <code>Con</code>, then <em>T</em> is inconsistent.</p>
+  </li>
+</ul>
+
+<hr>
+
+<h2>2. Dependency Pipeline Across the 47 Files</h2>
+<ol>
+  <li><strong>First-Order Languages:</strong> <code>LNN.v</code> (Language of NN), <code>LNT.v</code> (Language of Number Theory), <code>Languages.v</code>, <code>folProp.v</code>, <code>folProof.v</code>.</li>
+  <li><strong>Arithmetic Systems:</strong> <code>NN.v</code> &bull; <code>NNtheory.v</code> (Robinson's Q / NN), <code>PA.v</code> &bull; <code>PAtheory.v</code> (Peano Arithmetic), <code>PAconsistent.v</code>.</li>
+  <li><strong>Gödel Numbering &amp; Recursion:</strong> <code>cPair.v</code> (Cantor pairing), <code>codeList.v</code>, <code>code.v</code>, <code>PRrepresentable.v</code> (Primitive recursive functions are representable in NN), <code>chRem.v</code> (Chinese Remainder Theorem for sequence encoding).</li>
+  <li><strong>Deduction &amp; Proof Coding:</strong> <code>Deduction.v</code> (Deduction theorem), <code>codeSysPrf.v</code> (Arithmetization of proof predicate <code>codeSysPf</code>).</li>
+  <li><strong>Fixed-Point Diagonalization:</strong> <code>fixPoint.v</code> (Formal proof of the Diagonal Lemma: &exist; &psi;. <em>T</em> &vdash; &psi; &harr; &phi;(&lceil;&psi;&rceil;)).</li>
+  <li><strong>Final Proofs:</strong> <code>goedel1.v</code> &bull; <code>goedel2.v</code>.</li>
+</ol>
+
+</body>
+</html>

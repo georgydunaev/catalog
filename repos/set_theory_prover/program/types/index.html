@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Types: foundations.ML & Dependent Types</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Types: foundations.ML &amp; Dependent Type Theory</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/types</code><br>
+<strong>Language:</strong> Standard ML (Poly/ML)</p>
+
+<div class="box">
+<strong>MATHEMATICAL FOUNDATION &amp; CONSISTENCY STRENGTH:</strong><br>
+Obelisk's foundational theory <em>F</em> combines Morse–Kelley class theory with Grothendieck universes (<code>axGroth</code>):<br>
+<code>strength(ZFC) &lt; strength(MK) &le; strength(ZFC + one universe)</code><br>
+<code>T = MK &cup; {axGroth}</code><br>
+This consistency strength provides enough mathematical headroom to simultaneously express ZFC sets, proper classes (for category theory), and dependent type hierarchies without inconsistency.
+</div>
+
+<div class="alert">
+<strong>CORE PRINCIPLE:</strong><br>
+<em>"Verification of all theorem's proofs is too time consuming. Writing its statement formally is a reasonable compromise."</em><br>
+Formalizing exact specifications and statements precedes and anchors full mechanical proof checking.
+</div>
+
+<hr>
+
+<h2>Key Modules &amp; Their Mathematical Roles</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="foundations.html">foundations.ML (95KB)</a></strong><br>
+    <em>Role:</em> Priority ground truth. Implements context expressions (<code>VCtx</code>), variable bindings (<code>IVariable_t</code>, <code>Fm_LBound_id</code>), universe objects (<code>VSmall_Obj</code>), and dependent functions (&Pi;, &Sigma;).</p>
+  </li>
+
+  <li>
+    <p><strong><a href="typetheory.html">typetheory.ML (84KB)</a></strong><br>
+    <em>Role:</em> Consistency analysis and extended typing judgements. Defines variable status (<code>FREE</code>, <code>BOUND</code>, <code>UNKNOWN</code>), binder predicates (<code>IsBinder</code>), and reduction rules.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="entries.html">entries.ML (30KB)</a></strong><br>
+    <em>Role:</em> Environment entries and symbol table management for the typechecker.</p>
+  </li>
+
+  <li>
+    <p><strong><code>Nat.ML</code>, <code>Bool.ML</code>, <code>Unit.ML</code>, <code>Void.ML</code>:</strong><br>
+    <em>Role:</em> Canonical inductive data types formalized within the dependent type foundation.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="prechar.html">PreChar.ML (3.6KB)</a> &bull; <code>PreString.ML</code>:</strong><br>
+    <em>Role:</em> Primitive character and string encodings. <em>Invariant: Preserves historical code block #3 and delimiter specs.</em></p>
+  </li>
+
+  <li>
+    <p><strong><a href="demo.html">demo.ML (8KB)</a>:</strong><br>
+    <em>Role:</em> Interactive demo verifying dependent type judgements and logic entries under Poly/ML.</p>
+  </li>
+</ul>
+
+</body>
+</html>

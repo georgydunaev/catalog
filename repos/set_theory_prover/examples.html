@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Examples: Surface .nbg & .odl Programs</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Examples: Surface <code>.nbg</code> &amp; <code>.odl</code> Programs</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/examples</code><br>
+<strong>Compilation Command:</strong> <code>obelisk compile &lt;file.nbg&gt; --stage nbg</code></p>
+
+<div class="box">
+<strong>CONSTRUCTIVE PROPOSITIONS-AS-TYPES SYNTAX:</strong><br>
+The surface language uses <code>Lam (X : Class) => ...</code> for universal quantification, <code>fn (h : Formula) => ...</code> for implication introduction, <code>pair(p1, p2)</code> for conjunction introduction, and <code>fst(h)</code> / <code>snd(h)</code> for conjunction elimination.
+</div>
+
+<hr>
+
+<h2>Verified Example Files</h2>
+<ul>
+  <li>
+    <p><strong><code>cognitive_synthesis_theorems.nbg</code> (6 Verified Theorems):</strong><br>
+    Synthesized and verified under Poly/ML:<br>
+    1. <code>double_negation_intro_sets</code>: <code>forall A. Set(A) -> ((Set(A) -> Bot) -> Bot)</code><br>
+    2. <code>inter_comm_elements</code>: <code>forall A B x. (x in A /\ x in B) -> (x in B /\ x in A)</code><br>
+    3. <code>inter_assoc_elements</code>: <code>forall A B C x. (((x in A /\ x in B) /\ x in C) -> (x in A /\ (x in B /\ x in C)))</code><br>
+    4. <code>subclass_contraposition</code>: <code>forall A B x. (x in A -> x in B) -> ((x in B -> Bot) -> (x in A -> Bot))</code><br>
+    5. <code>union_assoc_elements</code>: <code>forall A B C x. ((x in A \/ x in B) \/ x in C) -> (x in A \/ (x in B \/ x in C))</code><br>
+    6. <code>inter_distrib_union</code>: <code>forall A B C x. (x in A /\ (x in B \/ x in C)) -> ((x in A /\ x in B) \/ (x in A /\ x in C))</code></p>
+  </li>
+
+  <li>
+    <p><strong><code>nbg_advanced_theorems.nbg</code> (5 Verified Theorems):</strong><br>
+    Hypothetical syllogism for sets, contraposition for sets, De Morgan laws, shared right endpoint equality, and subclass transitivity.</p>
+  </li>
+
+  <li>
+    <p><strong><code>nbg_verified_programs.nbg</code> (15 Verified Theorems):</strong><br>
+    Comprehensive surface theorem library.</p>
+  </li>
+</ul>
+
+</body>
+</html>
