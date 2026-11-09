@@ -14,11 +14,11 @@ import os
 import sys
 import sqlite3
 import html
-from datetime import datetime
+from datetime import datetime, timezone
 
-CATALOG_ROOT = "/botworkspace/catalog"
-DB_PATH = os.path.join(CATALOG_ROOT, "catalog.db")
-OUTPUT_HTML = os.path.join(CATALOG_ROOT, "user_directives.html")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.environ.get("CATALOG_DB_PATH", os.path.join(CATALOG_ROOT, "catalog.db"))
+OUTPUT_HTML = os.environ.get("USER_DIRECTIVES_HTML", os.path.join(CATALOG_ROOT, "user_directives.html"))
 
 # System Initial Directives (Derived directly from user corrections and critical feedback)
 CORE_DIRECTIVES = [
@@ -136,12 +136,14 @@ CORE_DIRECTIVES = [
     }
 ]
 
-def get_conn():
-    conn = sqlite3.connect(DB_PATH)
+def get_conn() -> sqlite3.Connection:
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA busy_timeout = 5000;")
     return conn
 
-def init_directives_table(conn):
+def init_directives_table(conn: sqlite3.Connection) -> None:
     with conn:
         conn.execute("""
         CREATE TABLE IF NOT EXISTS user_directives (
@@ -158,28 +160,31 @@ def init_directives_table(conn):
         """)
         conn.execute("CREATE INDEX IF NOT EXISTS idx_directives_prio ON user_directives(priority DESC);")
 
-def seed_core_directives():
+def seed_core_directives() -> None:
     conn = get_conn()
-    init_directives_table(conn)
-    with conn:
-        for d in CORE_DIRECTIVES:
-            cur = conn.execute("SELECT id FROM user_directives WHERE category = ? AND directive = ?", (d["category"], d["directive"]))
-            if not cur.fetchone():
-                conn.execute("""
-                INSERT INTO user_directives (priority, category, trigger_pattern, lesson_learned, directive, last_enforced)
-                VALUES (?, ?, ?, ?, ?, ?)
-                """, (d["priority"], d["category"], d["trigger"], d["lesson"], d["directive"], datetime.utcnow().isoformat()))
-    conn.close()
+    try:
+        init_directives_table(conn)
+        with conn:
+            for d in CORE_DIRECTIVES:
+                cur = conn.execute("SELECT id FROM user_directives WHERE category = ? AND directive = ?", (d["category"], d["directive"]))
+                if not cur.fetchone():
+                    conn.execute("""
+                    INSERT INTO user_directives (priority, category, trigger_pattern, lesson_learned, directive, last_enforced)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """, (d["priority"], d["category"], d["trigger"], d["lesson"], d["directive"], datetime.now(timezone.utc).isoformat()))
+    finally:
+        conn.close()
 
-def get_directives(limit=20):
+def get_directives(limit: int = 20):
     conn = get_conn()
-    init_directives_table(conn)
-    cur = conn.execute("SELECT * FROM user_directives ORDER BY priority DESC, id ASC LIMIT ?", (limit,))
-    rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
-    return rows
+    try:
+        init_directives_table(conn)
+        cur = conn.execute("SELECT * FROM user_directives ORDER BY priority DESC, id ASC LIMIT ?", (limit,))
+        return [dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
 
-def render_directives_html():
+def render_directives_html() -> None:
     directives = get_directives()
     rows = []
     for d in directives:
@@ -187,21 +192,21 @@ def render_directives_html():
         c_name = html.escape(d['category'].replace('_', ' ').upper())
         les = html.escape(d['lesson_learned'])
         dir_t = html.escape(d['directive'])
-        rows.append(f"<tr><td><b>{c_name}</b> <span style='color:{p_col}'>({d['priority']})</span><br/><small style='color:#fbbf24'>⚠️ {les}</small><br/><span style='color:#34d399'>🎯 {dir_t}</span></td></tr>")
+        rows.append(f"<tr><td><b>{c_name}</b> <span style='color:{p_col}'>({d['priority']})</span><br/><small style='color:#fbbf24'>[LESSON] {les}</small><br/><span style='color:#34d399'>[DIRECTIVE] {dir_t}</span></td></tr>")
 
     doc_html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Prioritized Directives</title>
 <style>body{{font:13px sans-serif;background:#1f1e24;color:#ececef;padding:10px;max-width:800px;margin:auto}}a{{color:#60a5fa}}table{{width:100%;border-collapse:collapse}}td{{padding:6px;border-bottom:1px solid #2b2a33}}</style></head>
-<body><a href="index.html">← Catalog</a> | <a href="questions_for_user.html">❓ Decisions</a>
-<h3>🎯 Prioritized Cognitive Directives</h3><table>{''.join(rows)}</table></body></html>"""
+<body><a href="index.html">Catalog</a> | <a href="questions_for_user.html">Decisions</a>
+<h3>Prioritized Cognitive Directives</h3><table>{''.join(rows)}</table></body></html>"""
 
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
         f.write(doc_html)
     print(f"[DIRECTIVES] Rendered {len(directives)} prioritized directives to {OUTPUT_HTML}")
 
-def print_cli_summary():
+def print_cli_summary() -> None:
     directives = get_directives()
     print("================================================================================")
-    print(" 🎯 TOP-PRIORITY COGNITIVE DIRECTIVES & USER CORRECTIONS")
+    print(" TOP-PRIORITY COGNITIVE DIRECTIVES & USER CORRECTIONS")
     print("================================================================================")
     for d in directives:
         print(f"[{d['priority']}/100] [{d['category'].upper()}]")

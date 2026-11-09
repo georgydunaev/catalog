@@ -13,7 +13,7 @@ import json
 import tracemalloc
 from typing import Dict, Any, List
 
-CATALOG_ROOT = "/botworkspace/catalog"
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
 if CATALOG_ROOT not in sys.path:
     sys.path.insert(0, CATALOG_ROOT)
 

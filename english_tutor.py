@@ -13,9 +13,21 @@ import json
 import glob
 from typing import List, Dict, Tuple
 
-TRANSCRIPT_PATH = "/home/bot/.gemini/antigravity-cli/brain/3e1b88f5-bb08-487b-95c6-dd91d60aecc2/.system_generated/logs/transcript.jsonl"
-OUT_MD = "/botworkspace/docs/ENGLISH_NOTES.md"
-OUT_HTML = "/botworkspace/catalog/english_notes.html"
+WORKSPACE_ROOT = os.environ.get("WORKSPACE_ROOT", "/botworkspace")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
+OUT_MD = os.path.join(WORKSPACE_ROOT, "docs/ENGLISH_NOTES.md")
+OUT_HTML = os.path.join(CATALOG_ROOT, "english_notes.html")
+
+
+def get_transcript_path() -> Optional[str]:
+    """Finds the active or most recent conversation transcript."""
+    if os.environ.get("TRANSCRIPT_PATH") and os.path.isfile(os.environ["TRANSCRIPT_PATH"]):
+        return os.environ["TRANSCRIPT_PATH"]
+    candidates = glob.glob("/home/bot/.gemini/antigravity-cli/brain/*/.system_generated/logs/transcript.jsonl")
+    if candidates:
+        candidates.sort(key=os.path.getmtime, reverse=True)
+        return candidates[0]
+    return None
 
 # Pattern rules: (regex_pattern, correction, category, explanation)
 RULES: List[Tuple[str, str, str, str]] = [
@@ -56,9 +68,10 @@ RULES: List[Tuple[str, str, str, str]] = [
 
 def extract_user_inputs() -> List[str]:
     texts = []
-    if os.path.exists(TRANSCRIPT_PATH):
+    t_path = get_transcript_path()
+    if t_path and os.path.exists(t_path):
         try:
-            with open(TRANSCRIPT_PATH) as f:
+            with open(t_path, "r", encoding="utf-8", errors="ignore") as f:
                 for line in f:
                     try:
                         d = json.loads(line)
@@ -109,7 +122,7 @@ def generate_reports() -> Dict[str, int]:
 
 """
     for f in findings:
-        md_content += f"""### 📌 {f['category']}: `{f['original']}` &rarr; **`{f['correction']}`**
+        md_content += f"""### [{f['category']}] `{f['original']}` -> **`{f['correction']}`**
 - **Explanation:** {f['explanation']}
 - **Found in context:** *"{f['context']}"*
 
@@ -126,12 +139,13 @@ def generate_reports() -> Dict[str, int]:
 | `It fells` | **`It feels`** | 'fell' = past of fall. 'feels' = perception. |
 | `explains to my` | **`explains to me`** | Preposition + object pronoun ('to me', 'to him'). |
 | `free tim` / `te` | **`free time` / `the`** | Common fast-typing key skips. |
-| `leaded to` | **`led to`** | Irregular verb: lead &rarr; led &rarr; led. |
+| `leaded to` | **`led to`** | Irregular verb: lead -> led -> led. |
 
 *You write very clearly and your technical intent is always completely understood!*
 """
 
-    with open(OUT_MD, "w") as fp:
+    os.makedirs(os.path.dirname(OUT_MD), exist_ok=True)
+    with open(OUT_MD, "w", encoding="utf-8") as fp:
         fp.write(md_content)
 
     # 2. Write HTML Catalog node (<= 50-60 lines)

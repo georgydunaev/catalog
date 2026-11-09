@@ -8,9 +8,8 @@ import re
 import sys
 import unittest
 
-CATALOG_ROOT = "/botworkspace/catalog"
-if CATALOG_ROOT not in sys.path:
-    sys.path.insert(0, CATALOG_ROOT)
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.normpath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, CATALOG_ROOT)
 
 import db
 import benchmark_search

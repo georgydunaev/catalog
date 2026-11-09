@@ -14,18 +14,30 @@ import os
 import re
 import glob
 import sqlite3
-from typing import List, Dict, Tuple, Optional, Any
+import contextlib
+from typing import List, Dict, Tuple, Optional, Any, Iterator
 
-CATALOG_ROOT = "/botworkspace/catalog"
-DB_PATH = os.path.join(CATALOG_ROOT, "catalog.db")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.environ.get("CATALOG_DB_PATH", os.path.join(CATALOG_ROOT, "catalog.db"))
 
 
 def get_connection(db_path: str = DB_PATH) -> sqlite3.Connection:
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_path, timeout=30.0)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")
     conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA busy_timeout = 5000;")
     return conn
+
+
+@contextlib.contextmanager
+def open_db(db_path: str = DB_PATH) -> Iterator[sqlite3.Connection]:
+    """Context manager ensuring safe connection acquisition and guaranteed closure."""
+    conn = get_connection(db_path)
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 
 def init_db(conn: sqlite3.Connection) -> None:
@@ -89,7 +101,7 @@ def html_to_clean_markdown(raw_html: str) -> str:
     clean = re.sub(r'<h1>(.*?)</h1>', r'# \1\n', clean)
     clean = re.sub(r'<h2>(.*?)</h2>', r'## \1\n', clean)
     clean = re.sub(r'<h3>(.*?)</h3>', r'### \1\n', clean)
-    clean = re.sub(r'<a href="([^"]+)">(.*?)</a>', r'[\2](\1)', clean)
+    clean = re.sub(r'<a\s+(?:[^>]*?\s+)?href=[\"\']([^\"\']+)[\"\'][^>]*>(.*?)</a>', r'[\2](\1)', clean, flags=re.DOTALL)
     clean = re.sub(r'<li>\s*<p>(.*?)</p>\s*</li>', r'* \1\n', clean, flags=re.DOTALL)
     clean = re.sub(r'<li>(.*?)</li>', r'* \1\n', clean)
     clean = re.sub(r'<p>(.*?)</p>', r'\1\n\n', clean, flags=re.DOTALL)
@@ -179,156 +191,148 @@ def extract_links(relpath: str, raw_html: str) -> List[Tuple[str, str, str]]:
 
 def sync_db(catalog_root: str = CATALOG_ROOT, db_path: str = DB_PATH) -> Dict[str, int]:
     """Incrementally synchronizes the SQLite database with the filesystem."""
-    conn = get_connection(db_path)
-    init_db(conn)
+    with open_db(db_path) as conn:
+        init_db(conn)
 
-    html_files = glob.glob(f"{catalog_root}/**/*.html", recursive=True)
-    stats = {"inserted": 0, "updated": 0, "deleted": 0, "skipped": 0, "total": len(html_files)}
+        html_files = glob.glob(f"{catalog_root}/**/*.html", recursive=True)
+        stats = {"inserted": 0, "updated": 0, "deleted": 0, "skipped": 0, "total": len(html_files)}
 
-    # Map current files
-    fs_nodes = {}
-    for f in html_files:
-        rel = os.path.relpath(f, catalog_root)
-        fs_nodes[rel] = f
+        # Map current files
+        fs_nodes = {}
+        for f in html_files:
+            rel = os.path.relpath(f, catalog_root)
+            fs_nodes[rel] = f
 
-    with conn:
-        # 1. Detect deleted files
-        db_rows = conn.execute("SELECT relpath, mtime FROM nodes").fetchall()
-        db_nodes = {row["relpath"]: row["mtime"] for row in db_rows}
+        with conn:
+            # 1. Detect deleted files
+            db_rows = conn.execute("SELECT relpath, mtime FROM nodes").fetchall()
+            db_nodes = {row["relpath"]: row["mtime"] for row in db_rows}
 
-        for db_rel in db_nodes:
-            if db_rel not in fs_nodes:
-                conn.execute("DELETE FROM nodes WHERE relpath = ?", (db_rel,))
-                conn.execute("DELETE FROM nodes_fts WHERE relpath = ?", (db_rel,))
-                stats["deleted"] += 1
+            for db_rel in db_nodes:
+                if db_rel not in fs_nodes:
+                    conn.execute("DELETE FROM nodes WHERE relpath = ?", (db_rel,))
+                    conn.execute("DELETE FROM nodes_fts WHERE relpath = ?", (db_rel,))
+                    stats["deleted"] += 1
 
-        # 2. Insert or update modified files
-        for rel, full_path in fs_nodes.items():
-            current_mtime = os.path.getmtime(full_path)
-            if rel in db_nodes and abs(db_nodes[rel] - current_mtime) < 0.001:
-                stats["skipped"] += 1
-                continue
+            # 2. Insert or update modified files
+            for rel, full_path in fs_nodes.items():
+                current_mtime = os.path.getmtime(full_path)
+                if rel in db_nodes and abs(db_nodes[rel] - current_mtime) < 0.001:
+                    stats["skipped"] += 1
+                    continue
 
-            meta = parse_node_metadata(rel, full_path)
-            is_update = rel in db_nodes
+                meta = parse_node_metadata(rel, full_path)
+                is_update = rel in db_nodes
 
-            conn.execute("""
-            INSERT INTO nodes (relpath, title, branch, layer, raw_html, clean_markdown, token_count, line_count, mtime, summary, up_link)
-            VALUES (:relpath, :title, :branch, :layer, :raw_html, :clean_markdown, :token_count, :line_count, :mtime, :summary, :up_link)
-            ON CONFLICT(relpath) DO UPDATE SET
-                title = excluded.title,
-                branch = excluded.branch,
-                layer = excluded.layer,
-                raw_html = excluded.raw_html,
-                clean_markdown = excluded.clean_markdown,
-                token_count = excluded.token_count,
-                line_count = excluded.line_count,
-                mtime = excluded.mtime,
-                summary = excluded.summary,
-                up_link = excluded.up_link
-            """, meta)
-
-            # Update FTS
-            conn.execute("DELETE FROM nodes_fts WHERE relpath = ?", (rel,))
-            conn.execute("""
-            INSERT INTO nodes_fts (relpath, title, branch, content)
-            VALUES (?, ?, ?, ?)
-            """, (rel, meta["title"], meta["branch"], meta["clean_markdown"]))
-
-            # Update links
-            conn.execute("DELETE FROM links WHERE source_path = ?", (rel,))
-            raw_links = extract_links(rel, meta["raw_html"])
-            for src, norm_tgt, raw_tgt, txt in raw_links:
                 conn.execute("""
-                INSERT INTO links (source_path, target_path, raw_target, link_text)
+                INSERT INTO nodes (relpath, title, branch, layer, raw_html, clean_markdown, token_count, line_count, mtime, summary, up_link)
+                VALUES (:relpath, :title, :branch, :layer, :raw_html, :clean_markdown, :token_count, :line_count, :mtime, :summary, :up_link)
+                ON CONFLICT(relpath) DO UPDATE SET
+                    title = excluded.title,
+                    branch = excluded.branch,
+                    layer = excluded.layer,
+                    raw_html = excluded.raw_html,
+                    clean_markdown = excluded.clean_markdown,
+                    token_count = excluded.token_count,
+                    line_count = excluded.line_count,
+                    mtime = excluded.mtime,
+                    summary = excluded.summary,
+                    up_link = excluded.up_link
+                """, meta)
+
+                # Update FTS
+                conn.execute("DELETE FROM nodes_fts WHERE relpath = ?", (rel,))
+                conn.execute("""
+                INSERT INTO nodes_fts (relpath, title, branch, content)
                 VALUES (?, ?, ?, ?)
-                """, (src, norm_tgt, raw_tgt, txt))
+                """, (rel, meta["title"], meta["branch"], meta["clean_markdown"]))
 
-            if is_update:
-                stats["updated"] += 1
-            else:
-                stats["inserted"] += 1
+                # Update links
+                conn.execute("DELETE FROM links WHERE source_path = ?", (rel,))
+                raw_links = extract_links(rel, meta["raw_html"])
+                for src, norm_tgt, raw_tgt, txt in raw_links:
+                    conn.execute("""
+                    INSERT INTO links (source_path, target_path, raw_target, link_text)
+                    VALUES (?, ?, ?, ?)
+                    """, (src, norm_tgt, raw_tgt, txt))
 
-        # 3. Fast SQL link integrity verification
-        conn.execute("""
-        UPDATE links SET is_broken = CASE
-            WHEN target_path IN (SELECT relpath FROM nodes) THEN 0
-            ELSE 1
-        END;
-        """)
+                if is_update:
+                    stats["updated"] += 1
+                else:
+                    stats["inserted"] += 1
 
-    conn.close()
+            # 3. Fast SQL link integrity verification
+            conn.execute("""
+            UPDATE links SET is_broken = CASE
+                WHEN target_path IN (SELECT relpath FROM nodes) THEN 0
+                ELSE 1
+            END;
+            """)
+
     return stats
 
 
 def query_get_node(relpath: str, db_path: str = DB_PATH) -> Optional[Dict[str, Any]]:
     """Instant O(1) fetch of pre-rendered Markdown and metadata without parsing HTML."""
-    conn = get_connection(db_path)
-    row = conn.execute("SELECT * FROM nodes WHERE relpath = ?", (relpath,)).fetchone()
-    conn.close()
-    if row:
-        return dict(row)
-    return None
+    with open_db(db_path) as conn:
+        row = conn.execute("SELECT * FROM nodes WHERE relpath = ?", (relpath,)).fetchone()
+        if row:
+            return dict(row)
+        return None
 
 
 def query_search_fts(query: str, limit: int = 10, db_path: str = DB_PATH) -> List[Dict[str, Any]]:
     """Full-text search using SQLite FTS5 BM25 ranking."""
-    conn = get_connection(db_path)
-    # Sanitize query for FTS5 (escape special chars, match tokens)
     clean_terms = re.findall(r'\w+', query)
     if not clean_terms:
-        conn.close()
         return []
 
     fts_expr = " AND ".join(f'"{t}"*' for t in clean_terms)
-    try:
-        sql = """
-        SELECT n.relpath, n.title, n.branch, n.token_count,
-               snippet(nodes_fts, 3, '[MATCH]', '[/MATCH]', '...', 15) as snippet,
-               bm25(nodes_fts) as rank
-        FROM nodes_fts f
-        JOIN nodes n ON n.relpath = f.relpath
-        WHERE nodes_fts MATCH ?
-        ORDER BY rank
-        LIMIT ?;
-        """
-        rows = conn.execute(sql, (fts_expr, limit)).fetchall()
-        results = [dict(r) for r in rows]
-    except Exception as e:
-        # Fallback to simple LIKE if query syntax fails
-        sql_fallback = """
-        SELECT relpath, title, branch, token_count, summary as snippet, 0 as rank
-        FROM nodes
-        WHERE title LIKE ? OR clean_markdown LIKE ?
-        LIMIT ?;
-        """
-        pat = f"%{query}%"
-        rows = conn.execute(sql_fallback, (pat, pat, limit)).fetchall()
-        results = [dict(r) for r in rows]
-
-    conn.close()
-    return results
+    with open_db(db_path) as conn:
+        try:
+            sql = """
+            SELECT n.relpath, n.title, n.branch, n.token_count,
+                   snippet(nodes_fts, 3, '[MATCH]', '[/MATCH]', '...', 15) as snippet,
+                   bm25(nodes_fts) as rank
+            FROM nodes_fts f
+            JOIN nodes n ON n.relpath = f.relpath
+            WHERE nodes_fts MATCH ?
+            ORDER BY rank
+            LIMIT ?;
+            """
+            rows = conn.execute(sql, (fts_expr, limit)).fetchall()
+            return [dict(r) for r in rows]
+        except Exception:
+            # Fallback to simple LIKE if query syntax fails
+            sql_fallback = """
+            SELECT relpath, title, branch, token_count, summary as snippet, 0 as rank
+            FROM nodes
+            WHERE title LIKE ? OR clean_markdown LIKE ?
+            LIMIT ?;
+            """
+            pat = f"%{query}%"
+            rows = conn.execute(sql_fallback, (pat, pat, limit)).fetchall()
+            return [dict(r) for r in rows]
 
 
 def query_audit(db_path: str = DB_PATH) -> Dict[str, Any]:
     """Instant SQL-based database audit."""
-    conn = get_connection(db_path)
-    total_nodes = conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
-    total_links = conn.execute("SELECT COUNT(*) FROM links").fetchone()[0]
-    broken_links = conn.execute("SELECT source_path, target_path, link_text FROM links WHERE is_broken = 1").fetchall()
-    bloated_nodes = conn.execute("SELECT relpath, token_count FROM nodes WHERE token_count > 1400").fetchall()
-    avg_tokens = conn.execute("SELECT AVG(token_count) FROM nodes").fetchone()[0] or 0
-    total_tokens = conn.execute("SELECT SUM(token_count) FROM nodes").fetchone()[0] or 0
-    conn.close()
+    with open_db(db_path) as conn:
+        total_nodes = conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
+        total_links = conn.execute("SELECT COUNT(*) FROM links").fetchone()[0]
+        broken_links = conn.execute("SELECT source_path, target_path, link_text FROM links WHERE is_broken = 1").fetchall()
+        bloated_nodes = conn.execute("SELECT relpath, token_count FROM nodes WHERE token_count > 1400").fetchall()
+        avg_tokens = conn.execute("SELECT AVG(token_count) FROM nodes").fetchone()[0] or 0
+        total_tokens = conn.execute("SELECT SUM(token_count) FROM nodes").fetchone()[0] or 0
 
-    return {
-        "total_nodes": total_nodes,
-        "total_links": total_links,
-        "broken_links": [dict(r) for r in broken_links],
-        "bloated_nodes": [dict(r) for r in bloated_nodes],
-        "avg_tokens": round(avg_tokens, 1),
-        "total_tokens": total_tokens
-    }
+        return {
+            "total_nodes": total_nodes,
+            "total_links": total_links,
+            "broken_links": [dict(r) for r in broken_links],
+            "bloated_nodes": [dict(r) for r in bloated_nodes],
+            "avg_tokens": round(avg_tokens, 1),
+            "total_tokens": total_tokens
+        }
 
 
 if __name__ == "__main__":

@@ -28,7 +28,7 @@ import subprocess
 from typing import Dict, Any, Optional, List
 
 JOBS_DIR = "/botworkspace/.local_subagent_jobs"
-CATALOG_ROOT = "/botworkspace/catalog"
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
 MAX_CONCURRENT_BG_JOBS = 2
 DEFAULT_ENDPOINTS = [
     os.environ.get("LOCAL_LLM_URL"),
@@ -277,7 +277,7 @@ def execute_job(job_id: str, task_name: str, args: List[str]) -> None:
         "result": None,
         "error": None
     }
-    with open(job_file, "w") as fp:
+    with open(job_file, "w", encoding="utf-8") as fp:
         json.dump(job_data, fp, indent=2)
 
     try:
@@ -305,7 +305,7 @@ def execute_job(job_id: str, task_name: str, args: List[str]) -> None:
         job_data["error"] = str(e)
     finally:
         job_data["completed_at"] = time.time()
-        with open(job_file, "w") as fp:
+        with open(job_file, "w", encoding="utf-8") as fp:
             json.dump(job_data, fp, indent=2)
 
 
@@ -319,7 +319,7 @@ def list_jobs() -> None:
 
     for jf in sorted(job_files, reverse=True)[:10]:
         try:
-            with open(jf) as fp:
+            with open(jf, "r", encoding="utf-8") as fp:
                 d = json.load(fp)
             dur = ""
             if d.get("completed_at") and d.get("started_at"):

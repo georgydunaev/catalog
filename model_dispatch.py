@@ -23,8 +23,8 @@ import urllib.request
 import urllib.error
 from typing import Dict, Any, Optional
 
-WORKSPACE_ROOT = "/botworkspace"
-CATALOG_ROOT = os.path.join(WORKSPACE_ROOT, "catalog")
+WORKSPACE_ROOT = os.environ.get("WORKSPACE_ROOT", "/botworkspace")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
 MODELS_DIR = os.path.join(CATALOG_ROOT, "models")
 ACTIVE_PROFILE_PATH = os.path.join(WORKSPACE_ROOT, ".active_model_profile.json")
 ACTIVE_CONTEXT_MD = os.path.join(WORKSPACE_ROOT, ".active_model_context.md")
@@ -523,7 +523,7 @@ def format_profile_markdown(prof: Dict[str, Any]) -> str:
         "## 3. PROHIBITED & SUBOPTIMAL INSTRUMENTS",
     ])
     for proh in prof["prohibited_instruments"]:
-        lines.append(f"- 🛑 **{proh}**")
+        lines.append(f"- [PROHIBITED] **{proh}**")
 
     lines.extend([
         "",
@@ -554,7 +554,7 @@ def activate_profile(prof: Dict[str, Any]) -> None:
 
 def test_local_offline_llm() -> bool:
     print("================================================================================")
-    print(" 🛡️ LOCAL OFFLINE LLM (APOCALYPSE / AIRGAP TEST)")
+    print(" LOCAL OFFLINE LLM (APOCALYPSE / AIRGAP TEST)")
     print(" Target: Qwen 2.5 Coder 7B on Host GPU / Ollama (http://host.docker.internal:11434)")
     print("================================================================================")
 

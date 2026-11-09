@@ -82,20 +82,20 @@ def dispatch_task(
         "start_time": time.time(),
         "pid": None
     }
-    with open(job_file, "w") as f:
+    with open(job_file, "w", encoding="utf-8") as f:
         json.dump(start_info, f, indent=2)
 
     if background:
         proc = subprocess.Popen(
             cmd,
-            stdout=open(os.path.join(JOBS_DIR, f"{job_id}.log"), "w"),
+            stdout=open(os.path.join(JOBS_DIR, f"{job_id}.log"), "w", encoding="utf-8"),
             stderr=subprocess.STDOUT,
             cwd=cwd,
             stdin=subprocess.DEVNULL,
             start_new_session=True
         )
         start_info["pid"] = proc.pid
-        with open(job_file, "w") as f:
+        with open(job_file, "w", encoding="utf-8") as f:
             json.dump(start_info, f, indent=2)
         return {"job_id": job_id, "status": "LAUNCHED_BG", "pid": proc.pid, "model": model, "session_id": session_id}
 
@@ -120,7 +120,7 @@ def dispatch_task(
             "duration_sec": round(elapsed, 2),
             "output": res.stdout.strip() or res.stderr.strip()
         }
-        with open(job_file, "w") as f:
+        with open(job_file, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2)
         return out
     except subprocess.TimeoutExpired:
@@ -132,11 +132,35 @@ def dispatch_task(
             "duration_sec": timeout,
             "error": "Task timed out"
         }
-        with open(job_file, "w") as f:
+        with open(job_file, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2)
         return out
 
+def is_local_llm_banned() -> bool:
+    config_paths = ["/botworkspace/mybot/network_config.json", "/botworkspace/network_config.json"]
+    for cp in config_paths:
+        if os.path.exists(cp):
+            try:
+                with open(cp, "r", encoding="utf-8") as f:
+                    cfg = json.load(f)
+                    return bool(cfg.get("ban_local_llm", False))
+            except Exception:
+                pass
+    return False
+
 def _dispatch_ollama(model: str, prompt: str, job_id: str, job_file: str, timeout: int) -> Dict[str, Any]:
+    if is_local_llm_banned():
+        out = {
+            "job_id": job_id,
+            "model": f"ollama/{model}",
+            "status": "BLOCKED",
+            "duration_sec": 0.0,
+            "error": "Local GPU LLM execution is temporarily banned (ban_local_llm: true in network_config.json)."
+        }
+        with open(job_file, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2)
+        return out
+
     url = f"{OLLAMA_BASE}/api/generate"
     payload = json.dumps({"model": model, "prompt": prompt, "stream": False}).encode("utf-8")
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
@@ -152,7 +176,7 @@ def _dispatch_ollama(model: str, prompt: str, job_id: str, job_file: str, timeou
                 "duration_sec": round(elapsed, 2),
                 "output": data.get("response", "").strip()
             }
-            with open(job_file, "w") as f:
+            with open(job_file, "w", encoding="utf-8") as f:
                 json.dump(out, f, indent=2)
             return out
     except Exception as e:
@@ -164,7 +188,7 @@ def _dispatch_ollama(model: str, prompt: str, job_id: str, job_file: str, timeou
             "duration_sec": round(elapsed, 2),
             "error": str(e)
         }
-        with open(job_file, "w") as f:
+        with open(job_file, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2)
         return out
 

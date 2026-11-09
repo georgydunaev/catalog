@@ -14,10 +14,11 @@ import glob
 import sqlite3
 import subprocess
 
-WORKSPACE = "/botworkspace"
-CATALOG_DB = os.path.join(WORKSPACE, "catalog", "catalog.db")
-SUBAGENT_BIN = os.path.join(WORKSPACE, "catalog", "local_subagent.py")
-COGNITION_BIN = os.path.join(WORKSPACE, "catalog", "cognition.py")
+WORKSPACE = os.environ.get("WORKSPACE_DIR", "/botworkspace")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
+CATALOG_DB = os.environ.get("CATALOG_DB_PATH", os.path.join(CATALOG_ROOT, "catalog.db"))
+SUBAGENT_BIN = os.path.join(CATALOG_ROOT, "local_subagent.py")
+COGNITION_BIN = os.path.join(CATALOG_ROOT, "cognition.py")
 
 
 def get_cpu_temp() -> float:
@@ -41,18 +42,24 @@ def get_concurrency_limit(temp: float) -> int:
 
 def count_active_subagents() -> int:
     try:
-        ps = subprocess.run(["ps", "-eo", "cmd"], capture_output=True, text=True).stdout
+        ps = subprocess.run(["ps", "-eo", "cmd"], capture_output=True, text=True, timeout=10).stdout
         return sum(1 for line in ps.splitlines() if "local_subagent.py run" in line)
     except Exception:
         return 0
 
 
 def get_unindexed_repos() -> list:
-    conn = sqlite3.connect(CATALOG_DB)
-    c = conn.cursor()
-    c.execute("SELECT relpath FROM nodes WHERE relpath LIKE 'repos/%'")
-    indexed = {row[0].split("/")[1] for row in c.fetchall()}
-    conn.close()
+    conn = sqlite3.connect(CATALOG_DB, timeout=30.0)
+    try:
+        c = conn.cursor()
+        c.execute("SELECT relpath FROM nodes WHERE relpath LIKE 'repos/%'")
+        indexed = set()
+        for row in c.fetchall():
+            parts = row[0].split("/")
+            if len(parts) > 1:
+                indexed.add(parts[1])
+    finally:
+        conn.close()
 
     all_dirs = [d for d in os.listdir(WORKSPACE) if os.path.isdir(os.path.join(WORKSPACE, d)) and not d.startswith(".")]
     ignore = {"catalog", "mybot", "loop_logs", "installed", "dist"}
@@ -76,11 +83,17 @@ def main():
 
         # Clean up finished in_flight items
         if in_flight:
-            conn = sqlite3.connect(CATALOG_DB)
-            c = conn.cursor()
-            c.execute("SELECT relpath FROM nodes WHERE relpath LIKE 'repos/%'")
-            current_indexed = {row[0].split("/")[1] for row in c.fetchall()}
-            conn.close()
+            conn = sqlite3.connect(CATALOG_DB, timeout=30.0)
+            try:
+                c = conn.cursor()
+                c.execute("SELECT relpath FROM nodes WHERE relpath LIKE 'repos/%'")
+                current_indexed = set()
+                for row in c.fetchall():
+                    parts = row[0].split("/")
+                    if len(parts) > 1:
+                        current_indexed.add(parts[1])
+            finally:
+                conn.close()
             in_flight = {r for r in in_flight if r not in current_indexed}
 
         if active < limit and candidates:

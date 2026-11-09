@@ -118,7 +118,7 @@ INSTRUCTIONS:
             cwd=WORKSPACE
         )
         if v_res.returncode == 0:
-            print("[OVERNIGHT] ✔ Ground-truth verification PASSED!")
+            print("[OVERNIGHT] [PASS] Ground-truth verification PASSED!")
             return {
                 "status": "SUCCESS",
                 "duration_sec": round(time.time() - start_t, 2),
@@ -126,7 +126,7 @@ INSTRUCTIONS:
                 "verification_output": v_res.stdout.strip()
             }
         else:
-            print(f"[OVERNIGHT] ✖ Verification failed (code {v_res.returncode}). Reverting changes.")
+            print(f"[OVERNIGHT] [FAIL] Verification failed (code {v_res.returncode}). Reverting changes.")
             subprocess.run(["git", "checkout", "."], cwd=WORKSPACE)
             return {
                 "status": "VERIFICATION_FAILED",
@@ -139,7 +139,7 @@ INSTRUCTIONS:
 
 def main():
     print("=" * 60)
-    print(" 🌙 AUTONOMOUS OVERNIGHT WORKER POOL")
+    print(" AUTONOMOUS OVERNIGHT WORKER POOL")
     print("=" * 60)
     tickets = load_ready_tickets()
     print(f"Found {len(tickets)} tickets ready for overnight processing.")
@@ -156,7 +156,7 @@ def main():
         res = run_single_ticket(t, model)
         results.append({"ticket": t["file"], "result": res})
 
-    with open(OVERNIGHT_LOG, "w") as f:
+    with open(OVERNIGHT_LOG, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
 
     print(f"\n[OVERNIGHT] Completed queue. Results logged to {OVERNIGHT_LOG}.")

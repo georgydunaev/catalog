@@ -28,18 +28,19 @@ import json
 import time
 from typing import List, Dict, Optional
 
-WORKSPACE_ROOT = "/botworkspace"
-CATALOG_DIR = os.path.join(WORKSPACE_ROOT, "catalog")
-CANONICAL_DB_PATH = os.path.join(CATALOG_DIR, "catalog.db")
-WORKER_DB_PATH = os.path.join(WORKSPACE_ROOT, "devsessions", "worker_memory.db")
+WORKSPACE_ROOT = os.environ.get("WORKSPACE_ROOT", "/botworkspace")
+CATALOG_DIR = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
+CANONICAL_DB_PATH = os.environ.get("CATALOG_DB_PATH", os.path.join(CATALOG_DIR, "catalog.db"))
+WORKER_DB_PATH = os.environ.get("WORKER_DB_PATH", os.path.join(WORKSPACE_ROOT, "devsessions", "worker_memory.db"))
 
 
 def get_canonical_conn() -> Optional[sqlite3.Connection]:
     if not os.path.exists(CANONICAL_DB_PATH):
         return None
     try:
-        conn = sqlite3.connect(f"file:{CANONICAL_DB_PATH}?mode=ro", uri=True)
+        conn = sqlite3.connect(f"file:{CANONICAL_DB_PATH}?mode=ro", uri=True, timeout=30.0)
         conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA busy_timeout = 5000;")
         return conn
     except Exception:
         return None
@@ -47,9 +48,10 @@ def get_canonical_conn() -> Optional[sqlite3.Connection]:
 
 def get_worker_conn() -> sqlite3.Connection:
     os.makedirs(os.path.dirname(WORKER_DB_PATH), exist_ok=True)
-    conn = sqlite3.connect(WORKER_DB_PATH)
+    conn = sqlite3.connect(WORKER_DB_PATH, timeout=30.0)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA busy_timeout = 5000;")
     with conn:
         conn.execute("""
         CREATE TABLE IF NOT EXISTS worker_scratchpad (
@@ -130,16 +132,17 @@ def record_worker_note(ticket_id: str, model_name: str, lemma_name: str, summary
 
 def get_ticket_history(ticket_id: str, limit: int = 5) -> List[Dict]:
     conn = get_worker_conn()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT id, model_name, lemma_name, summary, status, created_at
-        FROM worker_scratchpad
-        WHERE ticket_id = ?
-        ORDER BY id DESC LIMIT ?
-    """, (ticket_id, limit))
-    rows = [dict(r) for r in cur.fetchall()]
-    conn.close()
-    return rows
+    try:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT id, model_name, lemma_name, summary, status, created_at
+            FROM worker_scratchpad
+            WHERE ticket_id = ?
+            ORDER BY id DESC LIMIT ?
+        """, (ticket_id, limit))
+        return [dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
 
 
 def main():

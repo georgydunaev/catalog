@@ -17,7 +17,7 @@ import time
 import subprocess
 from typing import List, Dict, Any
 
-WORKSPACE_DIR = "/botworkspace"
+WORKSPACE_DIR = os.environ.get("WORKSPACE_DIR", "/botworkspace")
 DATA_DIR = os.path.join(WORKSPACE_DIR, "mybot/local-gitlab/data")
 REPORT_PATH = os.path.join(DATA_DIR, "irregularities.json")
 
@@ -42,7 +42,9 @@ def check_git_irregularities() -> List[Dict[str, Any]]:
         try:
             branch = subprocess.check_output(
                 ["git", "-C", repo_path, "rev-parse", "--abbrev-ref", "HEAD"],
-                text=True
+                text=True,
+                stderr=subprocess.DEVNULL,
+                timeout=10
             ).strip()
             if branch != "main":
                 issues.append({
@@ -58,7 +60,9 @@ def check_git_irregularities() -> List[Dict[str, Any]]:
         try:
             remotes = subprocess.check_output(
                 ["git", "-C", repo_path, "remote"],
-                text=True
+                text=True,
+                stderr=subprocess.DEVNULL,
+                timeout=10
             ).strip().split()
             if "github" not in remotes:
                 issues.append({
@@ -81,7 +85,9 @@ def check_git_irregularities() -> List[Dict[str, Any]]:
         try:
             files = subprocess.check_output(
                 ["git", "-C", repo_path, "ls-files"],
-                text=True
+                text=True,
+                stderr=subprocess.DEVNULL,
+                timeout=10
             ).splitlines()
             for f in files:
                 if any(c in f for c in [":", "*", "?", "<", ">", "|"]):

@@ -39,11 +39,11 @@ import sys
 import json
 import sqlite3
 import subprocess
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
-WORKSPACE_ROOT = "/botworkspace"
-CATALOG_ROOT = os.path.join(WORKSPACE_ROOT, "catalog")
-DB_PATH = os.path.join(CATALOG_ROOT, "catalog.db")
+WORKSPACE_ROOT = os.environ.get("WORKSPACE_ROOT", "/botworkspace")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.environ.get("CATALOG_DB_PATH", os.path.join(CATALOG_ROOT, "catalog.db"))
 
 # Import SQLite & Tools modules
 sys.path.insert(0, CATALOG_ROOT)
@@ -69,10 +69,11 @@ except ImportError:
     gpu_accelerator = None
 
 
-def get_db_conn():
+def get_db_conn() -> Optional[sqlite3.Connection]:
     if os.path.isfile(DB_PATH):
         conn = sqlite3.connect(DB_PATH, timeout=30.0)
         conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA busy_timeout = 5000;")
         return conn
     return None
 
@@ -88,20 +89,22 @@ def handle_query_epistemic_memory(query: str, limit: int = 3) -> str:
             conn = get_db_conn()
             if not conn:
                 return f"Error: could not connect to {DB_PATH}."
-            cur = conn.cursor()
-            cur.execute(
-                """
-                SELECT n.relpath, n.title, snippet(nodes_fts, 3, '[MATCH]', '[/MATCH]', '...', 15) as snippet
-                FROM nodes_fts f
-                JOIN nodes n ON f.relpath = n.relpath
-                WHERE nodes_fts MATCH ?
-                ORDER BY bm25(nodes_fts)
-                LIMIT ?;
-                """,
-                (query, limit),
-            )
-            rows = [dict(r) for r in cur.fetchall()]
-            conn.close()
+            try:
+                cur = conn.cursor()
+                cur.execute(
+                    """
+                    SELECT n.relpath, n.title, snippet(nodes_fts, 3, '[MATCH]', '[/MATCH]', '...', 15) as snippet
+                    FROM nodes_fts f
+                    JOIN nodes n ON f.relpath = n.relpath
+                    WHERE nodes_fts MATCH ?
+                    ORDER BY bm25(nodes_fts)
+                    LIMIT ?;
+                    """,
+                    (query, limit),
+                )
+                rows = [dict(r) for r in cur.fetchall()]
+            finally:
+                conn.close()
 
         if not rows:
             return f"No catalog memory nodes matched '{query}'."
