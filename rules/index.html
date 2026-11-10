@@ -14,7 +14,7 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 </head>
 <body>
 
-<p><a href="../index.html">[UP: Root Memory Index]</a> &bull; <a href="operator_interaction_invariants.html"><strong>[🎯 Interaction Invariants]</strong></a> &bull; <a href="flash_rules.html"><strong>[⚡ Flash Guardrails]</strong></a></p>
+<p><a href="../index.html">[UP: Root Memory Index]</a> &bull; <a href="operator_interaction_invariants.html"><strong>[Interaction Invariants]</strong></a> &bull; <a href="flash_rules.html"><strong>[Flash Guardrails]</strong></a></p>
 
 <h1>Hierarchical Rules Cache</h1>
 <p><strong>Rationale:</strong> Rules suffer from the same attention degradation as code. Storing 50 flat rules in one context prompt causes the agent to silently drop constraints. Rules are structured hierarchically: only load the rule scope matching your current task level.</p>
@@ -42,7 +42,7 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <h2>Level 2: Project-Specific Rules</h2>
 
-<h3><code>set_theory_prover</code> (Priority 1) &bull; <a href="set_theory_rules.html"><strong>[Full Ruleset &rarr;]</strong></a></h3>
+<h3><code>set_theory_prover</code> (Priority 1) &bull; <a href="set_theory_rules.html"><strong>[Full Ruleset]</strong></a></h3>
 <ul>
   <li>Preserve large commented ML blocks in <code>newchecker.ML</code>, <code>PreChar.ML</code>, and <code>approaches/</code>.</li>
   <li>Trust <code>types/foundations.ML</code> and <code>newchecker.ML</code> over discontinued prototypes; enforce LCF theorem encapsulation.</li>

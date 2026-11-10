@@ -25,21 +25,21 @@ def _resolve_catalog_root() -> str:
 CATALOG_ROOT = _resolve_catalog_root()
 
 # Disallowed emoji code points or symbols in code and UI
-FORBIDDEN_EMOJIS = {'⚠️', '🎯', '🛑', '🛡', '📌', '🌙', '✔', '✖', '❓', '⚡'}
+FORBIDDEN_EMOJIS = {'⚠️', '🎯', '🛑', '🛡', '📌', '🌙', '✔', '✖', '❓', '⚡', '🤖', '🚀', '💡', '🔥'}
 
 
 class TestHygieneAndRules(unittest.TestCase):
 
     def test_01_no_emojis_in_python_scripts(self):
         """Rule: Absolute Prohibition of Emojis across all catalog Python scripts."""
-        py_files = glob.glob(os.path.join(CATALOG_ROOT, "*.py"))
+        py_files = glob.glob(os.path.join(CATALOG_ROOT, "**", "*.py"), recursive=True)
         violations = []
         for py_path in py_files:
-            fname = os.path.basename(py_path)
+            fname = os.path.relpath(py_path, CATALOG_ROOT)
             with open(py_path, "r", encoding="utf-8", errors="ignore") as fp:
                 for line_no, line in enumerate(fp, 1):
                     # Ignore the emoji prohibition rule definition itself
-                    if "absolute_prohibition_of_emojis" in line or "Never use emojis" in line:
+                    if "absolute_prohibition_of_emojis" in line or "Never use emojis" in line or "FORBIDDEN_EMOJIS" in line:
                         continue
                     for ch in line:
                         if ch in FORBIDDEN_EMOJIS or ord(ch) > 0x1F000:
@@ -47,18 +47,14 @@ class TestHygieneAndRules(unittest.TestCase):
         self.assertEqual(len(violations), 0, f"Found forbidden emojis in Python files: {violations}")
 
     def test_02_no_arrows_in_html_links(self):
-        """Rule: No Arrows in Names, Titles, or Links & Laconic Link Names."""
+        """Rule: No Arrows in Names, Titles, or Links & Laconic Link Names across all catalog HTML documents."""
         arrow_patterns = ['→', '←', '↓', '↑', '&rarr;', '&larr;', '&darr;', '&uarr;']
-        html_files = [
-            os.path.join(CATALOG_ROOT, "index.html"),
-            os.path.join(CATALOG_ROOT, "user_directives.html"),
-            os.path.join(CATALOG_ROOT, "english_notes.html"),
-        ]
+        html_files = glob.glob(os.path.join(CATALOG_ROOT, "**", "*.html"), recursive=True)
         violations = []
         for h_path in html_files:
             if not os.path.isfile(h_path):
                 continue
-            fname = os.path.basename(h_path)
+            fname = os.path.relpath(h_path, CATALOG_ROOT)
             with open(h_path, "r", encoding="utf-8", errors="ignore") as fp:
                 content = fp.read()
             for m in re.finditer(r'<a\s+[^>]*>(.*?)</a>', content, flags=re.DOTALL):
@@ -66,7 +62,27 @@ class TestHygieneAndRules(unittest.TestCase):
                 for arr in arrow_patterns:
                     if arr in link_text:
                         violations.append(f"{fname}: link '{link_text.strip()}' contains arrow '{arr}'")
-        self.assertEqual(len(violations), 0, f"Found arrows in HTML links: {violations}")
+            for m in re.finditer(r'<(title|h[1-6])[^>]*>(.*?)</\1>', content, flags=re.DOTALL):
+                title_text = m.group(2)
+                for arr in arrow_patterns:
+                    if arr in title_text:
+                        violations.append(f"{fname}: heading/title '{title_text.strip()}' contains arrow '{arr}'")
+        self.assertEqual(len(violations), 0, f"Found arrows in HTML links or titles: {violations}")
+
+    def test_03_no_emojis_in_html_files(self):
+        """Rule: Absolute Prohibition of Emojis across all catalog HTML documents."""
+        html_files = glob.glob(os.path.join(CATALOG_ROOT, "**", "*.html"), recursive=True)
+        violations = []
+        for h_path in html_files:
+            fname = os.path.relpath(h_path, CATALOG_ROOT)
+            with open(h_path, "r", encoding="utf-8", errors="ignore") as fp:
+                for line_no, line in enumerate(fp, 1):
+                    if "Never use emojis" in line or "ABSOLUTE PROHIBITION OF EMOJIS" in line:
+                        continue
+                    for ch in line:
+                        if ch in FORBIDDEN_EMOJIS or ord(ch) > 0x1F000:
+                            violations.append(f"{fname}:{line_no}: character U+{ord(ch):04X} ({ch})")
+        self.assertEqual(len(violations), 0, f"Found forbidden emojis in HTML files: {violations}")
 
 
 if __name__ == "__main__":
