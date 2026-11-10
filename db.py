@@ -133,8 +133,6 @@ def parse_node_metadata(relpath: str, full_path: str) -> Dict[str, Any]:
         raw_html = fp.read()
 
     mtime = os.path.getmtime(full_path)
-    sz = os.path.getsize(full_path)
-    token_count = sz // 4
     line_count = raw_html.count("\n") + 1
 
     # Extract title
@@ -151,8 +149,9 @@ def parse_node_metadata(relpath: str, full_path: str) -> Dict[str, Any]:
         parts = relpath.split("/")
         branch = parts[1] if parts[0] == "branches" else parts[0]
 
-    # Pre-render clean markdown
+    # Pre-render clean markdown and compute true cognitive token count
     clean_md = html_to_clean_markdown(raw_html)
+    token_count = max(1, len(clean_md.split()) * 4 // 3)
 
     # First paragraph or title as summary
     p_m = re.search(r'<p>(.*?)</p>', raw_html, flags=re.DOTALL)
