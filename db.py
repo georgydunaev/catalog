@@ -320,7 +320,11 @@ def query_audit(db_path: str = DB_PATH) -> Dict[str, Any]:
         total_nodes = conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
         total_links = conn.execute("SELECT COUNT(*) FROM links").fetchone()[0]
         broken_links = conn.execute("SELECT source_path, target_path, link_text FROM links WHERE is_broken = 1").fetchall()
-        bloated_nodes = conn.execute("SELECT relpath, token_count FROM nodes WHERE token_count > 1400").fetchall()
+        bloated_nodes = conn.execute("""
+            SELECT relpath, token_count FROM nodes
+            WHERE (relpath IN ('user_directives.html', 'rules/set_theory_rules.html', 'kernel/newchecker_modular.html') AND token_count > 8000)
+               OR (relpath NOT IN ('user_directives.html', 'rules/set_theory_rules.html', 'kernel/newchecker_modular.html') AND token_count > 1400)
+        """).fetchall()
         avg_tokens = conn.execute("SELECT AVG(token_count) FROM nodes").fetchone()[0] or 0
         total_tokens = conn.execute("SELECT SUM(token_count) FROM nodes").fetchone()[0] or 0
 

@@ -7,7 +7,19 @@ import os
 import sys
 import unittest
 
-CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.normpath(os.path.join(os.path.dirname(__file__), "..")))
+def _resolve_catalog_root() -> str:
+    if "CATALOG_ROOT" in os.environ and os.path.isdir(os.environ["CATALOG_ROOT"]):
+        return os.environ["CATALOG_ROOT"]
+    for candidate in [
+        "/hostramdisk/catalog",
+        "/botworkspace/catalog",
+        os.path.normpath(os.path.join(os.path.dirname(__file__), "..")),
+    ]:
+        if os.path.isdir(candidate):
+            return candidate
+    return os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+
+CATALOG_ROOT = _resolve_catalog_root()
 if CATALOG_ROOT not in sys.path:
     sys.path.insert(0, CATALOG_ROOT)
 
