@@ -1,1 +1,1 @@
-../.agents/skills/hierarchical-cognition/scripts/cognition.py
+/botworkspace/.agents/skills/hierarchical-cognition/scripts/cognition.py

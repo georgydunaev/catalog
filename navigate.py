@@ -1,1 +1,1 @@
-../.agents/skills/hierarchical-cognition/scripts/navigate.py
+/botworkspace/.agents/skills/hierarchical-cognition/scripts/navigate.py
