@@ -44,7 +44,7 @@
   - Metacognition & Self-Reasoning Cache: `/botworkspace/catalog/metacognition/index.html`.
   - Four-Session Readiness Roadmap: `/botworkspace/catalog/metacognition/roadmap.html`.
   - Unified Cognitive Engine: `python3 /botworkspace/catalog/cognition.py [status|audit|search|list|read|diagnose]`
-  - Local LLM Runbook: `/botworkspace/LOCAL_LLM_RUNBOOK.md` (Strict 4k-context guardrails for Qwen 2.5 7B/14B).
+  - Local LLM Runbook: `/botworkspace/catalog/LOCAL_LLM_RUNBOOK.md` (Strict 4k-context guardrails for Qwen 2.5 7B/14B).
   - Dunaev Tagged Pairs Deconstructed: `/botworkspace/catalog/repos/set_theory_prover/dunaev_pairs.html`.
   - Active Working Goal: `4-Session Readiness Roadmap to Master set_theory_prover` (Layer 0).
   - Four Dedicated Sessions Roadmap:
