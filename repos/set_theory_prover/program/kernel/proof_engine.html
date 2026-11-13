@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Obelisk Proof Engine & GoalTree (newchecker.ML)</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: kernel/ Subsystem]</a> &bull; <a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Obelisk LCF Proof Engine &amp; GoalTree (<code>newchecker.ML</code>)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/newchecker.ML</code> (Lines 10335–10450)<br>
+<strong>Role:</strong> Lossless compression of Obelisk's interactive tactical proof manager and goal reduction calculus.</p>
+
+<div class="box">
+<strong>THE GOALTREE CALCULUS:</strong><br>
+<pre>
+datatype GoalTree =
+  CLeaf of Goal                                     (* Open sub-goal *)
+| CBranch of Goal * Tactic * ((GoalTree ref) list) (* Closed / branched goals *)
+</pre>
+</div>
+
+<hr>
+
+<h2>1. Core Tactical Operations</h2>
+<ul>
+  <li>
+    <p><strong><code>set_goal (g: Goal)</code>:</strong><br>
+    Initializes a new proof state with <code>goal_tree := ref (CLeaf g)</code> and displays the active goal via <code>ss()</code>.</p>
+  </li>
+
+  <li>
+    <p><strong><code>ee (ta: Tactic) : unit</code> (Apply Tactic):</strong><br>
+    Locates the active open leaf via <code>top_goalTree goal_tree</code>. Applies tactic <code>ta g</code> to produce <code>(new_subgoals, validation)</code>. Replaces the leaf with <code>CBranch (g, ta, subgoals)</code>.</p>
+  </li>
+
+  <li>
+    <p><strong><code>ss () : unit</code> (Show State):</strong><br>
+    If open subgoals remain, prints the active goal. When all leaves are closed (<code>NONE</code>), announces <em>"Proof is ready!"</em> and synthesizes the certified theorem via <code>Thm_show (get_thm ())</code>.</p>
+  </li>
+
+  <li>
+    <p><strong><code>get_thm () : thm</code> (Theorem Synthesis):</strong><br>
+    Constructs the compound tactic from the tree branches: <code>prove (get_tactic goal_tree) (get_goal (!goal_tree))</code>. Only executes through the sound LCF kernel validator.</p>
+  </li>
+</ul>
+
+<hr>
+
+<h2>2. Type Universe Stratification</h2>
+<p>Extracted from lines 125–150 of <code>newchecker.ML</code>:</p>
+<pre>
+Small_Obj_Expression &sube; Class.Expression &sube; ConglomerateTerm
+Small_Type &sube; Small_Obj_Expression &subne; Class.Expression = ClassType &sube; Class.Expression &subne; Huge.Col.Expression
+</pre>
+<p>Provides exact syntactic stratification separating ZFC sets (<code>Small_Obj</code>), Morse-Kelley proper classes (<code>Class.Expression</code>), and Grothendieck conglomerates (<code>Huge.Col.Expression</code>).</p>
+
+</body>
+</html>

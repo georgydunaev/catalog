@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Kernel: newchecker & LCF</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover Repo]</a></p>
+
+<h1>Kernel: newchecker.ML &amp; lcf.ML</h1>
+<p>This is the core logical verifier of the Obelisk proof assistant.</p>
+
+<div class="alert">
+<strong>INVARIANT:</strong> In <code>newchecker.ML</code>, commented-out ML blocks contain working code that was simplified for testing. Never delete them.
+</div>
+
+<hr>
+
+<h2>Files &amp; Responsibilities</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="newchecker_modular.html">newchecker_modular.html (MODULAR ARCHITECTURE &amp; RECIPES)</a></strong><br>
+    <em>Role:</em> 12-file modular breakdown under <code>program/newchecker/</code> (<code>00_preamble.ML</code> .. <code>11_meta_and_main.ML</code> + <code>all.ML</code>), PDF generator module (<code>10_pdf_generator.ML</code>), and 7 fast targeted evaluation recipes.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="proof_engine.html">proof_engine.html (GOALTREE &amp; TACTIC MANAGER)</a></strong><br>
+    <em>Role:</em> Lossless compression of lines 10335–10450: <code>datatype GoalTree = CLeaf | CBranch</code>, tactical execution engine (<code>ee</code>, <code>ss</code>, <code>set_goal</code>), and type universe stratification.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="commented_blocks_audit.html">commented_blocks_audit.html (COMMENTED BLOCKS ARCHITECTURE)</a></strong><br>
+    <em>Role:</em> Deep analysis of the 5 architectural categories of preserved ML comments in <code>newchecker.ML</code> (MK foundation, Hilbert-to-Gentzen calculus transition, <code>ThmWithoutPrf</code> optimization, inductive <code>PreChar</code>).</p>
+  </li>
+
+  <li>
+    <p><strong><a href="newchecker_rules.html">newchecker_rules.html (DEDUCTION RULES)</a></strong><br>
+    <em>Role:</em> Deconstruction of the Gentzen sequent rules in <code>newchecker.ML</code> (<code>Ident</code>, <code>Cut</code>, <code>ImplL</code>, <code>ImplR</code>, <code>AndR</code>, <code>ForaR</code>, <code>SetDef</code>, <code>SubDef</code>, <code>A0</code>..<code>A4</code>).</p>
+  </li>
+
+  <li>
+    <p><strong><a href="lcf_kernel.html">lcf_kernel.html (LCF THEOREM FIREWALL)</a></strong><br>
+    <em>Role:</em> Implements Robin Milner's LCF architecture in <code>lcf.ML</code>. Opaque sealed type <code>thm</code> guarantees theorem integrity and prevents proof forgery.</p>
+  </li>
+
+  <li>
+    <p><strong><code>demo_newchecker.ML</code> (238KB):</strong><br>
+    <em>Role:</em> The primary test script and demonstration suite for <code>newchecker.ML</code>. Contains dozens of verified derivations. Run with <code>poly --use demo_newchecker.ML</code>.</p>
+  </li>
+</ul>
+
+</body>
+</html>

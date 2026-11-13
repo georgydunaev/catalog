@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Model Profile: Local Offline LLM (Qwen 2.5 Coder 7B / Host Ollama)</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 10px; margin: 12px 0; background: #fff; }
+.card { border-left: 4px solid #0044cc; padding: 8px 12px; margin: 8px 0; background: #f0f4ff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+
+<h1>Model Profile: Local Offline LLM (Qwen 2.5 Coder 7B / Host Ollama)</h1>
+<p><strong>Model Identifiers:</strong> <code>ollama/qwen2.5-coder:7b</code>, <code>ollama/deepseek-r1-distill-qwen-7b</code> &bull; <strong>Harness:</strong> Host GPU / Ollama</p>
+
+<div class="box">
+<strong>Cognitive Bounds &amp; Apocalyptic Airgap Invariants:</strong><br>
+&bull; <strong>Role:</strong> 100% Offline Apocalypse / Airgap Fallback Engine.<br>
+&bull; <strong>Effective Context Window:</strong> 4,000&ndash;8,000 tokens (Severe attention decay beyond 8,000 tokens).<br>
+&bull; <strong>VRAM Footprint:</strong> 4.29 GB VRAM (Q4_K_M) on Host GPU; speed: 25&ndash;35 tok/s.<br>
+&bull; <strong>Max File Read Window:</strong> NEVER read more than 80 lines per call. Full files cause immediate context exhaustion.<br>
+&bull; <strong>Airgap Rule:</strong> Zero external network requests. 100% local inference.
+</div>
+
+<h2>1. Tailored Long-Term Memory Slices</h2>
+<ul>
+  <li><strong>Local LLM Operational Runbook:</strong> <code>catalog/LOCAL_LLM_RUNBOOK.md</code> (mandatory 4-step tramline).</li>
+  <li><strong>Cognitive Reader (Token-Economical Markdown):</strong> Always query via <code>python3 /botworkspace/catalog/cognition.py read &lt;node_path&gt;</code> (~400 tokens, never raw HTML).</li>
+  <li><strong>Dual-Partitioned Scratchpad:</strong> Query compact snippets (&lt;250 tokens) via <code>python3 /botworkspace/catalog/worker_memory.py query &lt;lemma&gt;</code>.</li>
+  <li><strong>Isolated Hypotheses DB:</strong> Record local steps in <code>devsessions/worker_memory.db</code> without polluting canonical consciousness.</li>
+</ul>
+
+<h2>2. Optimal Instruments (High Leverage)</h2>
+<div class="card">
+&bull; <code>python3 /botworkspace/catalog/cognition.py status</code> &mdash; read current working layer and goal (compact output).<br>
+&bull; <code>python3 /botworkspace/catalog/cognition.py search "&lt;query&gt;"</code> &mdash; FTS5 SQLite search returning top 3 snippets.<br>
+&bull; <code>python3 /botworkspace/set_theory_prover/obelisk_cli.py check &lt;thm&gt;</code> &mdash; non-interactive theorem check.<br>
+&bull; <code>python3 -m unittest -v &lt;test_file&gt;</code> &mdash; targeted test execution with timeouts.<br>
+&bull; Single-function code repairs and micro-syntactic fixes.
+</div>
+
+<h2>3. Prohibited &amp; Suboptimal Instruments (STRICTLY FORBIDDEN)</h2>
+<div class="alert">
+&bull; <strong>NEVER Read Full Source Files (&gt;100 lines):</strong> Reading files like <code>newchecker.ML</code> (335KB) causes instant amnesia or crash.<br>
+&bull; <strong>NEVER Read Raw HTML Files:</strong> Always use <code>cognition.py read &lt;path&gt;</code>.<br>
+&bull; <strong>NEVER Run Interactive Poly/ML (<code>poly</code>):</strong> Hanging interactive loops are unrecoverable; use <code>obelisk_cli.py</code>.<br>
+&bull; <strong>NEVER Delete Commented-Out Code:</strong> Preserve historical blocks in <code>set_theory_prover/</code>.<br>
+&bull; <strong>NEVER Attempt Multi-File Holistic Redesigns:</strong> Focus exclusively on one atomic function at a time.
+</div>
+
+<h2>4. Immediate Meaningful Task Tramline (4-Step Deterministic Recovery)</h2>
+<ol>
+  <li><strong>Step 1 (Check System &amp; Memory Telemetry):</strong> Run <code>python3 /botworkspace/catalog/cognition.py status</code>.</li>
+  <li><strong>Step 2 (Targeted Memory Search):</strong> Run <code>python3 /botworkspace/catalog/cognition.py search "&lt;keyword&gt;"</code> to find the exact target file.</li>
+  <li><strong>Step 3 (Targeted Test Run):</strong> Execute the specific test file: <code>python3 -m unittest -v &lt;test_file&gt;</code> to identify the exact failing assertion.</li>
+  <li><strong>Step 4 (Micro-Repair &amp; Log):</strong> Apply single-function patch, re-verify with test, and log result via <code>python3 /botworkspace/catalog/worker_memory.py note ...</code>.</li>
+</ol>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+</body>
+</html>

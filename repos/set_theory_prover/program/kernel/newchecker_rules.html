@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Kernel: newchecker.ML Deduction Rules</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: kernel/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover]</a> &bull; <a href="../../../../index.html">[UP: Root Index]</a></p>
+
+<h1>Kernel: newchecker.ML (Gentzen Sequent Calculus)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/newchecker.ML</code><br>
+<strong>Size:</strong> 12,283 lines SML (335KB)<br>
+<strong>Core Type:</strong> <code>type Thm = Stmt.Expression * Prf</code> (Pairing statement sequents with explicit proof terms)</p>
+
+<div class="box">
+<strong>FOUNDATION:</strong><br>
+Sequent structure: <code>Ctx |- Formula</code>. Proof trees in <code>Prf</code> record the exact step-by-step derivation history.
+</div>
+
+<hr>
+
+<h2>Mechanical Deduction Rules (Lines 9154–9205)</h2>
+<ul>
+  <li><code>Ident (A) : Thm</code> &mdash; Reflexive sequent identity axiom <code>A |- A</code>.</li>
+  <li><code>Cut (th1, th2) : Thm</code> &mdash; Gentzen Cut rule: cuts lemma between sequents.</li>
+  <li><code>Weakening / Weak (th) : Thm</code> &mdash; Structural weakening (monotonically adds hypotheses).</li>
+  <li><code>ImplL / ImplR : Thm</code> &mdash; Implication left elimination and right introduction.</li>
+  <li><code>AndR / And1L / And2L : Thm</code> &mdash; Conjunction introduction and left projections.</li>
+  <li><code>OrL / Or1R / Or2R : Thm</code> &mdash; Disjunction elimination (case split) and right injections.</li>
+  <li><code>NegL / NegR : Thm</code> &mdash; Classical negation introduction and contradiction discharge.</li>
+  <li><code>ForaL / ForaR : Thm</code> &mdash; Universal quantifier specialization and eigenvariable generalization.</li>
+  <li><code>ExisL / ExisR : Thm</code> &mdash; Existential quantifier elimination and witness introduction.</li>
+  <li><code>SetDef / SubDef : Thm</code> &mdash; Sethood and subclass definition schemas.</li>
+  <li><code>A0..A4 : Thm</code> &mdash; Equality reflexivity, Extensionality, and Class Comprehension axioms.</li>
+</ul>
+
+</body>
+</html>

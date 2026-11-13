@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dunaev Tagged Ordered Pairs Formalization</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: set_theory_prover Repo]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Dunaev Tagged Ordered Pairs Formalization</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/dunaev_pairs.ML</code> &bull; <code>dunaev_tagged_pairs_proof.ML</code><br>
+<strong>Target:</strong> Poly/ML and CakeML</p>
+
+<div class="box">
+<strong>THE MATHEMATICAL PROBLEM WITH KURATOWSKI PAIRS:</strong><br>
+1. <strong>Spurious Rank Elevation:</strong> Standard Kuratowski pairs <code>(x, y) = {{x}, {x, y}}</code> force <code>rank((x, y)) = max(rank(x), rank(y)) + 2</code>, pushing tuples two levels higher in the cumulative hierarchy $V_\alpha$.<br>
+2. <strong>Proper Class Failure:</strong> In Morse-Kelley class theory, if <em>A</em> or <em>B</em> is a proper class, Kuratowski pairing fails because proper classes cannot belong to sets.
+</div>
+
+<hr>
+
+<h2>The Dunaev Tagged Pair Construction</h2>
+<pre>
+mark(A, n) = { {0, n} } &cup; { { {{a}}, n } | a &isin; A }
+pair(A, B) = [A, B]_D = mark(A, 1) &cup; mark(B, 2)
+pr1(L)     = { a | { {{a}}, 1 } &isin; L }
+pr2(L)     = { b | { {{b}}, 2 } &isin; L }
+</pre>
+
+<h3>Why It Works:</h3>
+<ul>
+  <li><strong>Collision-Free Tagging:</strong> The marker <code>{0, n}</code> has 0 elements in its first component (since $0 = \emptyset$). Any element pair <code>{ {{a}}, n }</code> has 1 element in its first component ($\{\{a\}\} \neq \emptyset$). Thus, marker tags can never collide with element data.</li>
+  <li><strong>Disjointness:</strong> Since tag $1 \neq 2$, $\text{mark}(A, 1) \cap \text{mark}(B, 2) = \emptyset$.</li>
+  <li><strong>Non-Emptiness:</strong> Even when $A = B = \emptyset$, $[A, B]_D = \{\{0, 1\}, \{0, 2\}\} \neq \emptyset$.</li>
+  <li><strong>Minimal Rank Growth:</strong> $\text{rank}([A, B]_D) = 1 + \max(\text{rank}(A), \text{rank}(B))$.</li>
+  <li><strong>Proper Class Pairing:</strong> Works universally for both sets and proper classes without universe escalation.</li>
+</ul>
+
+<hr>
+
+<h2>Formal Theorems in Obelisk (<code>dunaev_tagged_pairs_proof.ML</code>)</h2>
+<ol>
+  <li><strong>Left Projection:</strong> <code>forall A B. pr1 ([A, B]_D) = A</code></li>
+  <li><strong>Right Projection:</strong> <code>forall A B. pr2 ([A, B]_D) = B</code></li>
+  <li><strong>Injectivity (Constructive Derivation):</strong> <code>forall A B C D. [A, B]_D = [C, D]_D -> A = C /\ B = D</code><br>
+  <em>Note: Derived strictly via Leibniz congruence (<code>eq_cong</code>), symmetry (<code>eq_sym</code>), and transitivity (<code>eq_trans</code>) applied to projection theorems. Eliminates ad-hoc injectivity axioms.</em></li>
+  <li><strong>Non-Emptiness:</strong> <code>forall A B. [A, B]_D <> EmptySet</code></li>
+</ol>
+
+</body>
+</html>

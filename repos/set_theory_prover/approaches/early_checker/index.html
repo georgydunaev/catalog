@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approach: Early Checker Prototype</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; padding: 1.5rem; max-width: 52rem; margin: 0 auto; color: #1a1a1a; background: #fdfdfd; }
+h1, h2, h3 { color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+ul { padding-left: 1.25rem; }
+.meta-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[[UP: Approaches Taxonomy]]</a> &bull; <a href="../../../../index.html">[[UP: Root Memory Index]]</a></p>
+
+<h1>Approach: Early Checker Prototype</h1>
+<p><strong>Path:</strong> <code>program/approaches/early_checker_prototype/</code><br>
+<strong>Status:</strong> PRESERVED HISTORICAL STRATUM (NOT DEAD CODE)</p>
+
+<div class="meta-box">
+  <p><strong>Preservation Rationale:</strong> Contains <code>checker.ML</code> (5,177 lines). The 4,941-line restored block represents good, working first-generation sequent rules temporarily set aside while testing short STLC scratch experiments. Never delete.</p>
+</div>
+
+<h2>Key Files &amp; Historical Role</h2>
+<ul>
+  <li><code>checker.ML</code> (130KB): First-generation classical Morse-Kelley sequent calculus checker. Uses explicit de Bruijn indices and earlier sequent representations before <code>newchecker.ML</code>.</li>
+  <li><code>debrujin.ML</code>: Pure de Bruijn shifting and substitution functions.</li>
+  <li><code>copy_content.ML</code>: Text transformation utilities extracting theorem statements between PDF markers.</li>
+</ul>
+
+<h2>Why It Was Succeeded by <code>newchecker.ML</code></h2>
+<p>While sound, the early checker lacked dependent type integration and dynamic tactic management. Its core rules were refactored into <code>newchecker.ML</code> and <code>dependent_syntax.ML</code>.</p>
+
+</body>
+</html>

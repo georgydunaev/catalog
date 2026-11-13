@@ -1,0 +1,77 @@
+# SESSION HANDOFF DIRECTIVE: HIERARCHICAL LONG-TERM MEMORY ("CATALOG")
+
+## 1. What the User Wants (The Core Idea)
+- AI models have severe attention dilution, context fatigue, and memory decay over long contexts. You cannot hold an entire codebase in active memory at once. Putting everything on one page or in one prompt is ridiculous.
+- You are building an external, multi-page, traversable HTML memory cache located in `/botworkspace/catalog/`.
+- This is NOT a marketing website or fancy UI. It is an austere, high-density long-term memory cache for YOU (the AI agent) to read via tools (`read_file`).
+- Structure:
+  - Root router: `/botworkspace/catalog/index.html` (~1,000 tokens)
+  - Domain branches: `/botworkspace/catalog/branches/*.html` (~400-600 tokens)
+  - Repository & subsystem nodes: `/botworkspace/catalog/repos/**/*.html` (~200-700 tokens)
+- Conscious Navigation:
+  When given a task, do NOT search blindly or load dozens of files.
+  Start at `catalog/index.html`, consciously choose which branch to enter, traverse down to the subsystem page, read only that page's ~300 tokens, and only then open the specific source code lines you need.
+
+## 2. Invariants: Meaning, Doubt & Preservation
+- It is not only about listing files; it is about the MEANING of what is being done, WHY, and FOR WHAT. Understand the mathematical, philosophical, and architectural intent behind each repository and subsystem before documenting it.
+- NEVER RUSH INTO DELETION: Preserve commented-out code, historical drafts, backup scripts, and experimental logic. They contain valuable working implementations or context.
+- Doubt everything. Don't believe memory or assumptions blindly. Ground every catalog node in actual filesystem inspection and test executions.
+- Do not produce "slop" or flatter yourself with vague claims. State exact file sizes, exported signatures, and known constraints.
+- Verify all links across the catalog (`python3 -c "import glob, os, re; ..."`).
+- IF SOMETHING IS BAD, FAILING, INCONSISTENT, OR BROKEN IN THE CODEBASE:
+  - Do NOT silently patch over it or pretend it works.
+  - CREATE A TICKET IN LOCAL GITLAB:
+    `python3 /botworkspace/mybot/scripts/manage_tickets.py create "<Title>" "<Detailed factual description>"`
+    (Or append a ticket to the relevant repository `tickets/` directory with proper multi-agent headers: Assignee, Bot-Number, Worker-Host, Process-ID, Agent-Hash).
+
+## 3. Escalation & Stop Protocol
+- Every catalog page has an `[UP: ...]` link pointing to its parent abstraction layer.
+- If you encounter a type error, missing lemma, or contradictory invariant at depth N:
+  1. Follow `[UP]` to check layer N-1 (subsystem/module level).
+  2. If still contradictory, follow `[UP]` to the repository level.
+  3. If contradictory at the root workspace level:
+     STOP AND INDICATE THE CONTRADICTION TO THE USER (Layer 0).
+     Never invent missing axioms, never delete commented-out ML code, and never guess.
+
+## 4. Multi-Session Scope & What to Do Next
+- Do not rush. Total workspace contains 54 repositories. Full tree construction will take 8 to 10 sessions.
+- Status at handover:
+  - Root index (`index.html`) and 7 branch pages are established.
+  - Priority 1 (`set_theory_prover`) is mapped down to `program/kernel`, `types`, `nbg`, `approaches`, `cli`, and `tests`.
+  - Priority 2 (`mybot`) is mapped down to `secure_gateway`, `local_gitlab`, and `scripts`.
+  - 56 HTML memory nodes currently exist with 0 broken links (verified by `python3 catalog/cognition.py audit`).
+  - Hierarchical Rules Cache: `/botworkspace/catalog/rules/index.html`.
+  - Metacognition & Self-Reasoning Cache: `/botworkspace/catalog/metacognition/index.html`.
+  - Four-Session Readiness Roadmap: `/botworkspace/catalog/metacognition/roadmap.html`.
+  - Unified Cognitive Engine: `python3 /botworkspace/catalog/cognition.py [status|audit|search|list|read|diagnose]`
+  - Local LLM Runbook: `/botworkspace/LOCAL_LLM_RUNBOOK.md` (Strict 4k-context guardrails for Qwen 2.5 7B/14B).
+  - Dunaev Tagged Pairs Deconstructed: `/botworkspace/catalog/repos/set_theory_prover/dunaev_pairs.html`.
+  - Active Working Goal: `4-Session Readiness Roadmap to Master set_theory_prover` (Layer 0).
+  - Four Dedicated Sessions Roadmap:
+    * Session 2: Direct SML AST & Dunaev Tagged Pair proof mechanics.
+    * Session 3: Isolated test harness for commented-out code in `newchecker.ML` and `PreChar.ML`.
+    * Session 4: Mechanical resolution of an open GitLab ticket (e.g. TKT-001/002).
+    * Session 5: Independent non-trivial theorem proof directly in Poly/ML.
+    * Milestone 1 (Kernel & LCF): Mapped in `proof_engine.html`.
+    * Milestone 2 (Term Calculus): Deconstructed `compr`, `pair`, `fst`, `snd`, `Lam`.
+    * Milestone 3 (Test Suite): 62/62 unit tests PASS non-interactively in 20.7s.
+    * Milestone 4 (Synthesis): Synthesized and verified 4 novel theorems in `examples/cognitive_synthesis_theorems.nbg`.
+- Metacognitive Directives for the Agent:
+  * Epistemic humility: Tag claims as `[UNTESTED]` unless verified by execution (`[VERIFIED]`).
+  * Token economy: Avoid verbose pleasantries or conversational filler; excessive chat tokens degrade attention.
+  * Popperian falsification: Actively try to break hypotheses before accepting them.
+  * Relative abstraction stack: Escalate through relative frames (`[Target -> Subsystem -> Project -> User]`) rather than rigid arbitrary layer numbers.
+  * MANDATORY NOTIFICATION RULE: Do NOT claim readiness to develop `set_theory_prover` prematurely. Only notify the User (Layer 0) when all 4 formal criteria in `catalog/metacognition/index.html` are verified:
+    1. Kernel rule mastery (`newchecker.ML` + `lcf.ML`).
+    2. Lambda proof term fluency (`Lam`, `fn`, `pair`, `compr`, Dunaev Tagged Pairs).
+    3. Non-interactive Poly/ML test suite mastery.
+    4. Successful constructive lemma synthesis passing subject reduction.
+    When and ONLY when all 4 are satisfied: output `[NOTIFICATION TO LAYER 0]: I am absolutely sure that I am smart enough to develop set_theory_prover.`
+- Your immediate tasks in the new session:
+  1. Verify the current catalog integrity and read the top-level branches.
+  2. Pick the next target area to deeply decompose:
+     - E.g., `set_theory_prover/program/types/` individual file nodes (`foundations.ML`, `typetheory.ML`, `entries.ML`).
+     - Or Domain 4 reference proofs: `coq/goedel/` (51 files) and `coq/zfc/` (19 files).
+  3. Run actual non-interactive tests when checking code (e.g. `python3 /botworkspace/set_theory_prover/obelisk_cli.py test`).
+  4. If any test or file is broken: file a GitLab ticket immediately.
+  5. Keep your chat responses concise. Do NOT dump huge trees or hierarchies into the conversation. Report what was expanded, what was tested, and any tickets created.

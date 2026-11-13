@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Subsystem: mybot/secure-gateway</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: mybot Repo]</a> &bull; <a href="../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Subsystem: mybot / secure-gateway</h1>
+<p><strong>Path:</strong> <code>/botworkspace/mybot/secure-gateway</code><br>
+<strong>Role:</strong> Egress proxy container protecting credentials and restricting worker outbound network access.</p>
+
+<div class="alert">
+<strong>SECURITY DIRECTIVE:</strong> Never bypass the proxy. If an agent script needs external access, it must request it through the gateway API.
+</div>
+
+<hr>
+
+<h2>Files &amp; Architecture</h2>
+
+<ul>
+  <li>
+    <p><strong><code>gateway.py</code> (68KB):</strong><br>
+    <em>Role:</em> Python egress proxy server. Handles outbound API authentication to AI providers, scrubs sensitive tokens from error outputs, and caches repetitive requests.</p>
+  </li>
+
+  <li>
+    <p><strong><code>Dockerfile</code>:</strong><br>
+    <em>Role:</em> Container image definition for the gateway proxy service.</p>
+  </li>
+
+  <li>
+    <p><strong><code>platform_common.py</code>:</strong><br>
+    <em>Role:</em> Shared utility functions for IPC and secure socket communication between gateway and worker.</p>
+  </li>
+</ul>
+
+</body>
+</html>

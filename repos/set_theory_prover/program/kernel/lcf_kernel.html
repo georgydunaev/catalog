@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Kernel: lcf.ML Abstract Theorem Firewall</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: kernel/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover]</a> &bull; <a href="../../../../index.html">[UP: Root Index]</a></p>
+
+<h1>Kernel: lcf.ML (Robin Milner's LCF Architecture)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/lcf.ML</code><br>
+<strong>Size:</strong> 125 lines SML (2.7KB)<br>
+<strong>Structure:</strong> <code>LCFKernel :> sig ... end</code> (Opaque signature ascription)</p>
+
+<div class="alert">
+<strong>THE LCF THEOREM FIREWALL:</strong><br>
+The abstract type <code>thm</code> is sealed behind an opaque interface (<code>:></code>). The data constructor <code>Thm(hyps, concl)</code> is completely inaccessible outside <code>LCFKernel</code>. It is mathematically impossible to forge a theorem value without running genuine inference rules.
+</div>
+
+<hr>
+
+<h2>Primitive Inference Rules</h2>
+<ul>
+  <li><code>axiom f : thm</code> &mdash; Asserts an axiomatic sentence with empty hypotheses: <code>[] |- f</code>.</li>
+  <li><code>assume f : thm</code> &mdash; Classical hypothesis introduction: <code>[f] |- f</code>.</li>
+  <li><code>mp (h1 |- p -> q) (h2 |- p) : thm</code> &mdash; Modus Ponens: yields <code>h1 U h2 |- q</code>. Rejects hypothesis mismatch with exception.</li>
+  <li><code>impl_intro p (h |- q) : thm</code> &mdash; Deduction rule: discharges <code>p</code> from hypotheses, yielding <code>h \ {p} |- p -> q</code>.</li>
+  <li><code>gen x (h |- p) : thm</code> &mdash; Universal generalization. <strong>Eigenvariable Soundness Guard:</strong> Raises exception if <code>x</code> is free in <code>h</code>.</li>
+  <li><code>spec (h |- forall x. p) t : thm</code> &mdash; Universal specification: substitutes term <code>t</code> into <code>p</code> with capture avoidance.</li>
+  <li><code>subst_free x t (h |- p) : thm</code> &mdash; Capture-avoiding replacement of free variable <code>x</code> by term <code>t</code>.</li>
+</ul>
+
+<hr>
+
+<h2>Mechanical Soundness Proof</h2>
+<p>Termination is guaranteed: all inference functions are primitive recursive over formula trees with zero unbounded recursion loops.</p>
+
+</body>
+</html>

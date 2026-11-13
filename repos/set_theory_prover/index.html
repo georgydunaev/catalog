@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Repo: set_theory_prover</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../../branches/proof_assistant.html">[UP: Proof Assistant Branch]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Repository: set_theory_prover (Priority 1)</h1>
+<p><strong>Filesystem:</strong> <code>/botworkspace/set_theory_prover</code><br>
+<strong>Core Role:</strong> Obelisk Proof Assistant. Self-contained LCF verification kernel for Morse-Kelley class theory, NBG set theory, and dependent type theory.</p>
+
+<div class="alert">
+<strong>CRITICAL INVARIANTS:</strong><br>
+1. <strong>Preserve Commented-Out ML Code:</strong> In <code>program/approaches/early_checker_prototype/checker.ML</code>, <code>program/DEPRECATED/computation-free.ML</code>, <code>program/types/PreChar.ML</code>, and <code>program/newchecker.ML</code>, large commented chunks are working code temporarily commented out for fast tests. NEVER delete them.<br>
+2. <strong>Zero CLI Hangs:</strong> Execute Poly/ML with non-interactive safe runners (<code>stdin=subprocess.DEVNULL</code>, finite timeouts).<br>
+3. <strong>Multi-Approach Mandate (Directive #15):</strong> You are explicitly allowed to create subprojects and copy code so that all approaches (<code>program/types/foundations.ML</code>, <code>program/newchecker.ML</code>, and restored <code>checker.ML</code>) are actively implemented and maintained in parallel. Never discard an approach.
+</div>
+
+<hr>
+
+<h2>Sub-Pages for this Repository</h2>
+
+<ul>
+  <li>
+    <p><strong><a href="dunaev_pairs.html">dunaev_pairs.html (DUNAEV TAGGED PAIRS)</a></strong><br>
+    <em>Navigate here for:</em> The formal mathematical definition, rank hierarchy analysis, and 4 verified theorems for Dunaev Tagged Ordered Pairs <code>[A, B]_D</code>.</p>
+  </li>
+  <li>
+    <p><strong><a href="approaches/index.html">approaches/ (ARCHITECTURAL TAXONOMY &amp; STRATA)</a></strong><br>
+    <em>Navigate here for:</em> The taxonomy of the multi-year pet project: winning demo path vs early checker, lambda calculus strings, and Rocq transpilers.</p>
+  </li>
+
+  <li>
+    <p><strong><a href="theorems.html">theorems.html (CERTIFIED THEOREMS CATALOG)</a></strong><br>
+    <em>Navigate here for:</em> The 30 NBG Formulas-as-Types certified programs, 7 Tarski quotation schemas, 90 Morse-Kelley verified proofs in <code>program/verified_theorems.ML</code>, and 1st-order class theorems in <code>program/types/foundations.ML</code>.</p>
+  </li>
+  <li>
+    <p><strong><a href="program/index.html">program/ (CORE SML LOGIC KERNEL)</a></strong><br>
+    <em>Navigate here for:</em> The Poly/ML inference engine, dependent types, NBG compilers, verified theorems, and LCF abstraction.</p>
+  </li>
+  <li>
+    <p><strong><a href="cli/index.html">cli/ (PYTHON HARNESS &amp; TACTICS)</a></strong><br>
+    <em>Navigate here for:</em> <code>obelisk_cli.py</code> (CLI commands), <code>obelisk_kernel.py</code> (process execution), and <code>obelisk_tactics.py</code> (tactics).</p>
+  </li>
+  <li>
+    <p><strong><a href="examples.html">examples.html (VERIFIED SURFACE PROGRAMS)</a></strong><br>
+    <em>Navigate here for:</em> Surface <code>.nbg</code> files compiled via <code>obelisk compile</code> (including <code>cognitive_synthesis_theorems.nbg</code>).</p>
+  </li>
+  <li>
+    <p><strong><a href="tests/index.html">tests/ (VERIFICATION SUITE)</a></strong><br>
+    <em>Navigate here for:</em> Regression tests and kernel verification scripts (<code>test_kernel.py</code>, <code>test_cli.py</code>).</p>
+  </li>
+</ul>
+
+</body>
+</html>

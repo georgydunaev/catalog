@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Subsystem: mybot/local-gitlab</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: mybot Repo]</a> &bull; <a href="../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Subsystem: mybot / local-gitlab</h1>
+<p><strong>Path:</strong> <code>/botworkspace/mybot/local-gitlab</code><br>
+<strong>Port:</strong> <code>8929</code> (HTTP) / <code>2224</code> (SSH)<br>
+<strong>Role:</strong> Self-contained GitLab CE instance. Allows autonomous bots to push code, trigger automated CI/CD verification pipelines, and manage branches completely offline.</p>
+
+<hr>
+
+<h2>Scripts &amp; Operational Tools</h2>
+
+<ul>
+  <li>
+    <p><strong><code>test-local-gitlab.sh</code>:</strong><br>
+    <em>Role:</em> Health check verifying that GitLab HTTP and SSH endpoints are listening and responding.</p>
+  </li>
+
+  <li>
+    <p><strong><code>scripts/backup-gitlab.sh</code>:</strong><br>
+    <em>Role:</em> Creates database dumps and repository bundles to prevent state loss.</p>
+  </li>
+
+  <li>
+    <p><strong><code>docker-compose.yml</code>:</strong><br>
+    <em>Role:</em> Contains the local-gitlab service configuration, volume mappings, and container health checks.</p>
+  </li>
+</ul>
+
+</body>
+</html>

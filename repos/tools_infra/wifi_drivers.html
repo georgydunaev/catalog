@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Wi-Fi Drivers & Hardware Context</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+<p><a href="../../branches/tools_hardware.html">[UP: Tools &amp; Hardware Branch]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Realtek RTL8723DE Wi-Fi Linux Drivers</h1>
+<p><strong>Path:</strong> <code>/botworkspace/rtl8723de</code> and <code>/botworkspace/wifi_rtl8723de</code></p>
+
+<div class="box">
+<strong>MEANING &amp; CONTEXT:</strong><br>
+Why is a wireless driver here alongside formal mathematics? Because all formal verification and autonomous agent fleets run on a physical machine. The host hardware uses a Realtek RTL8723DE PCIe Wi-Fi card (PCI ID <code>10ec:d723</code>), which required custom out-of-tree kernel modules and DKMS build scripts across Linux kernel updates to keep network connectivity alive. It serves as a reminder of the physical substrate underlying computational logic.
+</div>
+
+<hr>
+<h2>Key Files</h2>
+<ul>
+  <li><code>rtl8723de/</code>: C source code for the DKMS driver module.</li>
+  <li><code>wifi_rtl8723de/NEW_readme.txt</code> &bull; <code>wifi.txt</code>: Host setup notes and firmware tarballs.</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>File: entries.ML</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: types/ Subsystem]</a> &bull; <a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>File: entries.ML (30KB)</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/types/entries.ML</code><br>
+<strong>Role:</strong> Mathematical theory environment declarations (Axioms, Definitions, Theorems).</p>
+
+<div class="box">
+<strong>ENTRY RECORD STRUCTURE:</strong><br>
+<pre>
+type Entry = {
+  field_title       : string,
+  field_yty         : YAxm | YDef | YThm,
+  field_data        : DFm (Formula) | DShow (...),
+  field_opt_comment : string option,
+  field_cmd         : Unit_id
+};
+</pre>
+</div>
+
+<hr>
+
+<h2>Contents</h2>
+<ul>
+  <li>Propositional logic axioms: <code>A01_axm_entry</code> through <code>A10_axm_entry</code>.</li>
+  <li>Predicate calculus axioms: Quantifier rules and substitution.</li>
+  <li>Set-theoretic axiom declarations: Extensionality, Comprehension schema, Pairing, Union, Power set, Infinity, Replacement schema, Foundation.</li>
+</ul>
+
+</body>
+</html>

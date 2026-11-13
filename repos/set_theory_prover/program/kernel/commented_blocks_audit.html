@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit of Commented-Out ML Blocks (newchecker.ML & PreChar.ML)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; padding: 1.5rem; max-width: 52rem; margin: 0 auto; color: #1a1a1a; background: #fdfdfd; }
+h1, h2, h3 { color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3rem; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { background: #f1f5f9; padding: 0.15rem 0.35rem; border-radius: 3px; font-family: monospace; font-size: 0.9em; }
+pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
+.alert { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 0.75rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[[UP: Kernel Subsystem]]</a> &bull; <a href="../../../../index.html">[[UP: Root Memory Index]]</a></p>
+
+<h1>Audit of Commented-Out ML Blocks</h1>
+<p><strong>Target Files:</strong> <code>newchecker.ML</code> (12,283 lines) &bull; <code>PreChar.ML</code> (225 lines) &bull; <code>checker.ML</code> (5,177 lines)<br>
+<strong>Audit Policy:</strong> Preservation Invariant &mdash; Never delete commented-out code; analyze why it was archived.</p>
+
+<div class="alert">
+<strong>KEY FINDING:</strong> None of the commented blocks represent dead or obsolete garbage. They fall into 5 distinct architectural categories representing theory presentations, calculus transitions, and performance optimizations.
+</div>
+
+<h2>The 5 Architectural Categories</h2>
+<ol>
+  <li><strong>Category A: Morse-Kelley + Tarski Specification (<code>newchecker.ML</code> L11650&ndash;L11909):</strong><br>
+  260 lines containing the formal mathematical presentation of Morse-Kelley class theory, Super Global Choice, and Tarski reflection schemas. Serves as metatheoretic ground truth.</li>
+
+  <li><strong>Category B: Hilbert-to-Gentzen Transition (<code>newchecker.ML</code> L8731&ndash;L8781):</strong><br>
+  Axiomatic Hilbert combinators ($A1, A2, B1, B2, A12, A13, Gen$). Commented out when Obelisk migrated to Gentzen sequent calculus (<code>GoalTree</code>, <code>ss</code>, <code>ee</code>) for backward goal-directed interactive proving.</li>
+
+  <li><strong>Category C: LCF Proof Stripping (<code>newchecker.ML</code> L9084&ndash;L9134):</strong><br>
+  <code>structure ThmWithoutPrf :> ThmWithoutPrf</code>. High-performance Milner-style theorem structure that discards proof terms to accelerate automated tactic search. Marked <code>TODO! WIP, UNCOMMENT</code>.</li>
+
+  <li><strong>Category D: Inductive Alphabet vs SML Primitives (<code>PreChar.ML</code> L1&ndash;L225):</strong><br>
+  Constructive formalization of characters (<code>Alphabet</code>, <code>Digit</code>, <code>Char</code>) as inductive types. Commented out for "faster development" to use SML's native <code>char</code> and <code>string</code>.</li>
+
+  <li><strong>Category E: Experimental Sandboxes (<code>checker.ML</code> L41&ndash;L232, L474&ndash;L674):</strong><br>
+  Scratch experiments in STLC and polymorphic recursion, isolated to prevent breaking the main 4,941-line Morse-Kelley checker.</li>
+</ol>
+
+<hr>
+
+<h2>Automated Regression & Preservation Harness</h2>
+<p>Verified non-destructively in Poly/ML via Python test harness:</p>
+<pre><code>python3 -m unittest /botworkspace/set_theory_prover/tests/test_commented_blocks_audit.py</code></pre>
+
+</body>
+</html>

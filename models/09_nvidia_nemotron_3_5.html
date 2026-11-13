@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Model Profile: NVIDIA Nemotron 3.5 Lightning</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 10px; margin: 12px 0; background: #fff; }
+.card { border-left: 4px solid #0044cc; padding: 8px 12px; margin: 8px 0; background: #f0f4ff; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+
+<h1>Model Profile: NVIDIA Nemotron 3.5 Lightning</h1>
+<p><strong>Model Identifiers:</strong> <code>opencode/nemotron-3.5-lightning-free</code>, <code>nvidia/nemotron-3-super-120b:free</code> &bull; <strong>Harness:</strong> OpenCode CLI</p>
+
+<div class="box">
+<strong>Cognitive Bounds &amp; Attention Architecture:</strong><br>
+&bull; <strong>Context Window:</strong> 65,536 tokens (MoE Agent Specialist, 30B Total / ~3B Active).<br>
+&bull; <strong>Turnaround Speed:</strong> Blazing fast (~12&ndash;15s turnaround per complex prompt).<br>
+&bull; <strong>Attention Shield:</strong> Read at most 150 lines per call. Single goal execution.<br>
+&bull; <strong>Specialization:</strong> Autonomous terminal tool loops, shell scripts, linting, Docker diagnostics, fast refactoring.
+</div>
+
+<h2>1. Tailored Long-Term Memory Slices</h2>
+<ul>
+  <li><strong>Host Automation Commands:</strong> <code>mybot/docs/guides/HOST_COMMANDS.txt</code>.</li>
+  <li><strong>Bot Common Scripts:</strong> <code>mybot/scripts/bot-common.sh</code> and fleet management tools.</li>
+  <li><strong>Host Tasks Registry:</strong> <code>mybot/host_tasks/README.md</code>.</li>
+  <li><strong>Free Model Operational Rules:</strong> <code>catalog/FREE_MODEL_RULES.md</code>.</li>
+</ul>
+
+<h2>2. Optimal Instruments (High Leverage)</h2>
+<div class="card">
+&bull; <code>/botworkspace/mybot/status-bots.sh</code> &mdash; fleet status overview.<br>
+&bull; <code>/botworkspace/mybot/test-all.sh</code> &mdash; comprehensive test suite runner.<br>
+&bull; <code>/botworkspace/mybot/test-harness-install.sh</code> &mdash; harness verification test runner.<br>
+&bull; Terminal command authoring, process management, and shell syntax linting.
+</div>
+
+<h2>3. Prohibited &amp; Suboptimal Instruments</h2>
+<div class="alert">
+&bull; NEVER attempt abstract metaphysical or proof-theoretic architecture without tests.<br>
+&bull; NEVER bypass security guard scans before committing.<br>
+&bull; DO NOT underestimate human review friction on deep mathematical proofs.
+</div>
+
+<h2>4. Immediate Meaningful Task Tramline</h2>
+<ol>
+  <li><strong>Check Fleet / Task Status:</strong> Run <code>./status-bots.sh</code> or <code>sudo ./run-all-host-tasks.sh --status</code>.</li>
+  <li><strong>Inspect Target Script:</strong> Read relevant script section (max 150 lines).</li>
+  <li><strong>Apply Automated Fix:</strong> Update script and verify syntax via <code>bash -n</code>.</li>
+  <li><strong>Execute Verification Suite:</strong> Run automated test runner and report exit code.</li>
+</ol>
+
+<p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
+</body>
+</html>

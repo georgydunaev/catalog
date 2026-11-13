@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NBG: Compilers & Theorems</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover Repo]</a></p>
+
+<h1>NBG: Compilers &amp; Verified Theorems</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/</code> (NBG modules)<br>
+<strong>Role:</strong> Compilers translating high-level mathematical formulas into von Neumann–Bernays–Gödel (NBG) and Morse–Kelley (MK) class theory, and the library of machine-checked theorems.<br>
+<strong>Key Semantic Rules:</strong> Default type is <code>Class</code> (terms are classes; types are conglomerates &equiv; predicates on classes). Fiercely avoid the type <code>Set</code>: every binder and every class comprehension <code>{x : Class | &phi;(x)}</code> MUST use <code>Class</code> variables. All HTML/Unicode/LaTeX formula displays in <code>nbg_library.html</code> are generated purely by <code>nbg_html_generator.ML</code> with 100% clickable variables, constants, Greek metavariables, operators, and parentheses.</p>
+
+<hr>
+
+<h2>Compilers &amp; Surface Parsers</h2>
+
+<ul>
+  <li>
+    <p><strong><code>nbg_compiler.ML</code> (76KB):</strong><br>
+    <em>Role:</em> Main compiler. Translates surface logic terms into internal NBG sequents.</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_surface_compiler.ML</code> (30KB):</strong><br>
+    <em>Role:</em> Parses human-readable mathematical syntax and macro expressions.</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_tactics.ML</code> (8.5KB):</strong><br>
+    <em>Role:</em> Automated tactical proof search for NBG propositions.</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_dedukti_exporter.ML</code> (12KB):</strong><br>
+    <em>Role:</em> Exports NBG proof terms into Dedukti for independent machine verification.</p>
+  </li>
+</ul>
+
+<hr>
+
+<h2>Verified Mathematics Library</h2>
+
+<ul>
+  <li>
+    <p><strong><code>verified_theorems.ML</code> (48KB):</strong><br>
+    <em>Role:</em> Central repository of checked theorems.</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_limitation_of_size.ML</code> (1.9KB):</strong><br>
+    <em>Role:</em> Limitation of Size axiom (a class is proper iff it has a bijection with universe V).</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_choice_theorems.ML</code> (1.2KB):</strong><br>
+    <em>Role:</em> Axiom of Choice and well-ordering theorems in NBG.</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_regularity.ML</code> (3.2KB):</strong><br>
+    <em>Role:</em> Regularity/Foundation axiom proofs.</p>
+  </li>
+  <li>
+    <p><strong><code>nbg_ordinal_properties.ML</code> &bull; <code>ordinal_theorems.ML</code>:</strong><br>
+    <em>Role:</em> Ordinal numbers and transfinite induction.</p>
+  </li>
+  <li>
+    <p><strong><code>dunaev_pairs.ML</code> &bull; <code>dunaev_tagged_pairs_proof.ML</code>:</strong><br>
+    <em>Role:</em> Georgy Dunaev's tagged ordered pair construction and uniqueness proofs in class theory.</p>
+  </li>
+</ul>
+
+</body>
+</html>

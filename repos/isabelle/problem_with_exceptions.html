@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Repo: problem_with_exceptions</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+<p><a href="../../branches/isabelle_hol.html">[UP: Isabelle &amp; HOL Branch]</a> &bull; <a href="../../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Repository: problem_with_exceptions</h1>
+<p><strong>Path:</strong> <code>/botworkspace/problem_with_exceptions</code><br>
+<strong>Toolchain:</strong> CakeML &amp; HOL4 (Higher-Order Logic)</p>
+
+<div class="box">
+<strong>MEANING &amp; PURPOSE:</strong><br>
+Investigates the CakeML monadic translator for Standard ML programs. Specifically explores how to translate and verify monadic functions that raise and handle exceptions (without references or mutable arrays) by reusing existing translation configurations rather than defining a new global state configuration from scratch.
+</div>
+
+<hr>
+<h2>Key Files</h2>
+<ul>
+  <li><code>exceptionProgScript.sml</code>: HOL4 proof script defining <code>state_exn</code> (<code>Fail1 string | Fail2 int</code>) and configuring the monadic translator with <code>with_exception</code>.</li>
+  <li><code>exception2ProgScript.sml</code>: Second iteration testing inheritance of exception translations without re-instantiating state types.</li>
+  <li><code>Holmakefile</code>: Build rules for compiling the HOL4 theories with CakeML libraries.</li>
+</ul>
+</body>
+</html>

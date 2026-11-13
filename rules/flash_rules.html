@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rules: Flash Compact Attention Guardrails</title>
+<style>
+body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: Hierarchical Rules Cache]</a> &bull; <a href="../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Flash Compact Attention Guardrails</h1>
+<p><strong>Target Architecture:</strong> Gemini 3.8 Flash &amp; medium context models.<br>
+<strong>Rationale:</strong> Prevent attention decay, instruction fading, and context dilution through bounded-length retrievals and single-lookup dispatch.</p>
+
+<div class="alert">
+<strong>THE 5 GOLDEN FLASH INVARIANTS:</strong>
+<ol>
+  <li><strong>Preserve Historical Code:</strong> Never delete the 26 commented blocks in <code>newchecker.ML</code>, <code>PreChar.ML</code>, and <code>checker.ML</code>.</li>
+  <li><strong>MK Ontology Only:</strong> Proper classes exist natively. NEVER use Kuratowski pairs for proper classes; use <strong>Dunaev Tagged Ordered Pairs</strong> <code>[A, B]_D</code>.</li>
+  <li><strong>Standard ML 97 Only:</strong> SML 97 targeting CakeML. Zero OCaml/Haskell syntax.</li>
+  <li><strong>Zero CLI Hangs:</strong> Poly/ML must execute with finite timeouts and <code>stdin=subprocess.DEVNULL</code>.</li>
+  <li><strong>Epistemic Reality:</strong> Run tests on disk before concluding. Zero slop.</li>
+</ol>
+</div>
+
+<hr>
+
+<h2>Operational Protocols for Flash</h2>
+<div class="box">
+<ul>
+  <li><strong>Max File Chunk:</strong> Read at most 150 lines per turn to avoid attention degradation.</li>
+  <li><strong>Fast Attention Refresh:</strong> Run <code>python3 catalog/cognition.py flash</code> after long outputs.</li>
+  <li><strong>Direct Runbook:</strong> Consult <code>catalog/FLASH_RUNBOOK.md</code> for instant file paths and test commands.</li>
+</ul>
+</div>
+
+</body>
+</html>
