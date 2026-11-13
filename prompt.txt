@@ -39,7 +39,7 @@
   - Root index (`index.html`) and 7 branch pages are established.
   - Priority 1 (`set_theory_prover`) is mapped down to `program/kernel`, `types`, `nbg`, `approaches`, `cli`, and `tests`.
   - Priority 2 (`mybot`) is mapped down to `secure_gateway`, `local_gitlab`, and `scripts`.
-  - 137 HTML memory nodes currently exist with 0 broken links (verified by python3 catalog/cognition.py audit).
+  - 88 HTML memory nodes currently exist with 0 broken links (verified by python3 catalog/cognition.py audit).
   - Mandatory Step 0 & Immutable Fact Book: /botworkspace/FACTBOOK.md (Facts 1 to 14; mandatory escalation on conflict).
   - Two Proof Assistant Variants Co-Exist: MKTD1 (1st-Order Sequent Calculus) and MKTD2 (Curry-Howard Formulas-as-Types), bridged via program/variant_bridge.ML (User Directive #15 / Fact 14).
   - Dual CakeML & Poly/ML Compatibility Mandate (User Directive #16): All ML kernel/compiler code must run on CakeML and Poly/ML with SML'97 core compatibility.

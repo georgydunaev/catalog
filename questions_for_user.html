@@ -17,24 +17,16 @@ code{background:#eee;padding:2px 4px}
 <h1>Questions for User &amp; Architectural Decisions</h1>
 <p>Synced with <code>QUESTIONS_FOR_USER.md</code>.</p>
 
-<div class="card priority">
-<h3>1. Host Local LLM Acceleration</h3>
-<p>Host 7B GPU: <code>./mybot/host-local-llm/setup-local-llm.sh --model 7b &amp;&amp; ollama serve</code></p>
-</div>
-
-<div class="card priority">
-<h3>2. Foundational Axiom System [RESOLVED]</h3>
-<p><strong>[SELECTED] Option A (MK/NBG):</strong> Impredicative comprehension, Dunaev tagged pairs.</p>
+<div class="card" style="border: 1px solid #b00; background: #fff8f8;">
+<h3>1. Host Local LLM Acceleration [SUSPENDED]</h3>
+<p><strong>Status:</strong> Suspended under <code>ban_local_llm: true</code> in <code>mybot/network_config.json</code>. Do NOT run <code>ollama serve</code>.</p>
 </div>
 
 <div class="card">
-<h3>3. Physical Strata in <code>program/approaches/</code></h3>
-<p>Preserved strata: <code>01_lambda</code> .. <code>05_lcf</code>.</p>
-</div>
-
-<div class="card">
-<h3>4. Obelisk Portals [RESOLVED: Classic Default]</h3>
-<p><strong>[DEFAULT] Classic:</strong> <code>index.html</code>; <strong>Modern:</strong> <code>obelisk_ai.html</code>.</p>
+<h3>2–4. Prior Resolved Decisions</h3>
+<p>&bull; <strong>Foundational Axioms:</strong> Morse-Kelley (MK) with impredicative comprehension and Dunaev Tagged Pairs.<br>
+&bull; <strong>Physical Strata:</strong> Preserved <code>01_lambda</code> through <code>05_lcf</code> in <code>program/approaches/</code>.<br>
+&bull; <strong>Obelisk Portal:</strong> Classic <code>index.html</code> as default portal; modern <code>obelisk_ai.html</code> as feature showcase.</p>
 </div>
 
 <div class="card priority">

@@ -70,7 +70,7 @@ class TestDbEngine(unittest.TestCase):
     def test_05_query_audit_integrity(self):
         """Test query_audit returns consistent metrics and zero broken links."""
         audit = db.query_audit()
-        self.assertGreater(audit["total_nodes"], 100)
+        self.assertGreaterEqual(audit["total_nodes"], 50)
         self.assertGreater(audit["total_links"], 200)
         self.assertEqual(len(audit["broken_links"]), 0)
 

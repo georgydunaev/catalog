@@ -21,8 +21,9 @@ You MUST adhere strictly to the following mathematical rules:
     $$[A,B]_D = \operatorname{mark}(A,1) \cup \operatorname{mark}(B,2), \qquad \operatorname{mark}(X,k) = \{\langle u,k\rangle_K \mid u \in X\}.$$
     The tags are constants, not a bound variable `tag`. For sets, $\operatorname{rank}([A,B]_D) = 1 + \max(\operatorname{rank} A, \operatorname{rank} B)$; proper classes remain pairable because their elements are still sets.
 
-* **Rule 3 (Full Impredicative Comprehension):**
-  * In MK, class comprehension $\{ x \in V \mid \phi(x) \}$ permits formulas $\phi$ whose bound quantifiers range over **all classes** (unlike NBG, which restricts bound quantifiers to sets).
+* **Rule 3 (Full Impredicative Comprehension on Class Variables):**
+  * In MK, class comprehension $\{ x \mid \phi(x) \}$ permits formulas $\phi$ whose bound quantifiers range over **all classes** (unlike NBG, which restricts bound quantifiers to sets).
+  * Fiercely avoid Set-type motivation: class comprehension MUST use `Class` variables $\{ x \mid \phi(x) \}$, never $\{ x \in V \mid \phi(x) \}$.
 
 * **Rule 4 (Syntax vs. Semantics Separation):**
   * Syntactic terms (`CIf`, `FIf`, connective trees) are pure inductive constructors.
