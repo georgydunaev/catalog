@@ -25,7 +25,11 @@ def _resolve_catalog_root() -> str:
 CATALOG_ROOT = _resolve_catalog_root()
 
 # Disallowed emoji code points or symbols in code and UI
-FORBIDDEN_EMOJIS = {'⚠️', '🎯', '🛑', '🛡', '📌', '🌙', '✔', '✖', '❓', '⚡', '🤖', '🚀', '💡', '🔥'}
+FORBIDDEN_EMOJIS = {
+    '\u26a0\ufe0f', '\U0001f3af', '\U0001f6d1', '\U0001f6e1', '\U0001f4cc',
+    '\U0001f319', '\u2714', '\u2716', '\u2753', '\u26a1',
+    '\U0001f916', '\U0001f680', '\U0001f4a1', '\U0001f525'
+}
 
 
 class TestHygieneAndRules(unittest.TestCase):
