@@ -17,48 +17,16 @@ code{background:#eee;padding:2px 4px}
 <h1>Questions for User &amp; Architectural Decisions</h1>
 <p>Synced with <code>QUESTIONS_FOR_USER.md</code>.</p>
 
-<div class="card" style="border: 1px solid #b00; background: #fff8f8;">
-<h3>1. Host Local LLM Acceleration [SUSPENDED]</h3>
-<p><strong>Status:</strong> Suspended under <code>ban_local_llm: true</code> in <code>mybot/network_config.json</code>. Do NOT run <code>ollama serve</code>.</p>
-</div>
-
 <div class="card">
-<h3>2–4. Prior Resolved Decisions</h3>
-<p>&bull; <strong>Foundational Axioms:</strong> Morse-Kelley (MK) with impredicative comprehension and Dunaev Tagged Pairs.<br>
-&bull; <strong>Physical Strata:</strong> Preserved <code>01_lambda</code> through <code>05_lcf</code> in <code>program/approaches/</code>.<br>
-&bull; <strong>Obelisk Portal:</strong> Classic <code>index.html</code> as default portal; modern <code>obelisk_ai.html</code> as feature showcase.</p>
-</div>
-
-<div class="card priority">
-<h3>5. Ordinal Induction (∈-Ind): Theorem vs Axiom (#19)</h3>
-<p>In MK theory, <code>On</code> is a class object, not a syntactic type. Formulas with variables are formulas.<br>
-&bull; <strong>(Rec) A:</strong> Derive Ordinal Induction formally as a Theorem Schema from Set Foundation and Class Comprehension.<br>
-&bull; <strong>B:</strong> Retain as primitive rule <code>PEpsIndAx</code> in <code>newchecker.ML</code>.<br>
-&bull; <strong>C:</strong> Treat as side-condition formula in <code>metatheory.html</code>.</p>
-</div>
-
-<div class="card priority">
-<h3>6. Proper Classes &amp; Pairing: Dunaev vs Kuratowski (#20)</h3>
-<p>Kuratowski pairs fail for proper classes. Dunaev Tagged Pairs <code>(A, B)_D = ({0} x A) U ({1} x B)</code> allow class pairing.<br>
-&bull; <strong>(Rec) A:</strong> Delineate constructors into <code>SetOPair</code> (sets) and <code>ClassOPair</code> (classes).<br>
-&bull; <strong>B:</strong> Standardize all pairing kernel-wide on Dunaev pairs.<br>
-&bull; <strong>C:</strong> Dynamically lower <code>ClassOPair</code> to Kuratowski when components are sets.</p>
-</div>
-
-<div class="card priority">
-<h3>7. Incompleteness Statements in Section 6 (#21)</h3>
-<p>Section 6 (Löb's and Gödel's second incompleteness theorems) is WIP without full proof derivations.<br>
-&bull; <strong>(Rec) A:</strong> Isolate Section 6 into <code>program/incompleteness.ML</code>, keeping core kernel clean.<br>
-&bull; <strong>B:</strong> Fully formalize Henkin extension <code>F</code> within <code>newchecker.ML</code>.<br>
-&bull; <strong>C:</strong> Refactor into reflected side conditions on <code>metatheory.html</code>.</p>
-</div>
-
-<div class="card priority">
-<h3>8. Web REPL Architecture: JS vs PolyML Backend (#22)</h3>
-<p><code>obelisk_engine.js</code> lacks recent AST constructors (<code>EIf</code>). Backend hosts <code>/api/obelisk/compile</code>.<br>
-&bull; <strong>(Rec) A:</strong> Hybrid architecture: connect to <code>/api/obelisk/compile</code> on GitLab with JS fallback.<br>
-&bull; <strong>B:</strong> Port complete PolyML AST to JS.<br>
-&bull; <strong>C:</strong> Compile PolyML to WebAssembly (Wasm) via Emscripten.</p>
+<h3>Resolved Architectural Decisions (1–8)</h3>
+<p>&bull; <strong>1. Host Local LLM:</strong> Suspended under <code>ban_local_llm: true</code> in <code>network_config.json</code>.<br>
+&bull; <strong>2. Foundational Axioms:</strong> Morse-Kelley (MK) with impredicative comprehension and Dunaev Tagged Pairs.<br>
+&bull; <strong>3. Physical Strata:</strong> Preserved <code>01_lambda</code> through <code>05_lcf</code> in <code>program/approaches/</code>.<br>
+&bull; <strong>4. Obelisk Portal:</strong> Classic <code>index.html</code> default portal; modern <code>obelisk_ai.html</code> showcase.<br>
+&bull; <strong>5. Ordinal Induction (#19):</strong> Derived formally as a Theorem Schema from Set Foundation and Class Comprehension.<br>
+&bull; <strong>6. Proper Class Pairing (#20):</strong> Mandatory Dunaev Tagged Pairs <code>[A,B]_D</code> per FACTBOOK.md; Kuratowski pairs strictly prohibited for proper classes.<br>
+&bull; <strong>7. Incompleteness Statements (#21):</strong> Isolated into <code>program/incompleteness.ML</code>, keeping core LCF kernel clean.<br>
+&bull; <strong>8. Web REPL Architecture (#22):</strong> Hybrid architecture connecting to <code>/api/obelisk/compile</code> on GitLab with JS fallback.</p>
 </div>
 
 <div class="card priority">
