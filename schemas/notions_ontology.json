@@ -1,0 +1,278 @@
+{
+  "version": "1.0.0",
+  "title": "Unified Machine-Readable Notion Ontology for Obelisk and BotWorkspace",
+  "description": "Modular, decoupled, non-circular notion dictionary across set theory, proof systems, metatheory, and platform infrastructure.",
+  "domains": [
+    "set_theory",
+    "proof_systems",
+    "metatheory",
+    "platform"
+  ],
+  "notions": [
+    {
+      "id": "NOTION:CLASS",
+      "canonical_term": "Class",
+      "domain": "set_theory",
+      "definition": "A collection in the domain of discourse of Morse-Kelley (MK) or von Neumann-Bernays-Godel (NBG) class theory. All first-order terms denote classes. A class cannot be free or bound; only syntactic variables ranging over classes can be free or bound.",
+      "prohibited_aliases": [
+        "bound class",
+        "free class",
+        "class variable variable"
+      ],
+      "distinctions": "Distinguished from Set (classes that belong to some class) and Class_Expre (syntactic AST term in metalanguage)."
+    },
+    {
+      "id": "NOTION:SET",
+      "canonical_term": "Set",
+      "domain": "set_theory",
+      "definition": "A class x that belongs to at least one class, defined by isSet(x) <=> exists Y, x in Y. In MK and NBG, sets are precisely the elements of the universal class V.",
+      "prohibited_aliases": [
+        "type Set (as primary sort)",
+        "Set(X) (confused with sort)"
+      ],
+      "distinctions": "Avoid using Set as the default type in Obelisk kernels; all object-language variables default to sort Class, and sethood is predicated by isSet(x)."
+    },
+    {
+      "id": "NOTION:PROPER_CLASS",
+      "canonical_term": "Proper Class",
+      "domain": "set_theory",
+      "definition": "A class X that does not belong to any class: not isSet(X) <=> forall Y, X not in Y. Under von Neumann's limitation of size axiom, a class is proper if and only if it admits a bijection with the universal class V.",
+      "prohibited_aliases": [
+        "set of all sets",
+        "class belonging to a set"
+      ],
+      "distinctions": "Proper classes can never be members of Kuratowski ordered pairs or other sets; forming pairs of proper classes requires Dunaev tagged ordered pairing."
+    },
+    {
+      "id": "NOTION:CLASS_VS_SET_VS_EXPRE",
+      "canonical_term": "Class vs Set vs Class Expression",
+      "domain": "set_theory",
+      "definition": "The three-level stratification between (1) semantic Class (all domain collections), (2) semantic Set (elements of V), and (3) syntactic Class Expression (Class_Expre AST in CakeML/PolyML metalanguage).",
+      "prohibited_aliases": [
+        "treating Class_Expre as Class",
+        "storing semantic class in SML memory"
+      ],
+      "distinctions": "Standard ML stores expressions (Class_Expre), not semantic classes. Confusing them violates the Off-by-One Level Rule."
+    },
+    {
+      "id": "NOTION:DUNAEV_TAGGED_PAIR",
+      "canonical_term": "Dunaev Tagged Ordered Pair",
+      "domain": "set_theory",
+      "definition": "The universal ordered pair (A, B)_D = ({1} x A) U ({2} x B), where 1={0} and 2={0,1}, defined for arbitrary classes A and B without requiring either to be a set. Satisfies pair injectivity and projections pi_1((A, B)_D) = A and pi_2((A, B)_D) = B.",
+      "prohibited_aliases": [
+        "Kuratowski pair of proper classes",
+        "tagged pair with tags 0 and 1 (standard is 1 and 2)"
+      ],
+      "distinctions": "Unlike Kuratowski pairs {{a}, {a, b}} which are restricted to sets, Dunaev tagged ordered pairs are universally sound for all classes (sets and proper classes alike)."
+    },
+    {
+      "id": "NOTION:KURATOWSKI_PAIR",
+      "canonical_term": "Kuratowski Ordered Pair",
+      "domain": "set_theory",
+      "definition": "The classical set-theoretic ordered pair <a, b>_K = {{a}, {a, b}}, valid only when a and b are sets (elements of V).",
+      "prohibited_aliases": [
+        "universal class pair",
+        "Kuratowski pair of proper classes"
+      ],
+      "distinctions": "Fails if either argument is a proper class (e.g. V or On) because forming {{V}} would require V in {V}, violating the sethood condition."
+    },
+    {
+      "id": "NOTION:DUNAEV_CLASS_LIST",
+      "canonical_term": "Dunaev Class-List",
+      "domain": "set_theory",
+      "definition": "Finite sequence of proper classes constructed via iterated Dunaev tagged ordered pairing with empty list [] = emptyset: [X_1, ..., X_n] = (X_1, [X_2, ..., X_n])_D.",
+      "prohibited_aliases": [
+        "set of classes",
+        "conglomerate tuple"
+      ],
+      "distinctions": "Encodes multi-argument function domains, hypothesis lists, and substitution environments without requiring higher universe conglomerates."
+    },
+    {
+      "id": "NOTION:BINDER",
+      "canonical_term": "Variable-Binding Operator (Binder)",
+      "domain": "proof_systems",
+      "definition": "An overarching term for any operator that introduces a variable scope and binds free occurrences of that variable within its scope, including quantifiers, class comprehension, and choice/description descriptors.",
+      "prohibited_aliases": [
+        "quantifier-only terminology when describing descriptors or comprehension"
+      ],
+      "distinctions": "Encompasses forall, exists, exists!, !, kappa (comprehension), tau (indefinite choice), epsilon (unique choice), and iota (definite description)."
+    },
+    {
+      "id": "NOTION:CLASS_COMPREHENSION_KAPPA",
+      "canonical_term": "Class Comprehension (kappa-operator)",
+      "domain": "proof_systems",
+      "definition": "The binder kappa x. phi(x) = {x | phi(x)} constructing the class of all sets x satisfying condition phi(x). Forms an AST constructor CpKappa of sort Class.Expression.",
+      "prohibited_aliases": [
+        "set comprehension for proper class formulas"
+      ],
+      "distinctions": "Forms a class term of sort Class, not Set. Variables bound by comprehension must be Class variables."
+    },
+    {
+      "id": "NOTION:DESCRIPTOR_INDEFINITE_CHOICE_TAU",
+      "canonical_term": "Indefinite Choice Descriptor (tau-operator)",
+      "domain": "proof_systems",
+      "definition": "Hilbert's tau choice descriptor (tau^Un) binding variable x in tau x. phi(x). Chooses an arbitrary element satisfying phi(x) if one exists; if no such element exists, evaluates to an unspecified default element.",
+      "prohibited_aliases": [
+        "epsilon operator (when indefinite)",
+        "definite description"
+      ],
+      "distinctions": "Does not require uniqueness of the witness; satisfies exists x. phi(x) ==> phi(tau x. phi(x))."
+    },
+    {
+      "id": "NOTION:DESCRIPTOR_UNIQUE_CHOICE_EPSILON",
+      "canonical_term": "Unique Choice Descriptor (epsilon-operator)",
+      "domain": "proof_systems",
+      "definition": "The unique choice operator epsilon (or tau_{emptyset}^{exists!}) binding variable x in epsilon x. phi(x). Selects the unique witness when exists! x. phi(x) holds; if no witness exists, evaluates to emptyset.",
+      "prohibited_aliases": [
+        "indefinite Hilbert tau",
+        "Russell iota with non-empty default"
+      ],
+      "distinctions": "Produces emptyset on failure, whereas indefinite tau produces an unspecified witness."
+    },
+    {
+      "id": "NOTION:DESCRIPTOR_DEFINITE_DESCRIPTION_IOTA",
+      "canonical_term": "Definite Description Descriptor (iota-operator)",
+      "domain": "proof_systems",
+      "definition": "The Russell/Peano definite description binder iota x. phi(x) denoting 'the unique x such that phi(x)'. If exists! x. phi(x) holds, evaluates to that unique witness; otherwise evaluates to canonical failure emptyset.",
+      "prohibited_aliases": [
+        "indefinite choice",
+        "tau operator"
+      ],
+      "distinctions": "Requires strict uniqueness of the witness; if multiple witnesses or zero witnesses exist, evaluates to failure."
+    },
+    {
+      "id": "NOTION:OFF_BY_ONE_LEVEL_RULE",
+      "canonical_term": "Off-by-One Level Invariant",
+      "domain": "proof_systems",
+      "definition": "The architectural principle that SML metalanguage data structures store expressions of classes (Class_Expre), formulas (Truth_Expre), and theories (Theory_Expre), rather than semantic mathematical objects themselves (type Class = Nonstored.t).",
+      "prohibited_aliases": [
+        "stored semantic class",
+        "in-memory model class"
+      ],
+      "distinctions": "Enforces separation between AST manipulation in CakeML/PolyML and model-theoretic semantics in MK/NBG."
+    },
+    {
+      "id": "NOTION:ELEMENTARY_METATHEORY",
+      "canonical_term": "Elementary Metatheory E",
+      "domain": "metatheory",
+      "definition": "The background syntactic, proof-theoretic, or arithmetical theory E in {ISigma1, PA, T, NBG, MK} used to formalize AST algorithms, side conditions (FFI, NFV), deduction trees, and Goedel numbering.",
+      "prohibited_aliases": [
+        "object theory",
+        "internal logic"
+      ],
+      "distinctions": "Operates outside and above the formalized object theories checked by the proof assistant kernel."
+    },
+    {
+      "id": "NOTION:OBJECT_THEORY_MKTD1",
+      "canonical_term": "Object Theory MKTD1 (First-Order Sequent Calculus)",
+      "domain": "metatheory",
+      "definition": "The classical first-order axiomatic sequent calculus variant of Morse-Kelley class theory with Tarski universes and Dunaev tagged pairs. Stratifies syntax into Class.Expression (terms), Truth.Expression (Fm), and Stmt.Expression (sequents).",
+      "prohibited_aliases": [
+        "formulas-as-types kernel",
+        "dependent type variant"
+      ],
+      "distinctions": "Coexists with MKTD2; both variants are permanently maintained across Obelisk repositories."
+    },
+    {
+      "id": "NOTION:OBJECT_THEORY_MKTD2",
+      "canonical_term": "Object Theory MKTD2 (Formulas-as-Types Dependent Type Theory)",
+      "domain": "metatheory",
+      "definition": "The constructive dependent type theory / Curry-Howard formulas-as-types variant of Morse-Kelley class theory with Tarski universes and Dunaev pairs. Formulas are types (Prop) and proofs are constructive lambda terms.",
+      "prohibited_aliases": [
+        "first-order sequent kernel",
+        "bare Hilbert calculus"
+      ],
+      "distinctions": "Coexists with MKTD1; both variants are permanently maintained across Obelisk repositories."
+    },
+    {
+      "id": "NOTION:WORKER",
+      "canonical_term": "Worker",
+      "domain": "platform",
+      "definition": "One autonomous AI execution process spawned by the planner to resolve a specific ticket. Has an entity profile, model assignment, and assigned ticket.",
+      "prohibited_aliases": [
+        "bot (legacy)",
+        "sentinel (legacy)",
+        "agent (legacy)"
+      ],
+      "distinctions": "Distinguished from Process (OS PID), Planner (supervisor daemon), and Harness (CLI runner)."
+    },
+    {
+      "id": "NOTION:PROCESS",
+      "canonical_term": "Process",
+      "domain": "platform",
+      "definition": "The operating system-level execution entity identified by an operating system PID. Process history groups logs and resource metrics per PID.",
+      "prohibited_aliases": [
+        "worker (when referring specifically to PID/OS process)"
+      ],
+      "distinctions": "A worker runs inside an OS process; the OS process is the container of execution."
+    },
+    {
+      "id": "NOTION:PLANNER",
+      "canonical_term": "Planner",
+      "domain": "platform",
+      "definition": "The autonomous ticket supervisor daemon (autonomous_ticket_planner.py) that inspects ticket queues, selects model and harness pairings, enforces rate limits, provider leases, and pacing.",
+      "prohibited_aliases": [
+        "dispatcher",
+        "scheduler",
+        "worker"
+      ],
+      "distinctions": "The planner orchestrates and spawns workers; it never performs ticket work directly."
+    },
+    {
+      "id": "NOTION:HARNESS",
+      "canonical_term": "Harness",
+      "domain": "platform",
+      "definition": "The CLI execution front-end wrapping the LLM interaction and providing tool execution runtime (botharness, opencode, deepcode).",
+      "prohibited_aliases": [
+        "runner",
+        "front-end",
+        "worker"
+      ],
+      "distinctions": "A worker is executed through a harness; the harness manages the prompt loop and tool calling interface."
+    },
+    {
+      "id": "NOTION:TICKET",
+      "canonical_term": "Ticket",
+      "domain": "platform",
+      "definition": "A task specification markdown file stored in a tickets/ directory describing a discrete engineering or proof objective.",
+      "prohibited_aliases": [
+        "bug (unless strictly an unverified defect)",
+        "issue (in file-system context)"
+      ],
+      "distinctions": "A ticket is the primary filesystem record; rendered as an Issue in the GitLab web UI."
+    },
+    {
+      "id": "NOTION:ISSUE",
+      "canonical_term": "Issue",
+      "domain": "platform",
+      "definition": "The GitLab database representation of a ticket (local-gitlab/data/issues.json). In the GitLab UI, tickets are tracked and viewed as issues.",
+      "prohibited_aliases": [
+        "question",
+        "untracked task"
+      ],
+      "distinctions": "Refers specifically to the GitLab database record for a ticket."
+    },
+    {
+      "id": "NOTION:QUESTION",
+      "canonical_term": "Question",
+      "domain": "platform",
+      "definition": "An explicit epistemic, architectural, or rule escalation requiring human operator guidance, recorded in questions_for_user.html and answered on the Questions dashboard.",
+      "prohibited_aliases": [
+        "ticket (cannot be autonomously closed without operator answer)",
+        "bug"
+      ],
+      "distinctions": "Must never be autonomously closed or guessed by workers; requires operator confirmation."
+    },
+    {
+      "id": "NOTION:WORKER_STATE_LIFECYCLE",
+      "canonical_term": "Worker State Lifecycle",
+      "domain": "platform",
+      "definition": "The canonical lifecycle of a worker: starting -> in progress -> terminal state (completed, failed, or timeout).",
+      "prohibited_aliases": [
+        "running/unknown (legacy internal key; UI renders as in progress)",
+        "arrow-based state transitions"
+      ],
+      "distinctions": "Transitions must be documented using clean ASCII (->) or markdown tables, never Unicode arrow characters."
+    }
+  ]
+}
