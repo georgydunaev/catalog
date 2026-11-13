@@ -41,8 +41,8 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <div class="card">
 &bull; <code>python3 /botworkspace/catalog/cognition.py status</code> &mdash; inspect active hypotheses, goal, and verified facts.<br>
 &bull; <code>bash /botworkspace/tools/railway.sh status</code> &mdash; inspect railway interlocking signal board before touching shared tracks.<br>
-&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh pull &lt;repo&gt;</code> &mdash; polite fetch/rebase from local GitLab before modifying.<br>
-&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code> &mdash; commit with post-commit auto-push to GitLab.<br>
+&bull; <code>bash /botworkspace/scripts/hostramdisk_workspace.sh pull &lt;repo&gt;</code> &mdash; polite fetch/rebase from local GitLab before modifying.<br>
+&bull; <code>bash /botworkspace/scripts/hostramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code> &mdash; commit with post-commit auto-push to GitLab.<br>
 &bull; <code>poly -q --use &lt;file.ML&gt;</code> &mdash; non-interactive Standard ML verification without REPL hangs.<br>
 &bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; Rule 5 Zero Committed Secrets verification.
 </div>
@@ -64,8 +64,8 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <ol>
   <li><strong>Inspect Immutable Facts &amp; Goals:</strong> Review <code>FACTBOOK.md</code> and run <code>python3 catalog/cognition.py status</code>.</li>
   <li><strong>Check Railway Signal:</strong> Verify track is green via <code>bash /botworkspace/tools/railway.sh status</code> (shunt RED to siding).</li>
-  <li><strong>Polite Work in Host RAMDisk:</strong> Pull latest via <code>ramdisk_workspace.sh pull &lt;repo&gt;</code>; modify code in <code>/hostramdisk/&lt;repo&gt;</code>.</li>
-  <li><strong>Verify, Scan &amp; Commit:</strong> Validate with <code>poly -q</code> or test suites, run <code>security_guard.py scan</code>, and commit via <code>ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code>.</li>
+  <li><strong>Polite Work in Host RAMDisk:</strong> Pull latest via <code>hostramdisk_workspace.sh pull &lt;repo&gt;</code>; modify code in <code>/hostramdisk/&lt;repo&gt;</code>.</li>
+  <li><strong>Verify, Scan &amp; Commit:</strong> Validate with <code>poly -q</code> or test suites, run <code>security_guard.py scan</code>, and commit via <code>hostramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code>.</li>
 </ol>
 
 <p>[UP: <a href="index.html">Model Profiles Index</a>]</p>

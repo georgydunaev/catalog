@@ -83,7 +83,7 @@ CORE_DIRECTIVES = [
         "category": "hostramdisk_workflow",
         "trigger": "hostramdisk|ramdisk|pull|commit|fast|sync",
         "lesson": "Persistent host RAMdisk (/hostramdisk) provides maximum speed and reliable isolation across multi-repo workspace.",
-        "directive": "Always work directly in /hostramdisk/<repo>. Run 'ramdisk_workspace.sh pull <repo>' before editing, and commit via 'ramdisk_workspace.sh commit <repo> \"<msg>\"' to automatically push to GitLab and sync /botworkspace/<repo>."
+        "directive": "Always work directly in /hostramdisk/<repo>. Run 'hostramdisk_workspace.sh pull <repo>' before editing, and commit via 'hostramdisk_workspace.sh commit <repo> \"<msg>\"' to automatically push to GitLab and sync /botworkspace/<repo>."
     },
     {
         "priority": 100,

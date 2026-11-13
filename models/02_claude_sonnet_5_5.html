@@ -39,8 +39,8 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <h2>2. Optimal Instruments (High Leverage)</h2>
 <div class="card">
-&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh pull &lt;repo&gt;</code> &mdash; polite fetch/pull from GitLab before editing.<br>
-&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code> &mdash; atomic commit with automatic post-commit push.<br>
+&bull; <code>bash /botworkspace/scripts/hostramdisk_workspace.sh pull &lt;repo&gt;</code> &mdash; polite fetch/pull from GitLab before editing.<br>
+&bull; <code>bash /botworkspace/scripts/hostramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code> &mdash; atomic commit with automatic post-commit push.<br>
 &bull; <code>bash /botworkspace/tools/railway.sh status</code> &mdash; verify track safety before running operations.<br>
 &bull; <code>python3 -m unittest discover -s mybot/tests -p "test_*.py"</code> &mdash; automated regression testing.<br>
 &bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; Zero Committed Secrets scanner (Rule 5).<br>
@@ -63,8 +63,8 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <ol>
   <li><strong>Consult Facts &amp; Priority Ticket:</strong> Inspect <code>FACTBOOK.md</code> and identify open ticket in <code>mybot/tickets/</code>.</li>
   <li><strong>Verify Railway &amp; Baseline Suite:</strong> Check <code>railway.sh status</code> is green, then run unit tests to confirm clean tree.</li>
-  <li><strong>Work in Host RAMDisk:</strong> Run <code>ramdisk_workspace.sh pull &lt;repo&gt;</code>, apply surgical edits, check syntax with <code>py_compile</code> or <code>bash -n</code>.</li>
-  <li><strong>Security Scan &amp; Commit:</strong> Run <code>security_guard.py scan</code>, then commit via <code>ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code>.</li>
+  <li><strong>Work in Host RAMDisk:</strong> Run <code>hostramdisk_workspace.sh pull &lt;repo&gt;</code>, apply surgical edits, check syntax with <code>py_compile</code> or <code>bash -n</code>.</li>
+  <li><strong>Security Scan &amp; Commit:</strong> Run <code>security_guard.py scan</code>, then commit via <code>hostramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code>.</li>
 </ol>
 
 <p>[UP: <a href="index.html">Model Profiles Index</a>]</p>

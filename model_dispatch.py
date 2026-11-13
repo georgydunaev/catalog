@@ -44,8 +44,8 @@ PROFILES = {
         "optimal_instruments": [
             "python3 /botworkspace/catalog/cognition.py status",
             "bash /botworkspace/tools/railway.sh status",
-            "bash /botworkspace/scripts/ramdisk_workspace.sh pull <repo>",
-            "bash /botworkspace/scripts/ramdisk_workspace.sh commit <repo> '<msg>'",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> '<msg>'",
             "poly -q --use <file.ML>",
             "python3 /botworkspace/tools/security_guard.py scan <file>",
             "Deep multi-file architectural refactoring across MKTD1/MKTD2"
@@ -64,8 +64,8 @@ PROFILES = {
         "tramline": [
             "1. Step 0 (Facts & Goals): Review /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
             "2. Concurrency Safety: Check track via 'bash /botworkspace/tools/railway.sh status' (shunt RED to siding).",
-            "3. Host RAMDisk Development: Pull via 'ramdisk_workspace.sh pull <repo>', work in /hostramdisk/<repo>.",
-            "4. Verification & Commit: Verify with poly -q/unittests, scan with security_guard.py, commit with ramdisk_workspace.sh."
+            "3. Host RAMDisk Development: Pull via 'hostramdisk_workspace.sh pull <repo>', work in /hostramdisk/<repo>.",
+            "4. Verification & Commit: Verify with poly -q/unittests, scan with security_guard.py, commit with hostramdisk_workspace.sh."
         ]
     },
     "claude-sonnet-5-5-high": {
@@ -79,8 +79,8 @@ PROFILES = {
         "html_doc": "02_claude_sonnet_5_5.html",
         "memory_entrypoint": "/botworkspace/FACTBOOK.md & mybot/tickets/",
         "optimal_instruments": [
-            "bash /botworkspace/scripts/ramdisk_workspace.sh pull <repo>",
-            "bash /botworkspace/scripts/ramdisk_workspace.sh commit <repo> '<msg>'",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> '<msg>'",
             "bash /botworkspace/tools/railway.sh status",
             "python3 -m unittest discover -s mybot/tests -p 'test_*.py'",
             "python3 /botworkspace/tools/security_guard.py scan <file>",
@@ -98,8 +98,8 @@ PROFILES = {
         "tramline": [
             "1. Priority & Facts: Inspect /botworkspace/FACTBOOK.md and identify open ticket in mybot/tickets/.",
             "2. Concurrency & Baseline: Verify green railway signal, run unittests to confirm clean tree.",
-            "3. Host RAMDisk Edits: Pull via 'ramdisk_workspace.sh pull <repo>', edit in /hostramdisk/<repo>, check syntax.",
-            "4. Security Scan & Push: Run security_guard.py scan and commit via 'ramdisk_workspace.sh commit <repo> \"<msg>\"'."
+            "3. Host RAMDisk Edits: Pull via 'hostramdisk_workspace.sh pull <repo>', edit in /hostramdisk/<repo>, check syntax.",
+            "4. Security Scan & Push: Run security_guard.py scan and commit via 'hostramdisk_workspace.sh commit <repo> \"<msg>\"'."
         ]
     },
     "gemini-4-argon-high": {
