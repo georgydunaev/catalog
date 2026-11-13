@@ -29,34 +29,43 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <h2>1. Tailored Long-Term Memory Slices</h2>
 <ul>
-  <li><strong>Canonical Metacognition:</strong> <a href="../metacognition/index.html"><code>catalog/metacognition/index.html</code></a> (readiness checklist, self-audits).</li>
-  <li><strong>Cognitive Ledger:</strong> <code>.cognitive_ledger.json</code> (active goal, hypotheses, verified facts).</li>
-  <li><strong>Formal Proof Theory Axioms:</strong> <a href="../repos/set_theory_prover/index.html"><code>catalog/repos/set_theory_prover/index.html</code></a> (Morse-Kelley class theory, LCF kernel soundness).</li>
-  <li><strong>Platform Architecture:</strong> <code>mybot/ARCHITECTURE.md</code> and high-severity tickets (Importance 8&ndash;10).</li>
+  <li><strong>Immutable Fact Book:</strong> <code>/botworkspace/FACTBOOK.md</code> (Facts 1 to 14: semantic classes cannot be free/bound, variable sort distinctions, binders vs occurrences, yellow metalevel badges, AST vs Scheme of Types, personal symbol pages, pure SML generation, typed FV/FFI/IFV, universe theorem 3.69, definition store, immutable binaries/PDFs, no arrows, zero emojis, MKTD1 vs MKTD2 dual theories).</li>
+  <li><strong>Catalog Rules &amp; Directives:</strong> <a href="../rules/set_theory_rules.html"><code>catalog/rules/set_theory_rules.html</code></a> &amp; <a href="../user_directives.html"><code>catalog/user_directives.html</code></a>.</li>
+  <li><strong>Cognitive Ledger:</strong> <code>/botworkspace/.cognitive_ledger.json</code> (active goal, hypotheses, verified facts).</li>
+  <li><strong>Dual Assistant Variants &amp; Theories:</strong> MKTD1 (1st-order sequent calculus in <code>newchecker.ML</code>) and MKTD2 (Curry-Howard formulas-as-types in <code>nbg_compiler.ML</code>), bridged by <code>program/variant_bridge.ML</code>.</li>
+  <li><strong>CakeML &amp; Poly/ML Dual Compatibility:</strong> <code>set_theory_prover/CAKEML_POLYML_GUIDE.md</code> (User Directive #16).</li>
+  <li><strong>Primary Work Directory:</strong> <code>/hostramdisk/&lt;repo&gt;</code> (fast persistent host RAMdisk with polite pull/commit workflow).</li>
 </ul>
 
 <h2>2. Optimal Instruments (High Leverage)</h2>
 <div class="card">
-&bull; <code>python3 /botworkspace/catalog/cognition.py status</code> &mdash; inspect active hypotheses and verified facts.<br>
-&bull; <code>python3 /botworkspace/set_theory_prover/obelisk_cli.py check &lt;thm&gt;</code> &mdash; formal proof checking.<br>
-&bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; security invariant compliance.<br>
-&bull; Multi-file atomic diffing and soundness refactoring across subprojects.
+&bull; <code>python3 /botworkspace/catalog/cognition.py status</code> &mdash; inspect active hypotheses, goal, and verified facts.<br>
+&bull; <code>bash /botworkspace/tools/railway.sh status</code> &mdash; inspect railway interlocking signal board before touching shared tracks.<br>
+&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh pull &lt;repo&gt;</code> &mdash; polite fetch/rebase from local GitLab before modifying.<br>
+&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code> &mdash; commit with post-commit auto-push to GitLab.<br>
+&bull; <code>poly -q --use &lt;file.ML&gt;</code> &mdash; non-interactive Standard ML verification without REPL hangs.<br>
+&bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; Rule 5 Zero Committed Secrets verification.
 </div>
 
 <h2>3. Prohibited &amp; Suboptimal Instruments</h2>
 <div class="alert">
-&bull; NEVER run interactive <code>poly</code> without null input (hangs terminal).<br>
-&bull; NEVER delete commented-out ML blocks in <code>set_theory_prover/</code> (historical reference code).<br>
+&bull; NEVER modify <code>FACTBOOK.md</code> to weaken or contradict its facts; escalate conflicts immediately as questions to the user.<br>
+&bull; NEVER edit files inside <code>obeliskproofassistant.github.io/generated/</code> directly (User Directive #17: edit ONLY <code>.ML</code> files in <code>set_theory_prover</code>).<br>
+&bull; NEVER use emojis anywhere in code, responses, UI buttons, or documentation.<br>
+&bull; NEVER use directional arrows in names, titles, buttons, or links (use clean laconic names like MKTD1, MKTD2).<br>
+&bull; NEVER mutate compiled binaries or stored PDFs across any repository.<br>
+&bull; NEVER start <code>ollama serve</code> or dispatch local GPU models (banned under <code>ban_local_llm: true</code>).<br>
+&bull; NEVER push directly to GitHub (push to local GitLab; <code>pushingwatchdog.sh</code> handles GitHub sync; <code>beacon.sh</code> is obsolete).<br>
 &bull; NEVER define Kuratowski pairs for proper classes (use Dunaev Tagged Pairs).<br>
-&bull; DO NOT waste quota on repetitive single-character micro-linting (delegate to Flash/Local).
+&bull; NEVER delete commented-out ML blocks in <code>set_theory_prover/</code> (historical reference code).
 </div>
 
 <h2>4. Immediate Meaningful Task Tramline</h2>
 <ol>
-  <li><strong>Inspect Top-Tier Goals:</strong> Run <code>python3 catalog/cognition.py status</code> to absorb active hypotheses and verified facts.</li>
-  <li><strong>Triage Critical Invariants:</strong> Review Importance 8&ndash;10 open tickets in <code>mybot/tickets/</code> or unproved lemmas in <code>set_theory_prover/</code>.</li>
-  <li><strong>Machine-Checked Proof / Verification:</strong> Implement rigorous solution and verify via deterministic compiler test.</li>
-  <li><strong>Commit &amp; Record:</strong> Log verified fact to cognitive ledger and push to local GitLab.</li>
+  <li><strong>Inspect Immutable Facts &amp; Goals:</strong> Review <code>FACTBOOK.md</code> and run <code>python3 catalog/cognition.py status</code>.</li>
+  <li><strong>Check Railway Signal:</strong> Verify track is green via <code>bash /botworkspace/tools/railway.sh status</code> (shunt RED to siding).</li>
+  <li><strong>Polite Work in Host RAMDisk:</strong> Pull latest via <code>ramdisk_workspace.sh pull &lt;repo&gt;</code>; modify code in <code>/hostramdisk/&lt;repo&gt;</code>.</li>
+  <li><strong>Verify, Scan &amp; Commit:</strong> Validate with <code>poly -q</code> or test suites, run <code>security_guard.py scan</code>, and commit via <code>ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code>.</li>
 </ol>
 
 <p>[UP: <a href="index.html">Model Profiles Index</a>]</p>

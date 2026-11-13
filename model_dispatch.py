@@ -40,24 +40,32 @@ PROFILES = {
         "max_read_lines": 500,
         "reasoning_effort": "Maximum",
         "html_doc": "01_claude_opus_5_5.html",
-        "memory_entrypoint": "catalog/metacognition/index.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/metacognition/index.html",
         "optimal_instruments": [
             "python3 /botworkspace/catalog/cognition.py status",
-            "python3 /botworkspace/set_theory_prover/obelisk_cli.py check <thm>",
+            "bash /botworkspace/tools/railway.sh status",
+            "bash /botworkspace/scripts/ramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/ramdisk_workspace.sh commit <repo> '<msg>'",
+            "poly -q --use <file.ML>",
             "python3 /botworkspace/tools/security_guard.py scan <file>",
-            "Deep multi-file architectural refactoring"
+            "Deep multi-file architectural refactoring across MKTD1/MKTD2"
         ],
         "prohibited_instruments": [
+            "Weakening or contradicting FACTBOOK.md (must escalate to user)",
+            "Modifying files in obeliskproofassistant.github.io/generated/ directly (User Directive #17)",
+            "Using emojis or directional arrows in names, links, or UI",
+            "Mutating compiled binaries or stored PDFs",
+            "Starting ollama serve or local GPU models (ban_local_llm: true)",
             "Interactive Poly/ML (poly) without input",
             "Deleting commented-out ML blocks in set_theory_prover/",
             "Constructing Kuratowski pairs for proper classes (use Dunaev Tagged Pairs)",
-            "Repetitive single-character micro-linting"
+            "Pushing directly to public GitHub (pushingwatchdog handles sync; beacon.sh forbidden)"
         ],
         "tramline": [
-            "1. Inspect Top-Tier Goals: Run 'python3 catalog/cognition.py status' to absorb active hypotheses and facts.",
-            "2. Triage Invariants: Review open Importance 8-10 tickets in mybot/tickets/ or unproved lemmas.",
-            "3. Rigorous Machine-Checked Proof: Implement solution and verify with deterministic compiler test.",
-            "4. Record & Commit: Log verified fact to cognitive ledger and push strictly to local GitLab."
+            "1. Step 0 (Facts & Goals): Review /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
+            "2. Concurrency Safety: Check track via 'bash /botworkspace/tools/railway.sh status' (shunt RED to siding).",
+            "3. Host RAMDisk Development: Pull via 'ramdisk_workspace.sh pull <repo>', work in /hostramdisk/<repo>.",
+            "4. Verification & Commit: Verify with poly -q/unittests, scan with security_guard.py, commit with ramdisk_workspace.sh."
         ]
     },
     "claude-sonnet-5-5-high": {
@@ -69,25 +77,29 @@ PROFILES = {
         "max_read_lines": 300,
         "reasoning_effort": "High",
         "html_doc": "02_claude_sonnet_5_5.html",
-        "memory_entrypoint": "mybot/tickets/ & catalog/repos/index.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & mybot/tickets/",
         "optimal_instruments": [
+            "bash /botworkspace/scripts/ramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/ramdisk_workspace.sh commit <repo> '<msg>'",
+            "bash /botworkspace/tools/railway.sh status",
             "python3 -m unittest discover -s mybot/tests -p 'test_*.py'",
-            "python3 mybot/test-offline-resilience.sh",
-            "python3 mybot/test-harness-install.sh",
             "python3 /botworkspace/tools/security_guard.py scan <file>",
-            "git -C /botworkspace/mybot push gitlab main"
+            "python3 /botworkspace/catalog/cognition.py status"
         ],
         "prohibited_instruments": [
+            "Weakening or contradicting FACTBOOK.md",
+            "Modifying files in obeliskproofassistant.github.io/generated/ directly",
+            "Using emojis or directional arrows anywhere in UI, code, or messages",
             "Running docker CLI inside ai-worker container",
-            "Pushing directly to public GitHub",
-            "Committing without security_guard.py scan (Rule 5)",
-            "Reading raw minified / vendor bundles"
+            "Pushing directly to public GitHub (beacon.sh forbidden)",
+            "Starting ollama serve or dispatching local GPU models (ban_local_llm: true)",
+            "Committing without security_guard.py scan (Rule 5)"
         ],
         "tramline": [
-            "1. Select Priority Ticket: Identify open tickets in mybot/tickets/.",
-            "2. Verify Baseline: Run unittest suite to confirm clean state.",
-            "3. Surgical Edits: Apply atomic code changes and verify syntax with bash -n or py_compile.",
-            "4. Security Scan & Push: Run security_guard.py and push to local GitLab."
+            "1. Priority & Facts: Inspect /botworkspace/FACTBOOK.md and identify open ticket in mybot/tickets/.",
+            "2. Concurrency & Baseline: Verify green railway signal, run unittests to confirm clean tree.",
+            "3. Host RAMDisk Edits: Pull via 'ramdisk_workspace.sh pull <repo>', edit in /hostramdisk/<repo>, check syntax.",
+            "4. Security Scan & Push: Run security_guard.py scan and commit via 'ramdisk_workspace.sh commit <repo> \"<msg>\"'."
         ]
     },
     "gemini-4-argon-high": {

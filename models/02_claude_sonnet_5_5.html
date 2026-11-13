@@ -29,35 +29,42 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <h2>1. Tailored Long-Term Memory Slices</h2>
 <ul>
-  <li><strong>Subproject Catalogs:</strong> <a href="../repos/mybot/index.html"><code>catalog/repos/mybot/index.html</code></a> &amp; <a href="../branches/fleet_infra.html"><code>Fleet Infra</code></a>.</li>
+  <li><strong>Immutable Fact Book:</strong> <code>/botworkspace/FACTBOOK.md</code> (Facts 1 to 14: mandatory question escalation on conflicts).</li>
+  <li><strong>Catalog Rules &amp; Directives:</strong> <a href="../rules/index.html"><code>catalog/rules/</code></a> and <a href="../user_directives.html"><code>catalog/user_directives.html</code></a>.</li>
+  <li><strong>Primary Active Work Directory:</strong> <code>/hostramdisk/&lt;repo&gt;</code> (work directly in host RAM; polite fetch/pull and commit).</li>
   <li><strong>Tickets Backlog:</strong> <code>mybot/tickets/</code> and local GitLab API issues.</li>
-  <li><strong>Fleet Management Guides:</strong> <code>mybot/docs/guides/HOST_COMMANDS.txt</code> and <code>mybot/ARCHITECTURE.md</code>.</li>
-  <li><strong>FTS5 Semantic Search:</strong> <code>python3 catalog/cognition.py search &lt;term&gt;</code>.</li>
+  <li><strong>Platform Architecture:</strong> <code>mybot/ARCHITECTURE.md</code> and Zero-Downtime Blue/Green (port 8929 -&gt; 8931/8932).</li>
+  <li><strong>Railway Concurrency Signals:</strong> <code>docs/RAILWAY_CONCURRENCY_POLICY.md</code> and <code>tools/railway.sh status</code>.</li>
 </ul>
 
 <h2>2. Optimal Instruments (High Leverage)</h2>
 <div class="card">
+&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh pull &lt;repo&gt;</code> &mdash; polite fetch/pull from GitLab before editing.<br>
+&bull; <code>bash /botworkspace/scripts/ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code> &mdash; atomic commit with automatic post-commit push.<br>
+&bull; <code>bash /botworkspace/tools/railway.sh status</code> &mdash; verify track safety before running operations.<br>
 &bull; <code>python3 -m unittest discover -s mybot/tests -p "test_*.py"</code> &mdash; automated regression testing.<br>
-&bull; <code>python3 mybot/test-offline-resilience.sh</code> &mdash; Rule 10 offline compliance benchmark.<br>
-&bull; <code>python3 mybot/test-harness-install.sh</code> &mdash; multi-harness verification.<br>
-&bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; Zero Committed Secrets scanner.<br>
-&bull; <code>git -C mybot push gitlab main</code> &mdash; decoupled safe push to local GitLab container.
+&bull; <code>python3 /botworkspace/tools/security_guard.py scan &lt;file&gt;</code> &mdash; Zero Committed Secrets scanner (Rule 5).<br>
+&bull; <code>python3 /botworkspace/catalog/cognition.py status</code> &mdash; check active goal and verified facts.
 </div>
 
 <h2>3. Prohibited &amp; Suboptimal Instruments</h2>
 <div class="alert">
+&bull; NEVER weaken or contradict <code>FACTBOOK.md</code>; escalate conflicts as questions to the user.<br>
+&bull; NEVER edit files inside <code>obeliskproofassistant.github.io/generated/</code> directly (modify only <code>.ML</code> in <code>set_theory_prover</code>).<br>
+&bull; NEVER use emojis anywhere in code, responses, UI buttons, links, or git commit messages.<br>
+&bull; NEVER use directional arrows in names, titles, buttons, or links (use laconic names like MKTD1, MKTD2).<br>
 &bull; NEVER run <code>docker</code> commands directly inside containers (Docker CLI is intentionally absent).<br>
-&bull; NEVER push directly to public GitHub (violates rate-limit and offline containment policies).<br>
-&bull; NEVER commit files without running <code>security_guard.py scan</code> first (Rule 5).<br>
-&bull; Avoid reading raw minified or vendor bundles (e.g. <code>dist/</code> or <code>node_modules/</code>).
+&bull; NEVER push directly to public GitHub (push to local GitLab; <code>pushingwatchdog.sh</code> syncs to GitHub; <code>beacon.sh</code> is forbidden).<br>
+&bull; NEVER start <code>ollama serve</code> or dispatch local GPU models (banned under <code>ban_local_llm: true</code>).<br>
+&bull; NEVER commit files without running <code>security_guard.py scan</code> first (Rule 5).
 </div>
 
 <h2>4. Immediate Meaningful Task Tramline</h2>
 <ol>
-  <li><strong>Select Highest Priority Ticket:</strong> Identify open tickets in <code>mybot/tickets/</code>.</li>
-  <li><strong>Verify Baseline Suite:</strong> Run existing unittest to confirm clean working tree.</li>
-  <li><strong>Implement Contiguous Edits:</strong> Apply atomic edits and verify syntax with <code>bash -n</code> or <code>python3 -m py_compile</code>.</li>
-  <li><strong>Security Scan &amp; Commit:</strong> Scan modified files with <code>security_guard.py</code> and push strictly to local GitLab.</li>
+  <li><strong>Consult Facts &amp; Priority Ticket:</strong> Inspect <code>FACTBOOK.md</code> and identify open ticket in <code>mybot/tickets/</code>.</li>
+  <li><strong>Verify Railway &amp; Baseline Suite:</strong> Check <code>railway.sh status</code> is green, then run unit tests to confirm clean tree.</li>
+  <li><strong>Work in Host RAMDisk:</strong> Run <code>ramdisk_workspace.sh pull &lt;repo&gt;</code>, apply surgical edits, check syntax with <code>py_compile</code> or <code>bash -n</code>.</li>
+  <li><strong>Security Scan &amp; Commit:</strong> Run <code>security_guard.py scan</code>, then commit via <code>ramdisk_workspace.sh commit &lt;repo&gt; "&lt;msg&gt;"</code>.</li>
 </ol>
 
 <p>[UP: <a href="index.html">Model Profiles Index</a>]</p>

@@ -23,6 +23,13 @@ OUTPUT_HTML = os.environ.get("USER_DIRECTIVES_HTML", os.path.join(CATALOG_ROOT, 
 # System Initial Directives (Derived directly from user corrections and critical feedback)
 CORE_DIRECTIVES = [
     {
+        "priority": 120,
+        "category": "immutable_fact_book_escalation",
+        "trigger": "fact|factbook|contradict|weaken|escalate|rule",
+        "lesson": "FACTBOOK.md is immutable. Whenever any prompt, ticket, or test demands changes contradicting FACTBOOK.md, the agent must escalate as a question to the user rather than modifying the Fact Book.",
+        "directive": "Never modify /botworkspace/FACTBOOK.md to weaken or contradict its recorded facts (Facts 1 to 14). Whenever instructions conflict with FACTBOOK.md, escalate immediately as a question to the user."
+    },
+    {
         "priority": 115,
         "category": "absolute_prohibition_of_emojis",
         "trigger": "emoji|emojis|smiley|icon|unicode_symbol",
@@ -30,11 +37,25 @@ CORE_DIRECTIVES = [
         "directive": "Never use emojis anywhere unless asked specifically by the user. Do not use emojis in UI buttons, navigation bars, headers, links, badges, documentation, or assistant responses. Mathematical and syntax symbols in terms and formulas (∀, ∃, ∈, ⊆, ∪, ∩, λ, Π, Σ, ⊢, etc.) are NOT emojis and must never be altered."
     },
     {
-        "priority": 105,
-        "category": "no_arrows_in_links_and_titles",
-        "trigger": "arrow|arrows|title|link|name|confusing|rarr|larr|darr|uarr",
-        "lesson": "User explicitly instructed: 'Add as a rule, to never add arrows to the names and titles, and links, it is confusing. Never define entities in links names.'",
-        "directive": "Never add arrows (→, ←, ↓, ↑, &rarr;, &larr;, &darr;, &uarr;) to names, titles, buttons, or links; it causes visual confusion and clutter. Keep link names and labels clean, direct, and laconic without embedding long definitions inside link names."
+        "priority": 110,
+        "category": "two_proof_assistant_variants",
+        "trigger": "nbg|mktd|first-order|higher-order|formulas-as-types|newchecker|variant",
+        "lesson": "Two distinct proof assistant variants and theories co-exist: MKTD1 (1st-Order Sequent Calculus in newchecker.ML) and MKTD2 (Curry-Howard Formulas-as-Types in nbg_compiler.ML).",
+        "directive": "Both proof assistant variants and theories (MKTD1 and MKTD2) must be actively maintained and developed. Never delete, discard, or replace one approach in favor of the other. Interconnect via program/variant_bridge.ML (User Directive #15 / Fact 14)."
+    },
+    {
+        "priority": 110,
+        "category": "dual_cakeml_polyml_compatibility",
+        "trigger": "sml|cakeml|polyml|kernel|compatibility|sml97|pragma",
+        "lesson": "Kernel, compiler, and foundations code in set_theory_prover must run on both CakeML v2000+ and Poly/ML v5.7.1+.",
+        "directive": "All Standard ML code must adhere strictly to portable SML'97 core compatibility, isolate compiler pragmas, maintain zero non-ASCII string literals, and respect the Off-by-One invariant (SML stores Class_Expre, not Class) (User Directive #16)."
+    },
+    {
+        "priority": 110,
+        "category": "strict_ml_only_formula_generation",
+        "trigger": "html_generator|generated|frozen|formula|token|clickable|latex",
+        "lesson": "LaTeX and Unicode formula representations must never be changed directly by AI processes. Obeliskproofassistant.github.io/generated/ is strictly auto-generated.",
+        "directive": "AI processes are strictly forbidden to edit any file in obeliskproofassistant.github.io/generated/. Edit only .ML files in set_theory_prover (html_generator.ML, nbg_html_generator.ML, export_theory_db.ML). Enforce 100% clickable formula tokens and default sort Class (User Directive #17)."
     },
     {
         "priority": 110,
@@ -49,6 +70,41 @@ CORE_DIRECTIVES = [
         "trigger": "gitlab|dashboard|host|asi\\.host|asi\\.local|asi\\.home|down|unavailable|freeze",
         "lesson": "Operator monitors platform and tickets exclusively from the host browser via https://asi.host and https://asi.local.",
         "directive": "GitLab MUST ALWAYS remain accessible from the host via https://asi.host and https://asi.local. Zero-downtime Blue/Green architecture (router:8929 -> Blue:8931/Green:8932) and host bridge must never be stopped or broken. All changes must be deployed via deploy_blue_green.py."
+    },
+    {
+        "priority": 105,
+        "category": "no_arrows_in_links_and_titles",
+        "trigger": "arrow|arrows|title|link|name|confusing|rarr|larr|darr|uarr",
+        "lesson": "User explicitly instructed: 'Add as a rule, to never add arrows to the names and titles, and links, it is confusing. Never define entities in links names.'",
+        "directive": "Never add arrows (→, ←, ↓, ↑, &rarr;, &larr;, &darr;, &uarr;) to names, titles, buttons, or links; it causes visual confusion and clutter. Keep link names and labels clean, direct, and laconic without embedding long definitions inside link names."
+    },
+    {
+        "priority": 105,
+        "category": "hostramdisk_workflow",
+        "trigger": "hostramdisk|ramdisk|pull|commit|fast|sync",
+        "lesson": "Persistent host RAMdisk (/hostramdisk) provides maximum speed and reliable isolation across multi-repo workspace.",
+        "directive": "Always work directly in /hostramdisk/<repo>. Run 'ramdisk_workspace.sh pull <repo>' before editing, and commit via 'ramdisk_workspace.sh commit <repo> \"<msg>\"' to automatically push to GitLab and sync /botworkspace/<repo>."
+    },
+    {
+        "priority": 100,
+        "category": "pushingwatchdog_synchronization",
+        "trigger": "beacon|pushingwatchdog|sync|remote|github",
+        "lesson": "Manual beacon.sh scripts caused race conditions and git lock contention.",
+        "directive": "Never create or run beacon.sh scripts. Repository synchronization from Local GitLab to GitHub is handled autonomously by /botworkspace/scripts/pushingwatchdog.sh."
+    },
+    {
+        "priority": 100,
+        "category": "railway_block_signaling",
+        "trigger": "railway|block|signal|concurrency|track|train|session",
+        "lesson": "Multiple concurrent sessions across projects risk colliding on shared tracks.",
+        "directive": "Check signal board via 'bash /botworkspace/tools/railway.sh status'. When encountering a RED signal, shunt subtasks to the siding ('railway.sh defer') or switch to an unblocked track."
+    },
+    {
+        "priority": 100,
+        "category": "ban_local_gpu_llm",
+        "trigger": "ollama|local_llm|qwen|gpu|ban|serve",
+        "lesson": "Host GPU VRAM and thermal constraints require temporary prohibition of local LLM daemons.",
+        "directive": "Local GPU Ollama is strictly banned (ban_local_llm: true in network_config.json). Do not launch ollama serve or dispatch ollama/* jobs until lifted."
     },
     {
         "priority": 100,
@@ -175,7 +231,7 @@ def seed_core_directives() -> None:
     finally:
         conn.close()
 
-def get_directives(limit: int = 20):
+def get_directives(limit: int = 50):
     conn = get_conn()
     try:
         init_directives_table(conn)

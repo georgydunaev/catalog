@@ -19,6 +19,11 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <h1>Model Profile: Local Offline LLM (Qwen 2.5 Coder 7B / Host Ollama)</h1>
 <p><strong>Model Identifiers:</strong> <code>ollama/qwen2.5-coder:7b</code>, <code>ollama/deepseek-r1-distill-qwen-7b</code> &bull; <strong>Harness:</strong> Host GPU / Ollama</p>
 
+<div class="alert">
+<strong>POLICY ALERT &mdash; LOCAL GPU LLM TEMPORARILY BANNED:</strong><br>
+Local GPU Ollama execution is currently disabled via <code>ban_local_llm: true</code> in <code>/botworkspace/mybot/network_config.json</code>. Do NOT start <code>ollama serve</code> or dispatch <code>ollama/*</code> jobs until this restriction is formally lifted by the operator.
+</div>
+
 <div class="box">
 <strong>Cognitive Bounds &amp; Apocalyptic Airgap Invariants:</strong><br>
 &bull; <strong>Role:</strong> 100% Offline Apocalypse / Airgap Fallback Engine.<br>
