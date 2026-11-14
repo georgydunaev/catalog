@@ -37,6 +37,13 @@ CORE_DIRECTIVES = [
         "directive": "Never use emojis anywhere unless asked specifically by the user. Do not use emojis in UI buttons, navigation bars, headers, links, badges, documentation, or assistant responses. Mathematical and syntax symbols in terms and formulas (∀, ∃, ∈, ⊆, ∪, ∩, λ, Π, Σ, ⊢, etc.) are NOT emojis and must never be altered."
     },
     {
+        "priority": 112,
+        "category": "ban_cubical_tictactoe_hott_without_confirmation",
+        "trigger": "cubical|cubical_proofs|some_cubical_proofs|tictactoe|tictatoe|hott",
+        "lesson": "User explicitly instructed: 'Ban further developent of cubical proofs, tictatoe, HOTT, if there will be a promtp about them, AI must ask specifically first, \"Are you really sure you want to develop this one?\"(with a name of a project) .'",
+        "directive": "Further development on some_cubical_proofs (cubical proofs), tictactoe, and HoTT is strictly banned. If there is any prompt, ticket, or request about them, AI must NEVER proceed automatically. AI must ask specifically first: 'Are you really sure you want to develop this one?' (specifying the exact project name: some_cubical_proofs, tictactoe, or HoTT) and await explicit confirmation."
+    },
+    {
         "priority": 110,
         "category": "two_proof_assistant_variants",
         "trigger": "nbg|mktd|first-order|higher-order|formulas-as-types|newchecker|variant",
