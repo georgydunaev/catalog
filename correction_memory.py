@@ -24,10 +24,10 @@ OUTPUT_HTML = os.environ.get("USER_DIRECTIVES_HTML", os.path.join(CATALOG_ROOT, 
 CORE_DIRECTIVES = [
     {
         "priority": 120,
-        "category": "immutable_fact_book_escalation",
+        "category": "authoritative_fact_book_maintenance",
         "trigger": "fact|factbook|contradict|weaken|escalate|rule",
-        "lesson": "FACTBOOK.md is immutable. Whenever any prompt, ticket, or test demands changes contradicting FACTBOOK.md, the agent must escalate as a question to the user rather than modifying the Fact Book.",
-        "directive": "Never modify /botworkspace/FACTBOOK.md to weaken or contradict its recorded facts (Facts 1 to 14). Whenever instructions conflict with FACTBOOK.md, escalate immediately as a question to the user."
+        "lesson": "User explicitly instructed: '1. FACTBOOK is no longer immutable. 2. Do whatever is reasonable to do.'",
+        "directive": "FACTBOOK.md serves as the authoritative registry of core facts and is no longer strictly immutable; it can be updated when reasonable to reflect user directives, taxonomy alignments, and system evolution."
     },
     {
         "priority": 115,
