@@ -44,6 +44,13 @@ CORE_DIRECTIVES = [
         "directive": "New development is banned on: some_cubical_proofs, tictactoe, HoTT, Alpha, ModalLogic, InsertSort, IndigoCS-webgl-tutorials, HOL, FirstOrderTheory, Isabelle_Theorems, Jech, JechExercises, Lambek, MathLogic, MyPure, ProofTheory, RecursionTheorem, and legacy archives (Proofs, VerifiedMathFoundations, YONEDA, article_isabelle_in_zfc, draftarticle, goedel, onlyonequantifier, zfc, problem_with_exceptions, LATEX, THESIS, TRANSLATION, TRASH). Maintenance (git commands, syncs, audits) is allowed. If prompted to develop a banned project, AI must ask first: 'Are you really sure you want to develop this one?' unless explicitly unbanned by user."
     },
     {
+        "priority": 114,
+        "category": "mktd1_mktd2_strict_taxonomy",
+        "trigger": "first_order|higher_order|mktd|mktd1|mktd2|framework|theory|system|prover|naming",
+        "lesson": "User explicitly instructed: 'It is bad something is called \"first_order\", when I specifically asked to use names MKTD1 and MKTD2: For all three things: logical frameworks, for proof assistant versions, for their theories: like \"MKTD1-theory\", \"MKTD2-prover\", \"MKTD1-system\", and no other wording is allowed. Don\\'t use vaguely these names, we must be precise.'",
+        "directive": "Strictly use explicit MKTD1 and MKTD2 taxonomy across all three levels: (1) logical frameworks: MKTD1-framework, MKTD2-framework; (2) proof assistant versions/systems/provers: MKTD1-prover / MKTD1-system, MKTD2-prover / MKTD2-system; (3) theories: MKTD1-theory, MKTD2-theory. No vague or informal terms like 'first_order' are permitted; absolute precision is required."
+    },
+    {
         "priority": 111,
         "category": "subagent_predispatch_confirmation",
         "trigger": "subagent|dispatch|cv|webpage|confirm|subagents",
@@ -54,8 +61,22 @@ CORE_DIRECTIVES = [
         "priority": 110,
         "category": "two_proof_assistant_variants",
         "trigger": "nbg|mktd|first-order|higher-order|formulas-as-types|newchecker|variant",
-        "lesson": "Two distinct proof assistant variants and theories co-exist: MKTD1 (1st-Order Sequent Calculus in newchecker.ML) and MKTD2 (Curry-Howard Formulas-as-Types in nbg_compiler.ML).",
+        "lesson": "Two distinct proof assistant variants and theories co-exist: MKTD1 (Sequent Calculus in newchecker.ML) and MKTD2 (Curry-Howard Formulas-as-Types in nbg_compiler.ML).",
         "directive": "Both proof assistant variants and theories (MKTD1 and MKTD2) must be actively maintained and developed. Never delete, discard, or replace one approach in favor of the other. Interconnect via program/variant_bridge.ML (User Directive #15 / Fact 14)."
+    },
+    {
+        "priority": 108,
+        "category": "frozen_files_progressive_integration",
+        "trigger": "frozen|generated|integrate|html_generator|isolate|unlinked",
+        "lesson": "User instructed: 'They should be kept frozen, unavailible from the rest of the site, and slowly integrated into the rest.(make tickets about it)'",
+        "directive": "Files in obeliskproofassistant.github.io/frozen/ must remain strictly frozen, unlinked and unavailable from the rest of the site navigation, and slowly and progressively integrated into generated/ via SML generators in set_theory_prover, tracked via dedicated GitLab tickets."
+    },
+    {
+        "priority": 106,
+        "category": "single_branch_main_legacy_caution",
+        "trigger": "branch|main|master|worktree|merge|delete|rush|legacy",
+        "lesson": "User instructed: 'First of all, it is almost a rule, that we have one branch: main (don't change legacy things, don't rush to merge or delete).'",
+        "directive": "Maintain a single primary branch 'main' across repositories. Never rush to merge or delete legacy branches, worktrees, or repositories prematurely; maintain stability above all."
     },
     {
         "priority": 110,
