@@ -88,6 +88,43 @@ class TestHygieneAndRules(unittest.TestCase):
                             violations.append(f"{fname}:{line_no}: character U+{ord(ch):04X} ({ch})")
         self.assertEqual(len(violations), 0, f"Found forbidden emojis in HTML files: {violations}")
 
+    def test_04_schemas_and_notions_ontology_integrity(self):
+        """Verify schemas and machine-readable notions ontology compliance."""
+        import json
+        schemas_dir = os.path.join(CATALOG_ROOT, "schemas")
+        self.assertTrue(os.path.isdir(schemas_dir))
+
+        model_schema_path = os.path.join(schemas_dir, "model_profile.schema.json")
+        self.assertTrue(os.path.isfile(model_schema_path))
+        with open(model_schema_path, "r", encoding="utf-8") as fp:
+            model_schema = json.load(fp)
+        self.assertIn("properties", model_schema)
+
+        notions_path = os.path.join(schemas_dir, "notions_ontology.json")
+        self.assertTrue(os.path.isfile(notions_path))
+        with open(notions_path, "r", encoding="utf-8") as fp:
+            notions_data = json.load(fp)
+
+        self.assertIn("notions", notions_data)
+        self.assertGreaterEqual(len(notions_data["notions"]), 20)
+        expected_domains = {"set_theory", "proof_systems", "metatheory", "platform"}
+        actual_domains = set(notions_data.get("domains", []))
+        self.assertTrue(expected_domains.issubset(actual_domains))
+
+        arrow_chars = ['\u2192', '\u2190', '\u2193', '\u2191', '&rarr;', '&larr;', '&darr;', '&uarr;']
+        for item in notions_data["notions"]:
+            self.assertTrue(item["id"].startswith("NOTION:"))
+            self.assertTrue(bool(item.get("canonical_term")))
+            self.assertTrue(bool(item.get("definition")))
+            self.assertIn(item.get("domain"), actual_domains)
+            for arr in arrow_chars:
+                self.assertNotIn(arr, item["canonical_term"])
+                for alias in item.get("prohibited_aliases", []):
+                    self.assertNotIn(arr, alias)
+
+        index_html_path = os.path.join(schemas_dir, "index.html")
+        self.assertTrue(os.path.isfile(index_html_path))
+
 
 if __name__ == "__main__":
     unittest.main()

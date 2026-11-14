@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Catalog Schemas and Notion Ontology</title>
+<style>
+body { font-family: monospace; max-width: 900px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.alert { border: 2px solid #b00; padding: 8px; margin: 10px 0; background: #fff0f0; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; vertical-align: top; font-size: 13px; }
+th { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<p><a href="../index.html">[UP: Root Memory Index]</a> &bull; <a href="../rules/index.html">[Rules Cache]</a> &bull; <a href="../user_directives.html">[User Directives]</a></p>
+
+<h1>Catalog Schemas and Unified Notion Ontology</h1>
+<p><strong>Status:</strong> Machine-readable specification and decoupled semantic notion ontology for Obelisk and BotWorkspace.</p>
+
+<div class="box">
+<strong>Machine-Readable Schemas in this Directory:</strong><br>
+&bull; <code>schemas/model_profile.schema.json</code>: JSON Schema draft-07 specification governing model profiles in <code>catalog/model_dispatch.py</code>, ensuring strict validation of context bounds, attention shield limits, and tramlines.<br>
+&bull; <code>schemas/notions_ontology.json</code>: Modular, decoupled, non-circular notion dictionary across set theory, proof systems, metatheory, and platform infrastructure. Validated by <code>tools/notions_ontology.py</code>.
+</div>
+
+<hr>
+
+<h2>Unified Notion Ontology</h2>
+<p>This ontology defines the ground-truth definitions, non-circular distinctions, and prohibited aliases across all workspace systems.</p>
+
+<h3>1. Domain: Set Theory</h3>
+<table>
+<tr><th>ID</th><th>Canonical Term</th><th>Definition and Distinctions</th></tr>
+<tr>
+  <td><code>NOTION:CLASS</code></td>
+  <td>Class</td>
+  <td>A collection in the domain of discourse of Morse-Kelley (MK) or NBG class theory. All first-order terms denote classes. A class cannot be free or bound; only syntactic variables ranging over classes can be free or bound. Distinguished from Set and Class_Expre.</td>
+</tr>
+<tr>
+  <td><code>NOTION:SET</code></td>
+  <td>Set</td>
+  <td>A class x that belongs to at least one class: <code>isSet(x) &hArr; &exist; Y, x &isin; Y</code>. In MK and NBG, sets are precisely the elements of the universal class V. Object language defaults to sort Class; sethood is predicated.</td>
+</tr>
+<tr>
+  <td><code>NOTION:PROPER_CLASS</code></td>
+  <td>Proper Class</td>
+  <td>A class X that does not belong to any class: <code>&not; isSet(X) &hArr; &forall; Y, X &notin; Y</code>. Under von Neumann's limitation of size, a class is proper iff it admits a bijection with V. Cannot be members of Kuratowski pairs.</td>
+</tr>
+<tr>
+  <td><code>NOTION:CLASS_VS_SET_VS_EXPRE</code></td>
+  <td>Class vs Set vs Class Expression</td>
+  <td>The three-level stratification: (1) semantic Class (all domain collections), (2) semantic Set (elements of V), and (3) syntactic Class Expression (Class_Expre AST in CakeML/PolyML metalanguage). Standard ML stores expressions, not semantic classes (Off-by-One Level Invariant).</td>
+</tr>
+<tr>
+  <td><code>NOTION:DUNAEV_TAGGED_PAIR</code></td>
+  <td>Dunaev Tagged Ordered Pair</td>
+  <td>Universal ordered pair <code>(A, B)_D = ({1} &times; A) &cup; ({2} &times; B)</code>, where 1={0} and 2={0,1}, defined for arbitrary classes A and B without requiring either to be a set. Satisfies pair injectivity and projections &pi;1((A, B)_D) = A and &pi;2((A, B)_D) = B.</td>
+</tr>
+<tr>
+  <td><code>NOTION:KURATOWSKI_PAIR</code></td>
+  <td>Kuratowski Ordered Pair</td>
+  <td>Classical set-theoretic ordered pair <code>&lang;a, b&rang;_K = {{a}, {a, b}}</code>, valid only when a and b are sets. Prohibited for proper classes because forming {{V}} would require V &isin; {V}.</td>
+</tr>
+<tr>
+  <td><code>NOTION:TARSKI_GROTHENDIECK</code></td>
+  <td>Tarski-Grothendieck Universe</td>
+  <td>An inaccessible universe U ensuring strongly inaccessible cardinals, providing semantic domain grounding for higher categories, sheaves, and Grothendieck toposes in MKTD.</td>
+</tr>
+<tr>
+  <td><code>NOTION:MORSE_KELLEY</code></td>
+  <td>Morse-Kelley Class Theory (MK)</td>
+  <td>Axiomatic class theory extending NBG by admitting impredicative class comprehension: class comprehension formulas may contain bound class variables. Higher consistency strength than ZFC/NBG.</td>
+</tr>
+<tr>
+  <td><code>NOTION:NBG</code></td>
+  <td>von Neumann-Bernays-Godel Theory (NBG)</td>
+  <td>Axiomatic class theory with predicative class comprehension: comprehension formulas quantify only over sets, making NBG a conservative extension of ZFC.</td>
+</tr>
+<tr>
+  <td><code>NOTION:CLASS_COMPREHENSION</code></td>
+  <td>Class Comprehension</td>
+  <td>Variable-binding construction <code>{x | &phi;(x)}</code> forming the class of all sets satisfying &phi;. In Obelisk, class variables are mandatory in comprehension.</td>
+</tr>
+</table>
+
+<h3>2. Domain: Proof Systems</h3>
+<table>
+<tr><th>ID</th><th>Canonical Term</th><th>Definition and Distinctions</th></tr>
+<tr>
+  <td><code>NOTION:LCF_KERNEL</code></td>
+  <td>LCF Architecture</td>
+  <td>Soundness paradigm where theorems are encapsulated in an abstract datatype (<code>thm</code>) whose constructors are strictly the primitive inference rules of the logic. Implemented in <code>program/lcf.ML</code>.</td>
+</tr>
+<tr>
+  <td><code>NOTION:SOUNDNESS_INVARIANT</code></td>
+  <td>Soundness Invariant</td>
+  <td>Inviolable logical invariant: if a theorem object <code>&Gamma; &vdash; &phi;</code> is constructed, &phi; is a semantic consequence of hypotheses &Gamma; under the object theory.</td>
+</tr>
+<tr>
+  <td><code>NOTION:SEQUENT_CALCULUS</code></td>
+  <td>Sequent Calculus</td>
+  <td>Proof calculus manipulating sequents of the form &Gamma; &vdash; &Delta; with explicit left and right introduction rules, cut elimination, and structural rules. Used in <code>newchecker.ML</code>.</td>
+</tr>
+<tr>
+  <td><code>NOTION:TABLEAU_CALCULUS</code></td>
+  <td>Semantic Tableau Calculus</td>
+  <td>Refutation calculus that decomposes formulas into conjunctions and disjunctions along branching trees, searching for contradictory closed paths.</td>
+</tr>
+<tr>
+  <td><code>NOTION:RESOLUTION_CALCULUS</code></td>
+  <td>Resolution Calculus</td>
+  <td>Clausal refutation calculus using unification and resolution to derive the empty clause (contradiction).</td>
+</tr>
+<tr>
+  <td><code>NOTION:OFF_BY_ONE_LEVEL_INVARIANT</code></td>
+  <td>Off-by-One Level Invariant</td>
+  <td>Strict distinction between object-level semantic entities in NBG/MK and metalanguage AST representations in Standard ML. Metalanguage manipulates expressions (<code>Class_Expre</code>, <code>Fm_Expre</code>), not semantic collections.</td>
+</tr>
+</table>
+
+<h3>3. Domain: Metatheory</h3>
+<table>
+<tr><th>ID</th><th>Canonical Term</th><th>Definition and Distinctions</th></tr>
+<tr>
+  <td><code>NOTION:ELEMENTARY_METATHEORY_E</code></td>
+  <td>Elementary Metatheory E</td>
+  <td>The unspecified elementary metatheory ranging over I&Sigma;1, PA, T, NBG, and MK. Fixes minimal induction and syntactic manipulation requirements.</td>
+</tr>
+<tr>
+  <td><code>NOTION:OBJECT_THEORY_MKTD1</code></td>
+  <td>Object Theory MKTD1 (1st-Order Sequent Kernel)</td>
+  <td>First-order NBG/MK sequent calculus kernel implemented in <code>newchecker.ML</code> and <code>types/typetheory.ML</code>, enriched with types (<code>Fm</code>, <code>Stmt</code>, <code>Ctx</code>, <code>Class</code>).</td>
+</tr>
+<tr>
+  <td><code>NOTION:OBJECT_THEORY_MKTD2</code></td>
+  <td>Object Theory MKTD2 (Formulas-as-Types Dependent Type Theory)</td>
+  <td>Constructive dependent type theory / Curry-Howard formulas-as-types variant in <code>program/nbg_compiler.ML</code>. Formulas are types (Prop) and proofs are constructive lambda terms.</td>
+</tr>
+</table>
+
+<h3>4. Domain: Platform &amp; Infrastructure</h3>
+<table>
+<tr><th>ID</th><th>Canonical Term</th><th>Definition and Distinctions</th></tr>
+<tr>
+  <td><code>NOTION:WORKER</code></td>
+  <td>Worker</td>
+  <td>One autonomous AI execution process spawned to resolve a specific ticket. Has an assigned entity profile, model, and ticket.</td>
+</tr>
+<tr>
+  <td><code>NOTION:PROCESS</code></td>
+  <td>Process</td>
+  <td>The operating system execution entity identified by an OS PID. A worker runs inside an OS process.</td>
+</tr>
+<tr>
+  <td><code>NOTION:PLANNER</code></td>
+  <td>Planner</td>
+  <td>The autonomous ticket supervisor daemon (autonomous_ticket_planner.py) managing queues, model assignments, rate limits, and provider leases.</td>
+</tr>
+<tr>
+  <td><code>NOTION:HARNESS</code></td>
+  <td>Harness</td>
+  <td>The CLI execution front-end wrapping LLM interaction and tool execution runtime (botharness, opencode, agy).</td>
+</tr>
+<tr>
+  <td><code>NOTION:TICKET</code></td>
+  <td>Ticket</td>
+  <td>A task specification markdown file stored in a tickets directory describing a discrete engineering or proof objective.</td>
+</tr>
+<tr>
+  <td><code>NOTION:ISSUE</code></td>
+  <td>Issue</td>
+  <td>The GitLab database representation of a ticket (local-gitlab/data/issues.json). Rendered as an Issue in the GitLab web UI.</td>
+</tr>
+<tr>
+  <td><code>NOTION:QUESTION</code></td>
+  <td>Question</td>
+  <td>An explicit epistemic or architectural escalation requiring human operator guidance, recorded in questions_for_user.html.</td>
+</tr>
+<tr>
+  <td><code>NOTION:WORKER_STATE_LIFECYCLE</code></td>
+  <td>Worker State Lifecycle</td>
+  <td>The canonical lifecycle of a worker: starting to in progress to terminal state (completed, failed, or timeout).</td>
+</tr>
+</table>
+
+<hr>
+<p><em>Catalog Schemas and Notion Ontology &bull; Layer 1 Epistemic Grounding</em></p>
+</body>
+</html>

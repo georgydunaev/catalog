@@ -221,9 +221,18 @@ def seed_core_directives() -> None:
     try:
         init_directives_table(conn)
         with conn:
+            # Clean up known obsolete duplicate entries
+            conn.execute("DELETE FROM user_directives WHERE category = 'hostramdisk_workflow' AND directive LIKE '%ramdisk_workspace.sh%'")
             for d in CORE_DIRECTIVES:
-                cur = conn.execute("SELECT id FROM user_directives WHERE category = ? AND directive = ?", (d["category"], d["directive"]))
-                if not cur.fetchone():
+                cur = conn.execute("SELECT id FROM user_directives WHERE category = ?", (d["category"],))
+                row = cur.fetchone()
+                if row:
+                    conn.execute("""
+                    UPDATE user_directives
+                    SET priority = ?, trigger_pattern = ?, lesson_learned = ?, directive = ?, last_enforced = ?
+                    WHERE id = ?
+                    """, (d["priority"], d["trigger"], d["lesson"], d["directive"], datetime.now(timezone.utc).isoformat(), row["id"]))
+                else:
                     conn.execute("""
                     INSERT INTO user_directives (priority, category, trigger_pattern, lesson_learned, directive, last_enforced)
                     VALUES (?, ?, ?, ?, ?, ?)
