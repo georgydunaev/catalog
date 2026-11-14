@@ -38,10 +38,17 @@ CORE_DIRECTIVES = [
     },
     {
         "priority": 112,
-        "category": "ban_cubical_tictactoe_hott_alpha_modallogic",
-        "trigger": "cubical|cubical_proofs|some_cubical_proofs|tictactoe|tictatoe|hott|alpha|modallogic|modal_logic",
-        "lesson": "User explicitly instructed: 'Add Alpha and Modal Logic to that ban list. Don\\'t ban too strictly, if user prompts, that he wants to unban them, it is completely okay.'",
-        "directive": "Further development on some_cubical_proofs (cubical proofs), tictactoe, HoTT, Alpha, and ModalLogic is banned by default. If there is any prompt, ticket, or request about developing them, AI must NEVER proceed automatically. AI must ask specifically first: 'Are you really sure you want to develop this one?' (specifying the exact project name: some_cubical_proofs, tictactoe, HoTT, Alpha, or ModalLogic) and await explicit confirmation. However, if the user prompts that they want to unban or develop any of them, it is completely okay to proceed."
+        "category": "ban_development_expanded_list",
+        "trigger": "cubical|tictactoe|hott|alpha|modallogic|insertsort|indigocs|hol|firstordertheory|isabelle_theorems|jech|lambek|mathlogic|mypure|prooftheory|recursiontheorem|proofs|verifiedmathfoundations|yoneda|zfc|goedel",
+        "lesson": "User explicitly instructed to ban new development on cubical proofs, tictactoe, HoTT, Alpha, ModalLogic, InsertSort, IndigoCS-webgl-tutorials, HOL, FirstOrderTheory, Isabelle_Theorems, Jech, JechExercises, Lambek, MathLogic, MyPure, ProofTheory, RecursionTheorem, and legacy math archives. Maintenance (git commands) is allowed, but no new features. Active projects (set_theory_prover, foundations, obeliskproofassistant.github.io, georgydunaev.github.io, dune3000, speech, catalog, mybot, scripts/tools) are not banned.",
+        "directive": "New development is banned on: some_cubical_proofs, tictactoe, HoTT, Alpha, ModalLogic, InsertSort, IndigoCS-webgl-tutorials, HOL, FirstOrderTheory, Isabelle_Theorems, Jech, JechExercises, Lambek, MathLogic, MyPure, ProofTheory, RecursionTheorem, and legacy archives (Proofs, VerifiedMathFoundations, YONEDA, article_isabelle_in_zfc, draftarticle, goedel, onlyonequantifier, zfc, problem_with_exceptions, LATEX, THESIS, TRANSLATION, TRASH). Maintenance (git commands, syncs, audits) is allowed. If prompted to develop a banned project, AI must ask first: 'Are you really sure you want to develop this one?' unless explicitly unbanned by user."
+    },
+    {
+        "priority": 111,
+        "category": "subagent_predispatch_confirmation",
+        "trigger": "subagent|dispatch|cv|webpage|confirm|subagents",
+        "lesson": "User instructed: 'Develop such important things like CV and web pages, only if they are mentioned explicitly. Actually it is regarding all repositiories: before starting subagents, ask to confirm the work on a list of repositories.'",
+        "directive": "Develop sensitive projects like CV and web pages only if explicitly requested. Before starting subagents across all repositories, AI agents MUST ask the user to confirm the work on an explicit list of repositories."
     },
     {
         "priority": 110,
