@@ -40,7 +40,7 @@ th { background: #f0f0f0; }
 <tr>
   <td><code>NOTION:CLASS</code></td>
   <td>Class</td>
-  <td>A collection in the domain of discourse of Morse-Kelley (MK) or NBG class theory. All first-order terms denote classes. A class cannot be free or bound; only syntactic variables ranging over classes can be free or bound. Distinguished from Set and Class_Expre.</td>
+  <td>A collection in the domain of discourse of Morse-Kelley (MK) or NBG class theory. All class-expression terms denote classes. A class cannot be free or bound; only syntactic variables ranging over classes can be free or bound. Distinguished from Set and Class_Expre.</td>
 </tr>
 <tr>
   <td><code>NOTION:SET</code></td>
@@ -134,13 +134,13 @@ th { background: #f0f0f0; }
 </tr>
 <tr>
   <td><code>NOTION:OBJECT_THEORY_MKTD1</code></td>
-  <td>Object Theory MKTD1 (1st-Order Sequent Kernel)</td>
-  <td>First-order NBG/MK sequent calculus kernel implemented in <code>newchecker.ML</code> and <code>types/typetheory.ML</code>, enriched with types (<code>Fm</code>, <code>Stmt</code>, <code>Ctx</code>, <code>Class</code>).</td>
+  <td>MKTD1-theory / MKTD1-system / MKTD1-framework</td>
+  <td>Axiomatic classical sequent calculus theory (<code>MKTD1-theory</code>), proof assistant system (<code>MKTD1-system</code> / <code>MKTD1-prover</code>), and logical framework (<code>MKTD1-framework</code>) implemented in <code>newchecker.ML</code> and <code>types/typetheory.ML</code>, enriched with stratified types (<code>Fm_Expre</code>, <code>Class_Expre</code>, <code>Stmt</code>, <code>Ctx</code>, <code>Prf</code>).</td>
 </tr>
 <tr>
   <td><code>NOTION:OBJECT_THEORY_MKTD2</code></td>
-  <td>Object Theory MKTD2 (Formulas-as-Types Dependent Type Theory)</td>
-  <td>Constructive dependent type theory / Curry-Howard formulas-as-types variant in <code>program/nbg_compiler.ML</code>. Formulas are types (Prop) and proofs are constructive lambda terms.</td>
+  <td>MKTD2-theory / MKTD2-system / MKTD2-framework</td>
+  <td>Constructive dependent type theory / Curry-Howard formulas-as-types theory (<code>MKTD2-theory</code>), proof assistant system (<code>MKTD2-system</code> / <code>MKTD2-prover</code>), and logical framework (<code>MKTD2-framework</code>) in <code>program/nbg_compiler.ML</code>. Formulas are types (Prop) and proofs are constructive lambda terms.</td>
 </tr>
 </table>
 

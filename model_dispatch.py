@@ -105,7 +105,7 @@ PROFILES = {
     "gemini-4-argon-high": {
         "id": "gemini-4-argon-high",
         "name": "Gemini 4 Argon (High Reasoning)",
-        "aliases": ["argon", "gemini-4", "gemini-4-argon"],
+        "aliases": ["argon", "gemini-4-argon", "argon-high"],
         "tier": "Tier 1 — Massive Context Synthesizer & Backlog Strategist",
         "context_window": 1000000,
         "max_read_lines": 800,
@@ -128,6 +128,226 @@ PROFILES = {
             "2. Detect Inconsistencies: Run 'python3 catalog/irregularity_detector.py' across all repos.",
             "3. Synthesize Solutions: Formulate unified patches resolving multi-repository discrepancies.",
             "4. Sync Knowledge Graph: Sync SQLite catalog via 'python3 catalog/cognition.py sync'."
+        ]
+    },
+    "gemini-4-argon-medium": {
+        "id": "gemini-4-argon-medium",
+        "name": "Gemini 4 Argon (Medium Reasoning)",
+        "aliases": ["argon-medium"],
+        "tier": "Tier 1 — Massive Context Synthesizer & Multi-Repo Engineer",
+        "context_window": 1000000,
+        "max_read_lines": 500,
+        "reasoning_effort": "Medium",
+        "html_doc": "03_gemini_4_argon.html",
+        "memory_entrypoint": "catalog/catalog.db & /botworkspace/FACTBOOK.md",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py status",
+            "python3 /botworkspace/catalog/cognition.py audit",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>"
+        ],
+        "prohibited_instruments": [
+            "Using informal Obelisk taxonomy instead of MKTD1 / MKTD2",
+            "Using emojis or directional arrows in names, links, or titles",
+            "Committing changes without running compiler and unit test verification"
+        ],
+        "tramline": [
+            "1. Step 0: Check /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
+            "2. Concurrency: Verify green track via 'bash /botworkspace/tools/railway.sh status'.",
+            "3. Implement: Pull in /hostramdisk/<repo> and apply calibrated changes.",
+            "4. Verify & Commit: Run unit tests, security_guard.py scan, and commit via hostramdisk_workspace.sh."
+        ]
+    },
+    "gemini-4-argon-low": {
+        "id": "gemini-4-argon-low",
+        "name": "Gemini 4 Argon (Low Reasoning)",
+        "aliases": ["argon-low"],
+        "tier": "Tier 1 — Low-Latency Holistic Auditor",
+        "context_window": 1000000,
+        "max_read_lines": 250,
+        "reasoning_effort": "Low",
+        "html_doc": "03_gemini_4_argon.html",
+        "memory_entrypoint": "catalog/catalog.db & /botworkspace/FACTBOOK.md",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py audit",
+            "python3 /botworkspace/tools/security_guard.py scan <file>",
+            "python3 -m unittest discover -s catalog/tests -p 'test_*.py'"
+        ],
+        "prohibited_instruments": [
+            "Using emojis or directional arrows in names, links, or titles",
+            "Mutating compiled binaries or stored PDFs"
+        ],
+        "tramline": [
+            "1. Audit: Run 'python3 catalog/cognition.py status' and check railway status.",
+            "2. Read: Inspect bounded line slices (up to 250 lines).",
+            "3. Fix & Verify: Apply deterministic fix and run unittest verification.",
+            "4. Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
+        ]
+    },
+    "gemini-4-carbon-high": {
+        "id": "gemini-4-carbon-high",
+        "name": "Gemini 4 Carbon (High Reasoning)",
+        "aliases": ["carbon-high", "gemini-4-carbon"],
+        "tier": "Tier 1 — Frontier Formal Logic & Multi-Repository Architect",
+        "context_window": 1000000,
+        "max_read_lines": 600,
+        "reasoning_effort": "High",
+        "html_doc": "13_gemini_4_carbon.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/rules/set_theory_rules.html",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py status",
+            "bash /botworkspace/tools/railway.sh status",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "poly -q --use <file.ML>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>"
+        ],
+        "prohibited_instruments": [
+            "Using informal Obelisk labels instead of strict MKTD1 / MKTD2 taxonomy",
+            "Using emojis or directional arrows in names, titles, buttons, or links",
+            "Editing obeliskproofassistant.github.io/generated/ directly or mutating binaries/PDFs"
+        ],
+        "tramline": [
+            "1. Grounding: Consult /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
+            "2. Signal Check: Verify green track via 'bash /botworkspace/tools/railway.sh status'.",
+            "3. Synthesize: Pull in /hostramdisk/<repo> and author verified MKTD1 / MKTD2 or system changes.",
+            "4. Audit & Commit: Run tests, security_guard.py scan, model_capability_guard.py audit-diff, and commit."
+        ]
+    },
+    "gemini-4-carbon-medium": {
+        "id": "gemini-4-carbon-medium",
+        "name": "Gemini 4 Carbon (Medium Reasoning)",
+        "aliases": ["carbon", "carbon-medium", "gemini-4"],
+        "tier": "Tier 1 — Balanced Systems Synthesis & Epistemic Auditor",
+        "context_window": 1000000,
+        "max_read_lines": 400,
+        "reasoning_effort": "Medium",
+        "html_doc": "13_gemini_4_carbon.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/user_directives.html",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py status",
+            "bash /botworkspace/tools/railway.sh status",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>",
+            "python3 /botworkspace/tools/model_capability_guard.py audit-diff <repo> --model gemini-4-carbon-medium"
+        ],
+        "prohibited_instruments": [
+            "Using informal Obelisk labels instead of strict MKTD1 / MKTD2 taxonomy",
+            "Using emojis or directional arrows in names, titles, buttons, or links",
+            "Reorganizing catalog layouts while concurrent math sessions run (Grand Central Rule)"
+        ],
+        "tramline": [
+            "1. Grounding: Consult /botworkspace/FACTBOOK.md, user_directives.html, and railway status.",
+            "2. Polite Sync: Pull latest in /hostramdisk/<repo> and inspect bounded slices (up to 400 lines).",
+            "3. Execute & Verify: Apply clean edits and run unit/integrity checks.",
+            "4. Scan & Commit: Scan with security_guard.py, audit diff, and commit via hostramdisk_workspace.sh."
+        ]
+    },
+    "gemini-4-carbon-low": {
+        "id": "gemini-4-carbon-low",
+        "name": "Gemini 4 Carbon (Low Reasoning)",
+        "aliases": ["carbon-low"],
+        "tier": "Tier 1 — Low-Latency Deterministic Verifier",
+        "context_window": 1000000,
+        "max_read_lines": 200,
+        "reasoning_effort": "Low",
+        "html_doc": "13_gemini_4_carbon.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/FLASH_RUNBOOK.md",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py audit",
+            "python3 -m unittest <test_file>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>"
+        ],
+        "prohibited_instruments": [
+            "Using emojis or directional arrows in names, titles, buttons, or links",
+            "Mutating compiled binaries or stored PDFs"
+        ],
+        "tramline": [
+            "1. Check Status: Verify railway track and consult FACTBOOK.md.",
+            "2. Read Slice: Inspect up to 200 lines around target.",
+            "3. Verify: Apply deterministic edit and run unit tests.",
+            "4. Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
+        ]
+    },
+    "gemini-4-hydrogen-high": {
+        "id": "gemini-4-hydrogen-high",
+        "name": "Gemini 4 Hydrogen (High Reasoning)",
+        "aliases": ["hydrogen-high", "gemini-4-hydrogen"],
+        "tier": "Tier 1 — Fast Reasoning Prover & Compiler Specialist",
+        "context_window": 1000000,
+        "max_read_lines": 500,
+        "reasoning_effort": "High",
+        "html_doc": "14_gemini_4_hydrogen.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/rules/set_theory_rules.html",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py status",
+            "bash /botworkspace/tools/railway.sh status",
+            "poly -q --use <file.ML>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>"
+        ],
+        "prohibited_instruments": [
+            "Using informal Obelisk labels instead of strict MKTD1 / MKTD2 taxonomy",
+            "Using emojis or directional arrows in names, titles, buttons, or links",
+            "Editing obeliskproofassistant.github.io/generated/ directly or mutating binaries/PDFs"
+        ],
+        "tramline": [
+            "1. Grounding: Consult /botworkspace/FACTBOOK.md and set_theory_rules.html.",
+            "2. Signal Check: Check track via 'bash /botworkspace/tools/railway.sh status'.",
+            "3. Prove & Compile: Pull in /hostramdisk/<repo> and verify SML/Python changes.",
+            "4. Audit & Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
+        ]
+    },
+    "gemini-4-hydrogen-medium": {
+        "id": "gemini-4-hydrogen-medium",
+        "name": "Gemini 4 Hydrogen (Medium Reasoning)",
+        "aliases": ["hydrogen", "hydrogen-medium"],
+        "tier": "Tier 1 — High-Throughput Systems & Verification Engineer",
+        "context_window": 1000000,
+        "max_read_lines": 300,
+        "reasoning_effort": "Medium",
+        "html_doc": "14_gemini_4_hydrogen.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/FLASH_RUNBOOK.md",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py status",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "python3 -m unittest <test_file>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>"
+        ],
+        "prohibited_instruments": [
+            "Using informal Obelisk labels instead of strict MKTD1 / MKTD2 taxonomy",
+            "Using emojis or directional arrows in names, titles, buttons, or links",
+            "Mutating compiled binaries or stored PDFs"
+        ],
+        "tramline": [
+            "1. Grounding: Check /botworkspace/FACTBOOK.md and railway status.",
+            "2. Targeted Read: Pull in /hostramdisk/<repo> and read 50-300 line slices.",
+            "3. Implement & Test: Apply edit and run non-interactive test suites.",
+            "4. Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
+        ]
+    },
+    "gemini-4-hydrogen-low": {
+        "id": "gemini-4-hydrogen-low",
+        "name": "Gemini 4 Hydrogen (Low Reasoning)",
+        "aliases": ["hydrogen-low"],
+        "tier": "Tier 1 — Rapid Diagnostics & Syntax Validator",
+        "context_window": 1000000,
+        "max_read_lines": 150,
+        "reasoning_effort": "Low",
+        "html_doc": "14_gemini_4_hydrogen.html",
+        "memory_entrypoint": "catalog/FLASH_RUNBOOK.md & catalog/rules/flash_rules.html",
+        "optimal_instruments": [
+            "python3 /botworkspace/catalog/cognition.py audit",
+            "python3 -m py_compile <script.py>",
+            "python3 /botworkspace/tools/security_guard.py scan <file>"
+        ],
+        "prohibited_instruments": [
+            "Using emojis or directional arrows in names, titles, buttons, or links",
+            "Mutating compiled binaries or stored PDFs"
+        ],
+        "tramline": [
+            "1. Check Track: Run railway.sh status.",
+            "2. Inspect Slice: Read target 50-150 lines.",
+            "3. Apply & Check: Fix target and verify syntax/tests.",
+            "4. Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
         ]
     },
     "gemini-3.8-flash-high": {
@@ -472,6 +692,24 @@ PROFILES = {
 def resolve_profile(query: str, effort: Optional[str] = None) -> Optional[Dict[str, Any]]:
     q = query.lower().strip()
     
+    # Handle Gemini 4 Tier-1 family effort qualifiers when explicit --effort is passed
+    for fam in ("carbon", "hydrogen", "argon"):
+        if fam in q:
+            if q in PROFILES:
+                if effort and q in (f"gemini-4-{fam}", fam):
+                    eff = effort.lower()
+                    cand = f"gemini-4-{fam}-{eff}"
+                    if cand in PROFILES:
+                        return PROFILES[cand]
+                return PROFILES[q]
+            if effort:
+                cand = f"gemini-4-{fam}-{effort.lower()}"
+                if cand in PROFILES:
+                    return PROFILES[cand]
+            for suf in ("high", "medium", "low"):
+                if suf in q and f"gemini-4-{fam}-{suf}" in PROFILES:
+                    return PROFILES[f"gemini-4-{fam}-{suf}"]
+
     # Handle Gemini effort qualifiers
     if "flash" in q and ("gemini" in q or q.startswith("flash")):
         if effort:
@@ -612,7 +850,7 @@ def test_local_offline_llm() -> bool:
 
     print(" [PASS] 4-Step Tramline verified. Local model cannot get trapped in infinite context loops.")
     print("================================================================================")
-    print(" ✅ Local Offline LLM pipeline is fully functional and ready for airgap operation.")
+    print(" [OK] Local Offline LLM pipeline is fully functional and ready for airgap operation.")
     return True
 
 

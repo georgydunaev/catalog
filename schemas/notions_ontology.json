@@ -13,7 +13,7 @@
       "id": "NOTION:CLASS",
       "canonical_term": "Class",
       "domain": "set_theory",
-      "definition": "A collection in the domain of discourse of Morse-Kelley (MK) or von Neumann-Bernays-Godel (NBG) class theory. All first-order terms denote classes. A class cannot be free or bound; only syntactic variables ranging over classes can be free or bound.",
+      "definition": "A collection in the domain of discourse of Morse-Kelley (MK) or von Neumann-Bernays-Godel (NBG) class theory. All class-expression terms denote classes. A class cannot be free or bound; only syntactic variables ranging over classes can be free or bound.",
       "prohibited_aliases": [
         "bound class",
         "free class",
@@ -164,25 +164,25 @@
     },
     {
       "id": "NOTION:OBJECT_THEORY_MKTD1",
-      "canonical_term": "Object Theory MKTD1 (First-Order Sequent Calculus)",
+      "canonical_term": "MKTD1-theory / MKTD1-system / MKTD1-framework (Axiomatic Sequent Calculus)",
       "domain": "metatheory",
-      "definition": "The classical first-order axiomatic sequent calculus variant of Morse-Kelley class theory with Tarski universes and Dunaev tagged pairs. Stratifies syntax into Class.Expression (terms), Truth.Expression (Fm), and Stmt.Expression (sequents).",
+      "definition": "The classical axiomatic sequent calculus theory (MKTD1-theory), proof assistant system (MKTD1-system / MKTD1-prover), and logical framework (MKTD1-framework) of Morse-Kelley class theory with Tarski universes and Dunaev tagged pairs. Stratifies syntax into Class.Expression (terms), Truth.Expression (Fm), and Stmt.Expression (sequents).",
       "prohibited_aliases": [
         "formulas-as-types kernel",
         "dependent type variant"
       ],
-      "distinctions": "Coexists with MKTD2; both variants are permanently maintained across Obelisk repositories."
+      "distinctions": "Coexists with MKTD2 (MKTD2-theory, MKTD2-system, MKTD2-framework); both are permanently maintained across Obelisk repositories."
     },
     {
       "id": "NOTION:OBJECT_THEORY_MKTD2",
-      "canonical_term": "Object Theory MKTD2 (Formulas-as-Types Dependent Type Theory)",
+      "canonical_term": "MKTD2-theory / MKTD2-system / MKTD2-framework (Formulas-as-Types Dependent Type Theory)",
       "domain": "metatheory",
-      "definition": "The constructive dependent type theory / Curry-Howard formulas-as-types variant of Morse-Kelley class theory with Tarski universes and Dunaev pairs. Formulas are types (Prop) and proofs are constructive lambda terms.",
+      "definition": "The constructive dependent type theory / Curry-Howard formulas-as-types theory (MKTD2-theory), proof assistant system (MKTD2-system / MKTD2-prover), and logical framework (MKTD2-framework) of Morse-Kelley class theory with Tarski universes and Dunaev pairs. Formulas are types (Prop) and proofs are constructive lambda terms.",
       "prohibited_aliases": [
-        "first-order sequent kernel",
+        "sequent calculus kernel",
         "bare Hilbert calculus"
       ],
-      "distinctions": "Coexists with MKTD1; both variants are permanently maintained across Obelisk repositories."
+      "distinctions": "Coexists with MKTD1 (MKTD1-theory, MKTD1-system, MKTD1-framework); both are permanently maintained across Obelisk repositories."
     },
     {
       "id": "NOTION:WORKER",

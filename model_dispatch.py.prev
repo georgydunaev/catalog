@@ -23,8 +23,8 @@ import urllib.request
 import urllib.error
 from typing import Dict, Any, Optional
 
-WORKSPACE_ROOT = "/botworkspace"
-CATALOG_ROOT = os.path.join(WORKSPACE_ROOT, "catalog")
+WORKSPACE_ROOT = os.environ.get("WORKSPACE_ROOT", "/botworkspace")
+CATALOG_ROOT = os.environ.get("CATALOG_ROOT", os.path.dirname(os.path.abspath(__file__)))
 MODELS_DIR = os.path.join(CATALOG_ROOT, "models")
 ACTIVE_PROFILE_PATH = os.path.join(WORKSPACE_ROOT, ".active_model_profile.json")
 ACTIVE_CONTEXT_MD = os.path.join(WORKSPACE_ROOT, ".active_model_context.md")
@@ -40,24 +40,32 @@ PROFILES = {
         "max_read_lines": 500,
         "reasoning_effort": "Maximum",
         "html_doc": "01_claude_opus_5_5.html",
-        "memory_entrypoint": "catalog/metacognition/index.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & catalog/metacognition/index.html",
         "optimal_instruments": [
             "python3 /botworkspace/catalog/cognition.py status",
-            "python3 /botworkspace/set_theory_prover/obelisk_cli.py check <thm>",
+            "bash /botworkspace/tools/railway.sh status",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> '<msg>'",
+            "poly -q --use <file.ML>",
             "python3 /botworkspace/tools/security_guard.py scan <file>",
-            "Deep multi-file architectural refactoring"
+            "Deep multi-file architectural refactoring across MKTD1/MKTD2"
         ],
         "prohibited_instruments": [
+            "Weakening or contradicting FACTBOOK.md (must escalate to user)",
+            "Modifying files in obeliskproofassistant.github.io/generated/ directly (User Directive #17)",
+            "Using emojis or directional arrows in names, links, or UI",
+            "Mutating compiled binaries or stored PDFs",
+            "Starting ollama serve or local GPU models (ban_local_llm: true)",
             "Interactive Poly/ML (poly) without input",
             "Deleting commented-out ML blocks in set_theory_prover/",
             "Constructing Kuratowski pairs for proper classes (use Dunaev Tagged Pairs)",
-            "Repetitive single-character micro-linting"
+            "Pushing directly to public GitHub (pushingwatchdog handles sync; beacon.sh forbidden)"
         ],
         "tramline": [
-            "1. Inspect Top-Tier Goals: Run 'python3 catalog/cognition.py status' to absorb active hypotheses and facts.",
-            "2. Triage Invariants: Review open Importance 8-10 tickets in mybot/tickets/ or unproved lemmas.",
-            "3. Rigorous Machine-Checked Proof: Implement solution and verify with deterministic compiler test.",
-            "4. Record & Commit: Log verified fact to cognitive ledger and push strictly to local GitLab."
+            "1. Step 0 (Facts & Goals): Review /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
+            "2. Concurrency Safety: Check track via 'bash /botworkspace/tools/railway.sh status' (shunt RED to siding).",
+            "3. Host RAMDisk Development: Pull via 'hostramdisk_workspace.sh pull <repo>', work in /hostramdisk/<repo>.",
+            "4. Verification & Commit: Verify with poly -q/unittests, scan with security_guard.py, commit with hostramdisk_workspace.sh."
         ]
     },
     "claude-sonnet-5-5-high": {
@@ -69,25 +77,29 @@ PROFILES = {
         "max_read_lines": 300,
         "reasoning_effort": "High",
         "html_doc": "02_claude_sonnet_5_5.html",
-        "memory_entrypoint": "mybot/tickets/ & catalog/repos/index.html",
+        "memory_entrypoint": "/botworkspace/FACTBOOK.md & mybot/tickets/",
         "optimal_instruments": [
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> '<msg>'",
+            "bash /botworkspace/tools/railway.sh status",
             "python3 -m unittest discover -s mybot/tests -p 'test_*.py'",
-            "python3 mybot/test-offline-resilience.sh",
-            "python3 mybot/test-harness-install.sh",
             "python3 /botworkspace/tools/security_guard.py scan <file>",
-            "git -C /botworkspace/mybot push gitlab main"
+            "python3 /botworkspace/catalog/cognition.py status"
         ],
         "prohibited_instruments": [
+            "Weakening or contradicting FACTBOOK.md",
+            "Modifying files in obeliskproofassistant.github.io/generated/ directly",
+            "Using emojis or directional arrows anywhere in UI, code, or messages",
             "Running docker CLI inside ai-worker container",
-            "Pushing directly to public GitHub",
-            "Committing without security_guard.py scan (Rule 5)",
-            "Reading raw minified / vendor bundles"
+            "Pushing directly to public GitHub (beacon.sh forbidden)",
+            "Starting ollama serve or dispatching local GPU models (ban_local_llm: true)",
+            "Committing without security_guard.py scan (Rule 5)"
         ],
         "tramline": [
-            "1. Select Priority Ticket: Identify open tickets in mybot/tickets/.",
-            "2. Verify Baseline: Run unittest suite to confirm clean state.",
-            "3. Surgical Edits: Apply atomic code changes and verify syntax with bash -n or py_compile.",
-            "4. Security Scan & Push: Run security_guard.py and push to local GitLab."
+            "1. Priority & Facts: Inspect /botworkspace/FACTBOOK.md and identify open ticket in mybot/tickets/.",
+            "2. Concurrency & Baseline: Verify green railway signal, run unittests to confirm clean tree.",
+            "3. Host RAMDisk Edits: Pull via 'hostramdisk_workspace.sh pull <repo>', edit in /hostramdisk/<repo>, check syntax.",
+            "4. Security Scan & Push: Run security_guard.py scan and commit via 'hostramdisk_workspace.sh commit <repo> \"<msg>\"'."
         ]
     },
     "gemini-4-argon-high": {
@@ -282,7 +294,7 @@ PROFILES = {
             "Underestimating human review friction on deep mathematical proofs"
         ],
         "tramline": [
-            "1. Check Fleet / Task Status: Run './status-bots.sh' or './host_tasks/run-pending-tasks.sh --status'.",
+            "1. Check Fleet / Task Status: Run './status-bots.sh' or 'sudo ./run-all-host-tasks.sh --status'.",
             "2. Inspect Script: Read relevant script section (max 150 lines).",
             "3. Apply Automated Fix: Update script and verify syntax via bash -n.",
             "4. Execute Suite: Run automated test runner and verify exit code."
@@ -375,6 +387,84 @@ PROFILES = {
             "3. Step 3 (Targeted Test): Execute 'python3 -m unittest -v <test_file>' to isolate failure.",
             "4. Step 4 (Micro-Repair): Apply single-function fix, re-verify with test, and log to worker_memory.py."
         ]
+    },
+    "mistral-codestral": {
+        "id": "mistral-codestral",
+        "name": "Mistral Codestral Latest (Free Cloud / Code FIM)",
+        "aliases": ["mistral/codestral-latest", "codestral-latest", "codestral", "mistral", "mistral/codestral-2508", "mistral/ministral-14b-2512"],
+        "tier": "Tier 1 — Frontier Architecture & Epistemic Oracle",
+        "context_window": 32768,
+        "max_read_lines": 200,
+        "reasoning_effort": "Maximum (Native FIM & Algorithmic Synthesis)",
+        "html_doc": "08_glm_5_3_flash.html",
+        "memory_entrypoint": "catalog/FLASH_RUNBOOK.md",
+        "optimal_instruments": [
+            "python3 -m unittest discover -s mybot/tests -p 'test_*.py'",
+            "edit_file (contiguous block edits)",
+            "read_file (targeted range reading)"
+        ],
+        "prohibited_instruments": [
+            "Whole-file multi-thousand line reading without line bounds",
+            "Direct pushes to public GitHub"
+        ],
+        "tramline": [
+            "1. Triage Ticket: Inspect requirements and error logs.",
+            "2. Targeted Read: Read 50-150 lines around target logic.",
+            "3. Implement & Test: Apply change and run unit tests.",
+            "4. Push: Commit and push strictly to local GitLab."
+        ]
+    },
+    "groq-gpt-oss-120b": {
+        "id": "groq-gpt-oss-120b",
+        "name": "Groq LPU: GPT-OSS 120B",
+        "aliases": ["groq/openai/gpt-oss-120b", "openai/gpt-oss-120b", "gpt-oss-120b", "gpt-oss", "groq/openai/gpt-oss-20b"],
+        "tier": "Tier 1 — Frontier Architecture & Epistemic Oracle",
+        "context_window": 16384,
+        "max_read_lines": 200,
+        "reasoning_effort": "High (LPU High-Speed Inference)",
+        "html_doc": "10_openai_o3_mini_gpt4o.html",
+        "memory_entrypoint": "catalog/FLASH_RUNBOOK.md",
+        "optimal_instruments": [
+            "python3 -m unittest discover -s mybot/tests -p 'test_*.py'",
+            "edit_file (contiguous block edits)",
+            "read_file (targeted range reading)"
+        ],
+        "prohibited_instruments": [
+            "Whole-file reading without line bounds",
+            "Direct pushes to public GitHub"
+        ],
+        "tramline": [
+            "1. Triage Ticket: Inspect requirements and error logs.",
+            "2. Targeted Read: Read 50-150 lines around target logic.",
+            "3. Implement & Test: Apply change and run unit tests.",
+            "4. Push: Commit and push strictly to local GitLab."
+        ]
+    },
+    "groq-qwen-3-8-27b": {
+        "id": "groq-qwen-3-8-27b",
+        "name": "Groq LPU: Qwen 3.8 27B",
+        "aliases": ["groq/qwen/qwen3.8-27b", "qwen/qwen3.8-27b", "qwen3.8-27b", "qwen3.8", "groq/allam-2-7b", "groq/meta-llama/llama-prompt-guard-2-86m", "groq/meta-llama/llama-prompt-guard-2-22m"],
+        "tier": "Tier 2 — Balanced Pair Programmer & Ticket Closer",
+        "context_window": 32768,
+        "max_read_lines": 150,
+        "reasoning_effort": "Medium (Fast LPU Inference)",
+        "html_doc": "12_local_llm_qwen2_5_coder.html",
+        "memory_entrypoint": "catalog/FLASH_RUNBOOK.md",
+        "optimal_instruments": [
+            "python3 -m unittest discover -s mybot/tests -p 'test_*.py'",
+            "edit_file (contiguous block edits)",
+            "read_file (targeted range reading)"
+        ],
+        "prohibited_instruments": [
+            "Whole-file reading without line bounds",
+            "Direct pushes to public GitHub"
+        ],
+        "tramline": [
+            "1. Triage Ticket: Inspect requirements and error logs.",
+            "2. Targeted Read: Read 50-150 lines around target logic.",
+            "3. Implement & Test: Apply change and run unit tests.",
+            "4. Push: Commit and push strictly to local GitLab."
+        ]
     }
 }
 
@@ -383,7 +473,7 @@ def resolve_profile(query: str, effort: Optional[str] = None) -> Optional[Dict[s
     q = query.lower().strip()
     
     # Handle Gemini effort qualifiers
-    if "flash" in q:
+    if "flash" in q and ("gemini" in q or q.startswith("flash")):
         if effort:
             eff = effort.lower()
             if eff == "high":
@@ -399,12 +489,28 @@ def resolve_profile(query: str, effort: Optional[str] = None) -> Optional[Dict[s
         else:
             return PROFILES["gemini-3.8-flash-medium"]
 
+    # Pass 1: Exact model id or exact alias match
     for pid, prof in PROFILES.items():
         if q == pid or q in prof["aliases"]:
             return prof
-        for alias in prof["aliases"]:
-            if q == alias or q in alias:
+
+    # Pass 2: Exact match on sub-path (e.g. "openai/gpt-oss-120b" or "gpt-oss-120b")
+    if "/" in q:
+        parts = q.split("/")
+        subpath = "/".join(parts[1:])
+        last_part = parts[-1]
+        for pid, prof in PROFILES.items():
+            if subpath == pid or subpath in prof["aliases"]:
                 return prof
+            if last_part == pid or last_part in prof["aliases"]:
+                return prof
+
+    # Pass 3: Distinct token substring match (longer aliases first)
+    for pid, prof in PROFILES.items():
+        for alias in sorted(prof["aliases"], key=len, reverse=True):
+            if len(alias) >= 4 and (alias in q or q in alias):
+                return prof
+
     return None
 
 
@@ -429,7 +535,7 @@ def format_profile_markdown(prof: Dict[str, Any]) -> str:
         "## 3. PROHIBITED & SUBOPTIMAL INSTRUMENTS",
     ])
     for proh in prof["prohibited_instruments"]:
-        lines.append(f"- 🛑 **{proh}**")
+        lines.append(f"- [PROHIBITED] **{proh}**")
 
     lines.extend([
         "",
@@ -460,7 +566,7 @@ def activate_profile(prof: Dict[str, Any]) -> None:
 
 def test_local_offline_llm() -> bool:
     print("================================================================================")
-    print(" 🛡️ LOCAL OFFLINE LLM (APOCALYPSE / AIRGAP TEST)")
+    print(" LOCAL OFFLINE LLM (APOCALYPSE / AIRGAP TEST)")
     print(" Target: Qwen 2.5 Coder 7B on Host GPU / Ollama (http://host.docker.internal:11434)")
     print("================================================================================")
 

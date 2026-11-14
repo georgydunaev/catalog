@@ -58,8 +58,8 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
   <li><strong>Formula Token Whitespace Invariant:</strong>
     In LaTeX mode, always preserve intentional whitespace between identifiers, constants, and binders (e.g., <code>plan_ord_def \omega</code> rather than collapsed <code>plan_ord_def\omega</code>).
   </li>
-  <li><strong>Variant Independence Invariant:</strong>
-    Keep Variant 1 (<code>MKTD1</code> &mdash; First-Order NBG/MK Statements) and Variant 2 (<code>MKTD2</code> &mdash; Formulas-as-Types / Constructive Dependent Proofs) strictly separated in titles, documentation, and AST tables. Never merge them into conflated headers like <code>(MKTD1 / MKTD2)</code>.
+  <li><strong>MKTD1 &amp; MKTD2 Taxonomy Separation Invariant:</strong>
+    Keep <code>MKTD1</code> (<code>MKTD1-framework</code>, <code>MKTD1-system</code> / <code>MKTD1-prover</code>, <code>MKTD1-theory</code>: Axiomatic Sequent Calculus) and <code>MKTD2</code> (<code>MKTD2-framework</code>, <code>MKTD2-system</code> / <code>MKTD2-prover</code>, <code>MKTD2-theory</code>: Formulas-as-Types / Constructive Dependent Proofs) strictly separated in titles, documentation, and AST tables, using exclusively explicit <code>MKTD1</code> and <code>MKTD2</code> nomenclature without informal labels. Never merge them into conflated headers like <code>(MKTD1 / MKTD2)</code>.
   </li>
   <li><strong>End-to-End Visual Render-Verification Invariant:</strong>
     A change is NOT complete merely because compiler syntax (<code>poly -q</code>) or Python tests pass. All generated HTML files must be inspected for valid DOM structure, working relative links (0 broken hyperlinks or 404s), and zero MathJax console/rendering errors.

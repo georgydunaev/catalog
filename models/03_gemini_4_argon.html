@@ -16,15 +16,15 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <p>[UP: <a href="index.html">Model Profiles Index</a>]</p>
 
-<h1>Model Profile: Gemini 4 Argon (High Reasoning)</h1>
-<p><strong>Model Identifier:</strong> <code>gemini-4-argon-high</code> &bull; <strong>Harness:</strong> Google Antigravity CLI</p>
+<h1>Model Profile: Gemini 4 Argon (Tier-1 Configurations)</h1>
+<p><strong>Model Identifiers:</strong> <code>gemini-4-argon-high</code> &bull; <code>gemini-4-argon-medium</code> &bull; <code>gemini-4-argon-low</code> &bull; <strong>Harness:</strong> Google Antigravity CLI</p>
 
 <div class="box">
 <strong>Cognitive Bounds &amp; Attention Architecture:</strong><br>
 &bull; <strong>Context Window:</strong> 1,000,000+ tokens (Massive whole-repository holistic context).<br>
 &bull; <strong>Attention Decay Threshold:</strong> Highly resilient to large multi-document contexts; excels at needle-in-haystack synthesis.<br>
-&bull; <strong>Max File Read Window:</strong> Up to 800 lines per call (capable of ingesting full scripts and schemas).<br>
-&bull; <strong>Reasoning Effort:</strong> Native Maximum Deep Thinking with cross-domain synthesis.
+&bull; <strong>Max File Read Window:</strong> 800 lines (<code>high</code>), 500 lines (<code>medium</code>), 250 lines (<code>low</code>).<br>
+&bull; <strong>Reasoning Effort Variants:</strong> <code>gemini-4-argon-high</code> (Maximum deep synthesis), <code>gemini-4-argon-medium</code> (Balanced multi-repo engineering), <code>gemini-4-argon-low</code> (Fast holistic auditing).
 </div>
 
 <h2>1. Tailored Long-Term Memory Slices</h2>

@@ -15,9 +15,9 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <p><a href="../index.html">[UP: program/ Subsystem]</a> &bull; <a href="../../index.html">[UP: set_theory_prover Repo]</a></p>
 
-<h1>NBG: Compilers &amp; Verified Theorems</h1>
-<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/</code> (NBG modules)<br>
-<strong>Role:</strong> Compilers translating high-level mathematical formulas into von Neumann–Bernays–Gödel (NBG) and Morse–Kelley (MK) class theory, and the library of machine-checked theorems.<br>
+<h1>MKTD2 &amp; NBG: Compilers &amp; Verified Theorems</h1>
+<p><strong>Path:</strong> <code>/botworkspace/set_theory_prover/program/</code> (<code>MKTD2-framework</code>, <code>MKTD2-system</code> / <code>MKTD2-prover</code>, <code>MKTD2-theory</code> modules)<br>
+<strong>Role:</strong> Constructive formulas-as-types compilers translating mathematical formulas and proofs in <code>MKTD2-theory</code> (von Neumann&ndash;Bernays&ndash;G&ouml;del and Morse&ndash;Kelley + Tarski + Dunaev class theory), alongside the library of machine-checked theorems.<br>
 <strong>Key Semantic Rules:</strong> Default type is <code>Class</code> (terms are classes; types are conglomerates &equiv; predicates on classes). Fiercely avoid the type <code>Set</code>: every binder and every class comprehension <code>{x : Class | &phi;(x)}</code> MUST use <code>Class</code> variables. All HTML/Unicode/LaTeX formula displays in <code>nbg_library.html</code> are generated purely by <code>nbg_html_generator.ML</code> with 100% clickable variables, constants, Greek metavariables, operators, and parentheses.</p>
 
 <hr>
