@@ -26,8 +26,8 @@ CORE_DIRECTIVES = [
         "priority": 120,
         "category": "authoritative_fact_book_maintenance",
         "trigger": "fact|factbook|contradict|weaken|escalate|rule",
-        "lesson": "User explicitly instructed: '1. FACTBOOK is no longer immutable. 2. Do whatever is reasonable to do.'",
-        "directive": "FACTBOOK.md serves as the authoritative registry of core facts and is no longer strictly immutable; it can be updated when reasonable to reflect user directives, taxonomy alignments, and system evolution."
+        "lesson": "User explicitly instructed: '1. FACTBOOK is no longer immutable. 2. Do whatever is reasonable to do.' and confirmed unifying the Fact Book directives.",
+        "directive": "FACTBOOK.md serves as the authoritative registry of core facts (Facts 1 to 14): agents may update FACTBOOK.md when reasonable to reflect explicit user directives, taxonomy alignments, and system evolution, and MUST stop and ask the user whenever any task, ticket, or test contradicts a recorded fact."
     },
     {
         "priority": 115,
@@ -258,6 +258,7 @@ def seed_core_directives() -> None:
         with conn:
             # Clean up known obsolete duplicate entries
             conn.execute("DELETE FROM user_directives WHERE category = 'hostramdisk_workflow' AND directive LIKE '%ramdisk_workspace.sh%'")
+            conn.execute("DELETE FROM user_directives WHERE category = 'immutable_fact_book_escalation'")
             for d in CORE_DIRECTIVES:
                 cur = conn.execute("SELECT id FROM user_directives WHERE category = ?", (d["category"],))
                 row = cur.fetchone()
