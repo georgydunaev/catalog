@@ -19,6 +19,12 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <p><strong>Status:</strong> Root level dispatcher. Do NOT store all details here. You cannot see everything at once. Read the descriptions below to consciously choose which branch of memory you need to retrieve.</p>
 
 <div class="box">
+<strong>Priority 0 Operator Drop-Folder Inbox (<code>/botworkspace/GlobalTickets</code>):</strong><br>
+&bull; Fresh agents awakening via <code>python3 /botworkspace/tools/self_configure.py --auto</code> (or <code>python3 /botworkspace/tools/global_ticket_queue.py check</code>) automatically check <code>/botworkspace/GlobalTickets</code> (also mapped at <code>/botworkspace/catalog/GlobalTickets</code>).<br>
+&bull; If an unclaimed task file is present, the agent atomically locks 1 file in <code>.locks/</code> via <code>fcntl.flock</code> + <code>os.rename</code>, copies its content into the session context, creates a tracked Local GitLab ticket, executes what is written there first, and deletes the file upon completion via <code>python3 /botworkspace/tools/global_ticket_queue.py complete &lt;filename&gt; --close-issue</code>.
+</div>
+
+<div class="box">
 <strong>Cognitive Cache &amp; Rules:</strong><br>
 &bull; <a href="models/index.html"><strong>Model-Specific Memory Profiles &amp; Runbooks</strong></a>: Tailored context bounds, attention shields, and memory slices for Top 10 models and local offline LLM.<br>
 &bull; <a href="rules/index.html"><strong>Hierarchical Rules Cache</strong></a>: Scoped rules by layer (Workspace to Projects to Subsystems) to prevent rule amnesia.<br>
