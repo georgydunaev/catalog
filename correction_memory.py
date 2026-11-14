@@ -195,7 +195,7 @@ CORE_DIRECTIVES = [
         "category": "model_delegation",
         "trigger": "opencode|delegate|local|qwen|model|abilities",
         "lesson": "User instructed: 'Delegate more. Delegate appropriately to abilities of chosen model.'",
-        "directive": "Delegate scoped tasks (tests, helpers, docstrings) to OpenCode (qwen2.5-coder:7b). Verify before accepting."
+        "directive": "Delegate scoped tasks (tests, helpers, docstrings) to approved free cloud models (opencode/*-free, groq/*, etc.) while ban_local_llm: true is active in network_config.json. Verify before accepting."
     },
     {
         "priority": 90,
