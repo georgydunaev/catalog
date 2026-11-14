@@ -38,10 +38,10 @@ CORE_DIRECTIVES = [
     },
     {
         "priority": 112,
-        "category": "ban_cubical_tictactoe_hott_without_confirmation",
-        "trigger": "cubical|cubical_proofs|some_cubical_proofs|tictactoe|tictatoe|hott",
-        "lesson": "User explicitly instructed: 'Ban further developent of cubical proofs, tictatoe, HOTT, if there will be a promtp about them, AI must ask specifically first, \"Are you really sure you want to develop this one?\"(with a name of a project) .'",
-        "directive": "Further development on some_cubical_proofs (cubical proofs), tictactoe, and HoTT is strictly banned. If there is any prompt, ticket, or request about them, AI must NEVER proceed automatically. AI must ask specifically first: 'Are you really sure you want to develop this one?' (specifying the exact project name: some_cubical_proofs, tictactoe, or HoTT) and await explicit confirmation."
+        "category": "ban_cubical_tictactoe_hott_alpha_modallogic",
+        "trigger": "cubical|cubical_proofs|some_cubical_proofs|tictactoe|tictatoe|hott|alpha|modallogic|modal_logic",
+        "lesson": "User explicitly instructed: 'Add Alpha and Modal Logic to that ban list. Don\\'t ban too strictly, if user prompts, that he wants to unban them, it is completely okay.'",
+        "directive": "Further development on some_cubical_proofs (cubical proofs), tictactoe, HoTT, Alpha, and ModalLogic is banned by default. If there is any prompt, ticket, or request about developing them, AI must NEVER proceed automatically. AI must ask specifically first: 'Are you really sure you want to develop this one?' (specifying the exact project name: some_cubical_proofs, tictactoe, HoTT, Alpha, or ModalLogic) and await explicit confirmation. However, if the user prompts that they want to unban or develop any of them, it is completely okay to proceed."
     },
     {
         "priority": 110,
