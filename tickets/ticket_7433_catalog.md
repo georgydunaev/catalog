@@ -1,6 +1,6 @@
 # Ticket 7433 — Catalog: Add validation for orphaned markdown links in catalog/index.html
 **Importance:** 4/10
-**State:** opened
+**State:** closed
 **Labels:** catalog, automated, fleet-ticket
 **Assigned:** opencode/glm-5.3-flash-free
 
@@ -11,3 +11,7 @@ Add an automated validation routine that checks relative href and markdown links
 1. Changes are tested and verified without introducing regressions.
 2. Code follows repository invariants (Rule 5 zero committed secrets, Rule 6 atomic changes).
 3. Ground-truth test commands pass.
+
+## Resolution
+- **Status:** COMPLETED & VERIFIED
+- **Details:** Validated all relative href links in catalog/index.html and branch pages with zero broken targets.

@@ -1,6 +1,6 @@
 # Ticket 7434 — Catalog: Add FTS search performance benchmark script in catalog/benchmark_search.py
 **Importance:** 4/10
-**State:** opened
+**State:** closed
 **Labels:** catalog, automated, fleet-ticket
 **Assigned:** opencode/deepseek-v4.1-flash-free
 
@@ -11,3 +11,7 @@ Create catalog/benchmark_search.py to measure query latency and memory efficienc
 1. Changes are tested and verified without introducing regressions.
 2. Code follows repository invariants (Rule 5 zero committed secrets, Rule 6 atomic changes).
 3. Ground-truth test commands pass.
+
+## Resolution
+- **Status:** COMPLETED & VERIFIED
+- **Details:** Implemented FTS5 search performance benchmark in catalog/benchmark_search.py.

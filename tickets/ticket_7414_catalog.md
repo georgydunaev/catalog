@@ -3,7 +3,7 @@
 **Repository:** `catalog`  
 **Assigned AI Model:** `opencode/nemotron-3.5-lightning-free`  
 **Harness:** `opencode`  
-**Status:** `OPEN` (Pending Autonomous Worker)  
+**Status:** `RESOLVED`  
 **Created:** `2026-10-27T21:35:28Z`  
 
 ## Task Description
@@ -14,3 +14,7 @@ Audit catalog SQLite FTS5 database for high-precision query responses.
 2. Ensure existing tests continue to pass.
 3. For math and foundations repos, keep modifications cosmetic and clean.
 4. Run tests with local test runner before concluding.
+
+## Resolution
+- **Status:** COMPLETED & VERIFIED
+- **Details:** Verified SQLite FTS5 BM25 search precision and ranking in catalog/db.py and catalog/cognition.py.
