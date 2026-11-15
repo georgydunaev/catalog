@@ -4,94 +4,94 @@
 <meta charset="utf-8">
 <title>Branch: 2026 Unbanned Fleet Completions &amp; Formal Proof Index</title>
 <style>
-body { font-family: monospace; max-width: 900px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
-a { color: #0044cc; text-decoration: none; }
-a:hover { text-decoration: underline; }
-hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
-pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.cat-body { font-family: monospace; max-width: 900px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+.cat-link { color: #0044cc; text-decoration: none; }
+.cat-link:hover { text-decoration: underline; }
+.cat-hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+.cat-pre, .cat-code { font-family: monospace; background: #eee; padding: 2px 4px; }
 </style>
 </head>
-<body>
+<body class="cat-body">
 
-<p><a href="../index.html">[UP: Root Memory Index]</a></p>
+<p><a class="cat-link" href="../index.html">[UP: Root Memory Index]</a></p>
 
 <h1>Branch: 2026 Unbanned Fleet Completions &amp; Formal Proof Index</h1>
-<p>Master cognitive index of all newly created formal proof modules (<code>.v</code>, <code>.thy</code>, <code>.ML</code>, <code>.sml</code>, <code>.nbg</code>, <code>.ctt</code>, <code>.tex</code>), <code>ARCHITECTURE_AND_THEOREMS.md</code> guides, <code>THEOREM_AND_EXERCISE_INDEX.md</code> / <code>MANUSCRIPT_AND_PROOF_INDEX.md</code> / <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code> indices, and <code>PROJECT_OVERVIEW.md</code> documents across the unbanned repositories in <code>/botworkspace</code> and <code>/hostramdisk</code>.</p>
+<p>Master cognitive index of all newly created formal proof modules (<code class="cat-code">.v</code>, <code class="cat-code">.thy</code>, <code class="cat-code">.ML</code>, <code class="cat-code">.sml</code>, <code class="cat-code">.nbg</code>, <code class="cat-code">.ctt</code>, <code class="cat-code">.tex</code>), <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code> guides, <code class="cat-code">THEOREM_AND_EXERCISE_INDEX.md</code> / <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code> / <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code> indices, and <code class="cat-code">PROJECT_OVERVIEW.md</code> documents across the unbanned repositories in <code class="cat-code">/botworkspace</code> and <code class="cat-code">/hostramdisk</code>.</p>
 
-<hr>
+<hr class="cat-hr">
 
-<h2>1. Core Proof Assistant &amp; Foundations (<code>/hostramdisk</code> &amp; <code>/botworkspace</code>)</h2>
+<h2>1. Core Proof Assistant &amp; Foundations (<code class="cat-code">/hostramdisk</code> &amp; <code class="cat-code">/botworkspace</code>)</h2>
 <ul>
-  <li><strong><code>set_theory_prover</code> (<code>/hostramdisk/set_theory_prover</code> &amp; <code>/botworkspace/set_theory_prover</code>):</strong>
+  <li><strong><code class="cat-code">set_theory_prover</code> (<code class="cat-code">/hostramdisk/set_theory_prover</code> &amp; <code class="cat-code">/botworkspace/set_theory_prover</code>):</strong>
     <ul>
-      <li><strong>SML Kernel &amp; Dual-Variant Modules (<code>.ML</code>):</strong> <code>program/ansii_parser.ML</code>, <code>program/newchecker/06_definitions.ML</code>, <code>program/newchecker/07_theorems.ML</code>, <code>program/types/universe_definitions.ML</code>, <code>program/variant_bridge.ML</code>, <code>program/verified_theorems.ML</code>, <code>tests/sml_slices/slice_a_ast.ML</code>, <code>tests/sml_slices/slice_b_subst.ML</code>, <code>tests/sml_slices/slice_c_definitions.ML</code>, <code>tests/sml_slices/slice_d_rules_tactics.ML</code>.</li>
-      <li><strong>MKTD2 Constructive Proofs (<code>.nbg</code>):</strong> <code>examples/cognitive_synthesis_theorems.nbg</code>, <code>examples/nbg_advanced_theorems.nbg</code>, <code>examples/nbg_verified_programs.nbg</code>, <code>examples/true_and_false_mk_guide.nbg</code>, <code>variants/variant2_higher_order/verified_proofs_of.nbg</code>.</li>
-      <li><strong>Specification &amp; Catalog Guides:</strong> <code>docs/MKTD1_KERNEL_AUDIT.md</code>, <code>docs/MKTD1_METALOGICAL_AND_INCOMPLETENESS_SPEC.md</code>, <code>docs/MKTD2_CONSTRUCTIVE_CATALOG.md</code>.</li>
+      <li><strong>SML Kernel &amp; Dual-Variant Modules (<code class="cat-code">.ML</code>):</strong> <code class="cat-code">program/ansii_parser.ML</code>, <code class="cat-code">program/newchecker/06_definitions.ML</code>, <code class="cat-code">program/newchecker/07_theorems.ML</code>, <code class="cat-code">program/types/universe_definitions.ML</code>, <code class="cat-code">program/variant_bridge.ML</code>, <code class="cat-code">program/verified_theorems.ML</code>, <code class="cat-code">tests/sml_slices/slice_a_ast.ML</code>, <code class="cat-code">tests/sml_slices/slice_b_subst.ML</code>, <code class="cat-code">tests/sml_slices/slice_c_definitions.ML</code>, <code class="cat-code">tests/sml_slices/slice_d_rules_tactics.ML</code>.</li>
+      <li><strong>MKTD2 Constructive Proofs (<code class="cat-code">.nbg</code>):</strong> <code class="cat-code">examples/cognitive_synthesis_theorems.nbg</code>, <code class="cat-code">examples/nbg_advanced_theorems.nbg</code>, <code class="cat-code">examples/nbg_verified_programs.nbg</code>, <code class="cat-code">examples/true_and_false_mk_guide.nbg</code>, <code class="cat-code">variants/variant2_higher_order/verified_proofs_of.nbg</code>.</li>
+      <li><strong>Specification &amp; Catalog Guides:</strong> <code class="cat-code">docs/MKTD1_KERNEL_AUDIT.md</code>, <code class="cat-code">docs/MKTD1_METALOGICAL_AND_INCOMPLETENESS_SPEC.md</code>, <code class="cat-code">docs/MKTD2_CONSTRUCTIVE_CATALOG.md</code>.</li>
     </ul>
   </li>
-  <li><strong><code>foundations</code> (<code>/hostramdisk/foundations</code> &amp; <code>/botworkspace/foundations</code>):</strong>
+  <li><strong><code class="cat-code">foundations</code> (<code class="cat-code">/hostramdisk/foundations</code> &amp; <code class="cat-code">/botworkspace/foundations</code>):</strong>
     <ul>
-      <li><strong>Formal Proof &amp; LaTeX Modules:</strong> <code>Coq/positive_foundations.v</code>, <code>Coq/ppc_pos_helpers.v</code>, <code>examples/family_and_complexity_completions.ML</code>, <code>unfinished_sections_completions.tex</code>, <code>schrodinger_kernel_verifier.py</code>.</li>
-      <li><strong>Architecture &amp; Theorem Guides:</strong> <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>Coq/PPC_POS_PROOF_ANALYSIS.md</code>, <code>UNFINISHED_SECTIONS_SOLUTIONS.md</code>, <code>SCHRODINGER_BECKUS_THESIS_BRIDGE.md</code>.</li>
+      <li><strong>Formal Proof &amp; LaTeX Modules:</strong> <code class="cat-code">Coq/positive_foundations.v</code>, <code class="cat-code">Coq/ppc_pos_helpers.v</code>, <code class="cat-code">examples/family_and_complexity_completions.ML</code>, <code class="cat-code">unfinished_sections_completions.tex</code>, <code class="cat-code">schrodinger_kernel_verifier.py</code>.</li>
+      <li><strong>Architecture &amp; Theorem Guides:</strong> <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">Coq/PPC_POS_PROOF_ANALYSIS.md</code>, <code class="cat-code">UNFINISHED_SECTIONS_SOLUTIONS.md</code>, <code class="cat-code">SCHRODINGER_BECKUS_THESIS_BRIDGE.md</code>.</li>
     </ul>
   </li>
-  <li><strong><code>thesis2027</code> (<code>/botworkspace/thesis2027</code>):</strong>
+  <li><strong><code class="cat-code">thesis2027</code> (<code class="cat-code">/botworkspace/thesis2027</code>):</strong>
     <ul>
-      <li><strong>LaTeX Thesis &amp; Defense Modules (<code>.tex</code>):</strong> <code>paper/thesis2027.tex</code>, <code>paper/chapters/00_frontmatter.tex</code>, <code>01_preliminaries_and_simon_kernel_continuity.tex</code>, <code>02_free_laplacian_and_jost_heat_kernel.tex</code>, <code>03_kato_rellich_trotter_and_cfks_bounded_potentials.tex</code>, <code>04_dynamical_potentials_and_covariant_kernel.tex</code>, <code>05_lipschitz_and_holder_continuity_in_z.tex</code>, <code>documents/timeplan_uni_potsdam.tex</code>, <code>presentation/defense_slides.tex</code>.</li>
-      <li><strong>Guides &amp; Correspondence:</strong> <code>README.md</code>, <code>documents/TIMEPLAN_AND_SCHEDULE.md</code>, <code>documents/LITERATURE_MATRIX_AND_PAGE_CITATIONS.md</code>, <code>documents/UNI_POTSDAM_ADMIN_AND_DEFENSE_GUIDE.md</code>, <code>presentation/SPEAKER_NOTES.md</code>.</li>
+      <li><strong>LaTeX Thesis &amp; Defense Modules (<code class="cat-code">.tex</code>):</strong> <code class="cat-code">paper/thesis2027.tex</code>, <code class="cat-code">paper/chapters/00_frontmatter.tex</code>, <code class="cat-code">01_preliminaries_and_simon_kernel_continuity.tex</code>, <code class="cat-code">02_free_laplacian_and_jost_heat_kernel.tex</code>, <code class="cat-code">03_kato_rellich_trotter_and_cfks_bounded_potentials.tex</code>, <code class="cat-code">04_dynamical_potentials_and_covariant_kernel.tex</code>, <code class="cat-code">05_lipschitz_and_holder_continuity_in_z.tex</code>, <code class="cat-code">documents/timeplan_uni_potsdam.tex</code>, <code class="cat-code">presentation/defense_slides.tex</code>.</li>
+      <li><strong>Guides &amp; Correspondence:</strong> <code class="cat-code">README.md</code>, <code class="cat-code">documents/TIMEPLAN_AND_SCHEDULE.md</code>, <code class="cat-code">documents/LITERATURE_MATRIX_AND_PAGE_CITATIONS.md</code>, <code class="cat-code">documents/UNI_POTSDAM_ADMIN_AND_DEFENSE_GUIDE.md</code>, <code class="cat-code">presentation/SPEAKER_NOTES.md</code>.</li>
     </ul>
   </li>
 </ul>
 
-<hr>
+<hr class="cat-hr">
 
 <h2>2. Coq, Isabelle/ZF, Isabelle/Pure, HOL4 &amp; Cubical Proof Repositories</h2>
 <ul>
-  <li><strong><code>VerifiedMathFoundations</code>:</strong> <code>CompletenessAndCutElimination.v</code>, <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>YONEDA</code>:</strong> <code>CoYonedaAndDefinitionalPrelude.thy</code>, <code>yoneda.tex</code> (completed functional subset proof), <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>article_isabelle_in_zfc</code>:</strong> <code>LambdaTypesRecursion.thy</code>, <code>betterFOL.thy</code> (<code>imp_refl</code>), <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>draftarticle</code>:</strong> <code>src/logic/coq/DeepEmbeddingAndKripke.v</code>, <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>goedel</code>:</strong> <code>LoebAndDerivability.v</code>, <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>onlyonequantifier</code>:</strong> <code>UniquenessAndSingleBinder.thy</code>, <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>problem_with_exceptions</code>:</strong> <code>exception2FixedProgScript.sml</code>, <code>MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code>PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>.</li>
-  <li><strong><code>FirstOrderTheory</code>:</strong> <code>IsabelleCompletions.v</code>, <code>Prenex.v</code>, <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>ISABELLE_META_PROOF_NOTES.md</code>.</li>
-  <li><strong><code>ProofTheory</code>:</strong> <code>PA_Order_Completions.v</code>, <code>QandPA.v</code>, <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>THEOREMS_INDEX.md</code>, <code>PA_ORDER_PROOF_NOTES.md</code>.</li>
-  <li><strong><code>MathLogic</code>:</strong> <code>examples/propositional_logic_example.v</code>, <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>notes/propositional_logic.md</code>.</li>
-  <li><strong><code>Jech</code>:</strong> <code>section_ex_1_6.v</code>, <code>axInfty.ML</code>, <code>src/axioms/axInfty.ML</code>, <code>src/axioms/axRep.ML</code>, <code>src/proofs/axRep_axInfty.ML</code>, <code>src/proofs/test_axRep_axInfty.ML</code>, <code>proofs/subtheories/cofinality.ML</code>, <code>proofs/subtheories/inaccessible_cardinals.ML</code>, <code>proofs/zorn_wellordering_proofs.ML</code>, <code>THEOREM_AND_EXERCISE_INDEX.md</code>, <code>notes/exercise_1_6_and_fol_substitution_completion.md</code>.</li>
-  <li><strong><code>JechExercises</code>:</strong> <code>THEOREM_AND_EXERCISE_INDEX.md</code>, <code>notes/completed_exercise_solutions.md</code>.</li>
-  <li><strong><code>Isabelle_Theorems</code>:</strong> <code>THEOREM_AND_EXERCISE_INDEX.md</code>, <code>notes/cantor_russell_and_set_algebra_completions.md</code>.</li>
-  <li><strong><code>zfc</code>:</strong> <code>club_and_stationary.v</code>, <code>gch_and_singular_cardinals.v</code>, <code>THEOREM_AND_EXERCISE_INDEX.md</code>, <code>notes/note_3_cardinal_arithmetic_club_and_gch_completions.md</code>.</li>
-  <li><strong><code>RecursionTheorem</code>:</strong> <code>THEOREM_AND_EXERCISE_INDEX.md</code>, <code>PROJECT_OVERVIEW.md</code>, <code>notes/peano_arithmetic_and_transfinite_recursion_notes.md</code>, <code>recursion_theory/combinators.py</code>.</li>
-  <li><strong><code>HoTT</code>:</strong> <code>theories/FunextAxiom.v</code>, <code>theories/Univalence.v</code>, <code>theories/UnivalenceAxiom.v</code>, <code>theories/HigherInductiveTypes.v</code>, <code>theories/HIT/Circle.v</code>, <code>theories/HIT/Suspension.v</code>, <code>THEOREM_INDEX.md</code>.</li>
-  <li><strong><code>some_cubical_proofs</code>:</strong> <code>my.ctt</code>, <code>THEOREM_INDEX.md</code>.</li>
-  <li><strong><code>HOL</code>:</strong> <code>tools/Holmake/tests/multibuild/AScript.sml</code>, <code>BScript.sml</code>, <code>CScript.sml</code>, <code>THEOREM_INDEX.md</code>.</li>
-  <li><strong><code>Lambek</code>:</strong> <code>01.v</code>, <code>THEOREM_INDEX.md</code>, <code>documentation.md</code>.</li>
-  <li><strong><code>ModalLogic</code>:</strong> <code>THEOREM_INDEX.md</code>, <code>DOCS.md</code>, <code>modallogic/syntax.py</code>, <code>modallogic/semantics.py</code>, <code>modallogic/tableau.py</code>.</li>
-  <li><strong><code>Alpha</code>:</strong> <code>alpha_subst.v</code>, <code>alpha_confluence.v</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>Proofs</code>:</strong> <code>modules/logic/sheffer_completeness_helpers.v</code>, <code>FUNCTIONAL_COMPLETENESS_PROOF_NOTES.md</code>, <code>REPOSITORY_CATALOG_AND_NOTES.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">VerifiedMathFoundations</code>:</strong> <code class="cat-code">CompletenessAndCutElimination.v</code>, <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">YONEDA</code>:</strong> <code class="cat-code">CoYonedaAndDefinitionalPrelude.thy</code>, <code class="cat-code">yoneda.tex</code> (completed functional subset proof), <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">article_isabelle_in_zfc</code>:</strong> <code class="cat-code">LambdaTypesRecursion.thy</code>, <code class="cat-code">betterFOL.thy</code> (<code class="cat-code">imp_refl</code>), <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">draftarticle</code>:</strong> <code class="cat-code">src/logic/coq/DeepEmbeddingAndKripke.v</code>, <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">goedel</code>:</strong> <code class="cat-code">LoebAndDerivability.v</code>, <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">onlyonequantifier</code>:</strong> <code class="cat-code">UniquenessAndSingleBinder.thy</code>, <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">problem_with_exceptions</code>:</strong> <code class="cat-code">exception2FixedProgScript.sml</code>, <code class="cat-code">MANUSCRIPT_AND_PROOF_INDEX.md</code>, <code class="cat-code">PROOF_COMPLETIONS_AND_EXTENSIONS.md</code>.</li>
+  <li><strong><code class="cat-code">FirstOrderTheory</code>:</strong> <code class="cat-code">IsabelleCompletions.v</code>, <code class="cat-code">Prenex.v</code>, <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">ISABELLE_META_PROOF_NOTES.md</code>.</li>
+  <li><strong><code class="cat-code">ProofTheory</code>:</strong> <code class="cat-code">PA_Order_Completions.v</code>, <code class="cat-code">QandPA.v</code>, <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">THEOREMS_INDEX.md</code>, <code class="cat-code">PA_ORDER_PROOF_NOTES.md</code>.</li>
+  <li><strong><code class="cat-code">MathLogic</code>:</strong> <code class="cat-code">examples/propositional_logic_example.v</code>, <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">notes/propositional_logic.md</code>.</li>
+  <li><strong><code class="cat-code">Jech</code>:</strong> <code class="cat-code">section_ex_1_6.v</code>, <code class="cat-code">axInfty.ML</code>, <code class="cat-code">src/axioms/axInfty.ML</code>, <code class="cat-code">src/axioms/axRep.ML</code>, <code class="cat-code">src/proofs/axRep_axInfty.ML</code>, <code class="cat-code">src/proofs/test_axRep_axInfty.ML</code>, <code class="cat-code">proofs/subtheories/cofinality.ML</code>, <code class="cat-code">proofs/subtheories/inaccessible_cardinals.ML</code>, <code class="cat-code">proofs/zorn_wellordering_proofs.ML</code>, <code class="cat-code">THEOREM_AND_EXERCISE_INDEX.md</code>, <code class="cat-code">notes/exercise_1_6_and_fol_substitution_completion.md</code>.</li>
+  <li><strong><code class="cat-code">JechExercises</code>:</strong> <code class="cat-code">THEOREM_AND_EXERCISE_INDEX.md</code>, <code class="cat-code">notes/completed_exercise_solutions.md</code>.</li>
+  <li><strong><code class="cat-code">Isabelle_Theorems</code>:</strong> <code class="cat-code">THEOREM_AND_EXERCISE_INDEX.md</code>, <code class="cat-code">notes/cantor_russell_and_set_algebra_completions.md</code>.</li>
+  <li><strong><code class="cat-code">zfc</code>:</strong> <code class="cat-code">club_and_stationary.v</code>, <code class="cat-code">gch_and_singular_cardinals.v</code>, <code class="cat-code">THEOREM_AND_EXERCISE_INDEX.md</code>, <code class="cat-code">notes/note_3_cardinal_arithmetic_club_and_gch_completions.md</code>.</li>
+  <li><strong><code class="cat-code">RecursionTheorem</code>:</strong> <code class="cat-code">THEOREM_AND_EXERCISE_INDEX.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>, <code class="cat-code">notes/peano_arithmetic_and_transfinite_recursion_notes.md</code>, <code class="cat-code">recursion_theory/combinators.py</code>.</li>
+  <li><strong><code class="cat-code">HoTT</code>:</strong> <code class="cat-code">theories/FunextAxiom.v</code>, <code class="cat-code">theories/Univalence.v</code>, <code class="cat-code">theories/UnivalenceAxiom.v</code>, <code class="cat-code">theories/HigherInductiveTypes.v</code>, <code class="cat-code">theories/HIT/Circle.v</code>, <code class="cat-code">theories/HIT/Suspension.v</code>, <code class="cat-code">THEOREM_INDEX.md</code>.</li>
+  <li><strong><code class="cat-code">some_cubical_proofs</code>:</strong> <code class="cat-code">my.ctt</code>, <code class="cat-code">THEOREM_INDEX.md</code>.</li>
+  <li><strong><code class="cat-code">HOL</code>:</strong> <code class="cat-code">tools/Holmake/tests/multibuild/AScript.sml</code>, <code class="cat-code">BScript.sml</code>, <code class="cat-code">CScript.sml</code>, <code class="cat-code">THEOREM_INDEX.md</code>.</li>
+  <li><strong><code class="cat-code">Lambek</code>:</strong> <code class="cat-code">01.v</code>, <code class="cat-code">THEOREM_INDEX.md</code>, <code class="cat-code">documentation.md</code>.</li>
+  <li><strong><code class="cat-code">ModalLogic</code>:</strong> <code class="cat-code">THEOREM_INDEX.md</code>, <code class="cat-code">DOCS.md</code>, <code class="cat-code">modallogic/syntax.py</code>, <code class="cat-code">modallogic/semantics.py</code>, <code class="cat-code">modallogic/tableau.py</code>.</li>
+  <li><strong><code class="cat-code">Alpha</code>:</strong> <code class="cat-code">alpha_subst.v</code>, <code class="cat-code">alpha_confluence.v</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">Proofs</code>:</strong> <code class="cat-code">modules/logic/sheffer_completeness_helpers.v</code>, <code class="cat-code">FUNCTIONAL_COMPLETENESS_PROOF_NOTES.md</code>, <code class="cat-code">REPOSITORY_CATALOG_AND_NOTES.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
 </ul>
 
-<hr>
+<hr class="cat-hr">
 
 <h2>3. LaTeX Archives, Mathematical Models &amp; Philosophy Guides</h2>
 <ul>
-  <li><strong><code>LATEX</code>:</strong> <code>chapters/05_mktd1_mktd2_binders.tex</code>, <code>examples/chapters/05_mktd1_mktd2_binders.tex</code>, <code>gdmath.sty</code>, <code>docs/MACRO_REFERENCE.md</code>, <code>REPOSITORY_CATALOG_AND_NOTES.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>THESIS</code>:</strong> <code>TEX/wanted_but_forgot_completions.tex</code>, <code>WANTED_BUT_FORGOT_SOLUTIONS.md</code>, <code>REPOSITORY_CATALOG_AND_NOTES.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>TRANSLATION</code>:</strong> <code>symbol_translation_appendix.tex</code>, <code>SYMBOL_TRANSLATION_COMPLETION.md</code>, <code>REPOSITORY_CATALOG_AND_NOTES.md</code>, <code>PROJECT_OVERVIEW.md</code>.</li>
-  <li><strong><code>math</code>:</strong> <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>ARCHITECTURE_AND_INDEX.md</code>, <code>PROJECT_OVERVIEW.md</code>, <code>math_foundations_verifier.py</code>.</li>
-  <li><strong><code>philosophy</code>:</strong> <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>ARCHITECTURE_AND_INDEX.md</code>, <code>PROJECT_OVERVIEW.md</code>, <code>philosophy/modal_algebra_bridge.py</code>.</li>
-  <li><strong><code>yoneda_ai</code>:</strong> <code>ARCHITECTURE_AND_THEOREMS.md</code>, <code>ARCHITECTURE_AND_INDEX.md</code>, <code>PROJECT_OVERVIEW.md</code>, <code>tools/presheaf_hom_verifier.py</code>.</li>
-  <li><strong><code>sml_mathematical_model</code>:</strong> <code>ARCHITECTURE_AND_INDEX.md</code>, <code>PROJECT_OVERVIEW.md</code>, <code>tools/model_inventory.py</code>.</li>
+  <li><strong><code class="cat-code">LATEX</code>:</strong> <code class="cat-code">chapters/05_mktd1_mktd2_binders.tex</code>, <code class="cat-code">examples/chapters/05_mktd1_mktd2_binders.tex</code>, <code class="cat-code">gdmath.sty</code>, <code class="cat-code">docs/MACRO_REFERENCE.md</code>, <code class="cat-code">REPOSITORY_CATALOG_AND_NOTES.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">THESIS</code>:</strong> <code class="cat-code">TEX/wanted_but_forgot_completions.tex</code>, <code class="cat-code">WANTED_BUT_FORGOT_SOLUTIONS.md</code>, <code class="cat-code">REPOSITORY_CATALOG_AND_NOTES.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">TRANSLATION</code>:</strong> <code class="cat-code">symbol_translation_appendix.tex</code>, <code class="cat-code">SYMBOL_TRANSLATION_COMPLETION.md</code>, <code class="cat-code">REPOSITORY_CATALOG_AND_NOTES.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>.</li>
+  <li><strong><code class="cat-code">math</code>:</strong> <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">ARCHITECTURE_AND_INDEX.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>, <code class="cat-code">math_foundations_verifier.py</code>.</li>
+  <li><strong><code class="cat-code">philosophy</code>:</strong> <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">ARCHITECTURE_AND_INDEX.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>, <code class="cat-code">philosophy/modal_algebra_bridge.py</code>.</li>
+  <li><strong><code class="cat-code">yoneda_ai</code>:</strong> <code class="cat-code">ARCHITECTURE_AND_THEOREMS.md</code>, <code class="cat-code">ARCHITECTURE_AND_INDEX.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>, <code class="cat-code">tools/presheaf_hom_verifier.py</code>.</li>
+  <li><strong><code class="cat-code">sml_mathematical_model</code>:</strong> <code class="cat-code">ARCHITECTURE_AND_INDEX.md</code>, <code class="cat-code">PROJECT_OVERVIEW.md</code>, <code class="cat-code">tools/model_inventory.py</code>.</li>
 </ul>
 
-<hr>
+<hr class="cat-hr">
 
-<h2>4. Workspace Infrastructure, Applications &amp; <code>PROJECT_OVERVIEW.md</code> Index</h2>
-<p>Standardized <code>PROJECT_OVERVIEW.md</code> (and companion <code>ARCHITECTURE_AND_INDEX.md</code> / <code>REPOSITORY_CATALOG_AND_INDEX.md</code>) documents have been established across:</p>
+<h2>4. Workspace Infrastructure, Applications &amp; <code class="cat-code">PROJECT_OVERVIEW.md</code> Index</h2>
+<p>Standardized <code class="cat-code">PROJECT_OVERVIEW.md</code> (and companion <code class="cat-code">ARCHITECTURE_AND_INDEX.md</code> / <code class="cat-code">REPOSITORY_CATALOG_AND_INDEX.md</code>) documents have been established across:</p>
 <ul>
-  <li><strong>Core &amp; Tooling:</strong> <code>mybot</code>, <code>tools</code>, <code>scripts</code>, <code>useful_scripts</code>, <code>workspace_config</code>, <code>antivibecoding</code>, <code>dune3000</code>, <code>speech_experimental</code>, <code>deepcode-cli</code>, <code>sovereign</code>.</li>
-  <li><strong>Academic &amp; Career Portfolios:</strong> <code>CV</code> (modularized <code>sections/*.tex</code>), <code>grants</code> (<code>daad_stibet_application_package.tex</code>, <code>REPOSITORY_CATALOG_AND_INDEX.md</code>), <code>letter</code> (<code>29_daad_stibet_beckus_thesis2027.tex</code>, <code>REPOSITORY_CATALOG_AND_INDEX.md</code>), <code>housing</code>, <code>immi</code>, <code>law</code>, <code>psy</code>, <code>rich-people</code>.</li>
-  <li><strong>Software, Systems &amp; Demos:</strong> <code>InsertSort</code>, <code>MyPure</code>, <code>tictactoe</code> (<code>tictactoe.sml</code>, <code>tictactoe.py</code>), <code>IndigoCS-webgl-tutorials</code>, <code>anonymizer</code>, <code>asi-android-companion</code>, <code>autoswitchoff</code>, <code>banking_app</code>, <code>bitcoin</code>, <code>css-styles</code>, <code>design</code>, <code>docker-gtest</code>, <code>encrypted_messenger</code>, <code>gtestmock-docker</code>, <code>memadv</code>, <code>memdev</code>, <code>rtl8723de</code>, <code>selfdev</code>, <code>selfimpr</code>, <code>TRASH</code>, <code>variousreleases</code>, <code>wifi_rtl8723de</code>, <code>youtube_subtitles</code>.</li>
+  <li><strong>Core &amp; Tooling:</strong> <code class="cat-code">mybot</code>, <code class="cat-code">tools</code>, <code class="cat-code">scripts</code>, <code class="cat-code">useful_scripts</code>, <code class="cat-code">workspace_config</code>, <code class="cat-code">antivibecoding</code>, <code class="cat-code">dune3000</code>, <code class="cat-code">speech_experimental</code>, <code class="cat-code">deepcode-cli</code>, <code class="cat-code">sovereign</code>.</li>
+  <li><strong>Academic &amp; Career Portfolios:</strong> <code class="cat-code">CV</code> (modularized <code class="cat-code">sections/*.tex</code>), <code class="cat-code">grants</code> (<code class="cat-code">daad_stibet_application_package.tex</code>, <code class="cat-code">REPOSITORY_CATALOG_AND_INDEX.md</code>), <code class="cat-code">letter</code> (<code class="cat-code">29_daad_stibet_beckus_thesis2027.tex</code>, <code class="cat-code">REPOSITORY_CATALOG_AND_INDEX.md</code>), <code class="cat-code">housing</code>, <code class="cat-code">immi</code>, <code class="cat-code">law</code>, <code class="cat-code">psy</code>, <code class="cat-code">rich-people</code>.</li>
+  <li><strong>Software, Systems &amp; Demos:</strong> <code class="cat-code">InsertSort</code>, <code class="cat-code">MyPure</code>, <code class="cat-code">tictactoe</code> (<code class="cat-code">tictactoe.sml</code>, <code class="cat-code">tictactoe.py</code>), <code class="cat-code">IndigoCS-webgl-tutorials</code>, <code class="cat-code">anonymizer</code>, <code class="cat-code">asi-android-companion</code>, <code class="cat-code">autoswitchoff</code>, <code class="cat-code">banking_app</code>, <code class="cat-code">bitcoin</code>, <code class="cat-code">css-styles</code>, <code class="cat-code">design</code>, <code class="cat-code">docker-gtest</code>, <code class="cat-code">encrypted_messenger</code>, <code class="cat-code">gtestmock-docker</code>, <code class="cat-code">memadv</code>, <code class="cat-code">memdev</code>, <code class="cat-code">rtl8723de</code>, <code class="cat-code">selfdev</code>, <code class="cat-code">selfimpr</code>, <code class="cat-code">TRASH</code>, <code class="cat-code">variousreleases</code>, <code class="cat-code">wifi_rtl8723de</code>, <code class="cat-code">youtube_subtitles</code>.</li>
 </ul>
 
 </body>
