@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vereschagin &amp; Shen Theoretical Foundations (Languages and Calculi)</title>
+<style>
+body { font-family: monospace; max-width: 850px; margin: 20px auto; padding: 0 10px; line-height: 1.5; color: #111; background: #fafafa; }
+a { color: #0044cc; text-decoration: none; }
+hr { border: 0; border-top: 1px solid #ccc; margin: 15px 0; }
+pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
+.box { border: 1px solid #888; padding: 8px; margin: 10px 0; background: #fff; }
+</style>
+</head>
+<body>
+
+<p><a href="index.html">[UP: Hierarchical Rules Cache]</a> &bull; <a href="set_theory_rules.html">[Set Theory Prover Rules]</a> &bull; <a href="../index.html">[UP: Root Memory Index]</a></p>
+
+<h1>Vereschagin &amp; Shen Theoretical Foundations (<em>Languages and Calculi</em>, Ch. 3&ndash;4)</h1>
+
+<div class="box">
+  <strong>Primary Source on Disk (Read-Only):</strong>
+  <code>/botworkspace/set_theory_prover/books/Vereschagin_N_K_-_Chast_2_Yazyki_i_ischislenia_-_2012_pages72-168.txt</code><br/>
+  <strong>Full Reference Guide:</strong>
+  <code>/botworkspace/set_theory_prover/docs/VERESCHAGIN_SHEN_THEORETICAL_FOUNDATIONS.md</code><br/>
+  <strong>Executable SML Ontology &amp; Wire-and-Box Schema Verifier:</strong>
+  <code>/botworkspace/set_theory_prover/ai_playground/symbol_ontology.ML</code>
+</div>
+
+<h2>1. Signatures, Valency (Arity), and Constants as 0-ary Symbols (Sec. 3.1, pp. 73&ndash;75)</h2>
+<ul>
+  <li>Formulas contain <strong>functional and predicate symbols</strong> equipped with a non-negative integer valency $k \ge 0$, never semantic functions or classes directly.</li>
+  <li>Since $M^0$ is a 1-element set, a <strong>constant</strong> is a $0$-ary functional symbol ($k=0$), and $\top, \bot$ are $0$-ary predicate symbols ($k=0$). In SML, constants, predicates, connectives, and operators are represented uniformly by polymorphic <code>Role_Operator</code> parameterized by <code>arg_types : 'Type list</code> and <code>result_type : 'Type</code>.</li>
+  <li>Variables are strictly disjoint from all functional and predicate symbols of the signature.</li>
+</ul>
+
+<h2>2. Parameters (Free Variables) vs. Binders &amp; Bound Occurrences (Sec. 3.2, pp. 77&ndash;79)</h2>
+<ul>
+  <li>A <strong>parameter</strong> of a formula is a variable having at least one free occurrence (not in the scope of a same-named quantifier/binder).</li>
+  <li>The truth value $[\varphi](\pi)$ under valuation $\pi$ depends solely on the values assigned by $\pi$ to the parameters of $\varphi$: $[\forall \xi\,\varphi](\pi) = \bigwedge_{m \in M} [\varphi](\pi + (\xi \mapsto m))$.</li>
+  <li>A <strong>binder</strong> of a variable (immediately after $\forall, \exists, \kappa, \lambda, \Pi, \Sigma$) is <strong>not an occurrence</strong> of that variable; it introduces the scope and binds the bound occurrences within its scope.</li>
+</ul>
+
+<h2>3. Three-Argument Substitution $\varphi(t/\xi)$ (&ldquo;$\varphi$ of $t$ instead of $\xi$&rdquo;) &amp; Correctness (Sec. 4.2, pp. 131&ndash;134)</h2>
+<ul>
+  <li>Every substitution and free-for-instantiation operation takes <strong>3 explicit arguments</strong>:
+    <code>{ with_what = t, instead_of = xi, where_in = phi }</code> (matching <code>Fm.FFI(t, x, phi)</code> in Fact 8).</li>
+  <li>In a bound formula $Q\eta\,\varphi$, substituting $t$ instead of $\xi$ is <strong>correct</strong> (<code>is_free_for_in</code>) in <strong>exactly two cases</strong> (p. 134):
+    <ol>
+      <li><strong>Case 1 ($\xi$ is not a parameter of $Q\eta\,\varphi$)</strong>: Either $\xi$ is not free in $\varphi$ or $\xi = \eta$. Then $[Q\eta\,\varphi](t/\xi) = Q\eta\,\varphi$ (no-op; variables of $t$ are never inserted into the scope of $Q\eta$).</li>
+      <li><strong>Case 2 ($\xi$ is a parameter of $Q\eta\,\varphi$)</strong>: $\xi \ne \eta$, <strong>$\eta$ does not occur free in $t$</strong>, and $\varphi(t/\xi)$ is recursively correct. Then $[Q\eta\,\varphi](t/\xi) = Q\eta\,[\varphi(t/\xi)]$.</li>
+    </ol>
+  </li>
+  <li><strong>Semantic Substitution Lemma (Sec. 4.3, Lemma 2, p. 137)</strong>: When substitution $t$ instead of $\xi$ in $\varphi$ is correct, $[\varphi(t/\xi)](\pi) = [\varphi](\pi + (\xi \mapsto [t](\pi)))$.</li>
+</ul>
+
+<h2>4. Bound-Variable Renaming &amp; Wire-and-Box Formula Schemas (Sec. 4.6, Theorem 52, pp. 154&ndash;157)</h2>
+<ul>
+  <li><strong>Two Failure Modes of Naive Renaming $\forall \xi\,\varphi \leadsto \forall \eta\,\varphi(\eta/\xi)$ (p. 154)</strong>:
+    <ol>
+      <li><em>Counterexample A (Inner Binder Capture)</em>: $\forall \xi\,\forall \eta\,B(\xi, \eta) \not\simeq \forall \eta\,\forall \eta\,B(\eta, \eta)$ because substituting $\eta$ instead of $\xi$ into $\forall \eta\,B(\xi, \eta)$ is not a correct substitution ($\eta$ is captured by the inner $\forall \eta$).</li>
+      <li><em>Counterexample B (Free Parameter Capture)</em>: $\forall \xi\,B(\xi, \eta) \not\simeq \forall \eta\,B(\eta, \eta)$ even though substituting $\eta$ instead of $\xi$ into $B(\xi, \eta)$ <em>is</em> correct on the body, because $\eta$ was already a free parameter of $B(\xi, \eta)$ and gets captured by the outer $\forall \eta$!</li>
+    </ol>
+  </li>
+  <li><strong>Wire-and-Box Schema (<code>схема формулы</code>, pp. 154&ndash;155)</strong>:
+    Boxing all binders and bound occurrences, wiring each bound occurrence to its governing binder, and erasing the variable names inside the boxes yields the canonical <strong>formula schema</strong> (implemented by <code>are_similar_formulas</code> in <code>ai_playground/symbol_ontology.ML</code>). By <strong>Theorem 52</strong>, two formulas are similar ($\alpha$-equivalent) iff they share the exact same wire-and-box schema, in which case they are provably equivalent via fresh intermediate variables.</li>
+</ul>
+
+</body>
+</html>

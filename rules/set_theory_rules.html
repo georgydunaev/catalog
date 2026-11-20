@@ -17,6 +17,10 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <p><a href="index.html">[UP: Hierarchical Rules Cache]</a> &bull; <a href="../index.html">[UP: Root Memory Index]</a></p>
 
 <h1>Set Theory Prover Specific Rules (Priority 1)</h1>
+<div class="box">
+  <strong>Theoretical Knowledge Restore Point (Vereschagin &amp; Shen, <em>Languages and Calculi</em>):</strong>
+  Whenever working on variables, binders vs. occurrences, 3-argument substitution <code>{with_what, instead_of, where_in}</code>, free-for-instantiation (<code>FFI</code>), free-variable hygiene (<code>IFV</code>/<code>NFV</code>), or $\alpha$-renaming, consult <a href="vereschagin_shen_foundations.html"><strong>Vereschagin &amp; Shen Theoretical Foundations</strong></a> (and <code>set_theory_prover/docs/VERESCHAGIN_SHEN_THEORETICAL_FOUNDATIONS.md</code> + <code>set_theory_prover/ai_playground/symbol_ontology.ML</code>).
+</div>
 <ul>
   <li>Preserve large commented ML blocks in <code>newchecker.ML</code>, <code>PreChar.ML</code>, and <code>approaches/</code>.</li>
   <li>Trust <code>types/foundations.ML</code> and <code>newchecker.ML</code> over discontinued prototypes.</li>
