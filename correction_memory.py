@@ -38,6 +38,13 @@ CORE_DIRECTIVES = [
     },
     {
         "priority": 113,
+        "category": "atomic_block_commits_and_modular_plans",
+        "trigger": "commit|commits|pushingwatchdog|monolithic|plan|sync|hostramdisk",
+        "lesson": "User instructed: agents must never delay committing until the end of the run or bundle compound tasks into one big commit, may create multiple focused plans instead of one monolithic plan, and host pushingwatchdog.sh must push /hostramdisk to gitlab first before fetching/pulling/merging from gitlab in /botworkspace and pushing to github.",
+        "directive": "Commit immediately in small atomic blocks as each logical step completes (never delay commits until the end of the run). Split multi-topic plans into separate focused plan documents. In host pushingwatchdog.sh, always push /hostramdisk/<repo> to gitlab first, then fetch/pull/merge from gitlab in /botworkspace/<repo>, and finally push to github."
+    },
+    {
+        "priority": 113,
         "category": "companion_dev_md_and_methodical_execution",
         "trigger": "dev\\.md|sidecar|blast_radius|methodical|chunking|orchestrator|txt_mirror|generated",
         "lesson": "User instructed to establish a 4-tier non-redundant context hierarchy (<file>.dev.md companion sidecars, PROJECT.dev.md, [WHY]/[SEE] rationale comments), preserve intentional file-local exceptions like \\u203c on cross-site links, read lightweight generated/*.txt mirrors, check blast radius before editing, and execute multi-part tasks methodically across runs.",
