@@ -37,6 +37,13 @@ CORE_DIRECTIVES = [
         "directive": "Never use emojis anywhere unless asked specifically by the user. Do not use emojis in UI buttons, navigation bars, headers, links, badges, documentation, or assistant responses. Mathematical and syntax symbols in terms and formulas (∀, ∃, ∈, ⊆, ∪, ∩, λ, Π, Σ, ⊢, etc.) are NOT emojis and must never be altered."
     },
     {
+        "priority": 113,
+        "category": "companion_dev_md_and_methodical_execution",
+        "trigger": "dev\\.md|sidecar|blast_radius|methodical|chunking|orchestrator|txt_mirror|generated",
+        "lesson": "User instructed to establish a 4-tier non-redundant context hierarchy (<file>.dev.md companion sidecars, PROJECT.dev.md, [WHY]/[SEE] rationale comments), preserve intentional file-local exceptions like \\u203c on cross-site links, read lightweight generated/*.txt mirrors, check blast radius before editing, and execute multi-part tasks methodically across runs.",
+        "directive": "Maintain the 4-tier context hierarchy (/botworkspace/AGENTS.md, <repo>/PROJECT.dev.md, <file>.dev.md sidecars, and [WHY]/[SEE: <file>#<slug>] comments). Always check <file>.dev.md for local invariants (such as preserving \\u203c on cross-site links in about.html and aboutme.html), read generated/*.txt mirrors instead of heavy HTML, run blast_radius_analyzer.py with constructive pushback before risky edits, and chunk large tasks into tracked GitLab tickets for methodical multi-run execution."
+    },
+    {
         "priority": 112,
         "category": "ban_development_expanded_list",
         "trigger": "cubical|tictactoe|hott|alpha|modallogic|insertsort|indigocs|hol|firstordertheory|isabelle_theorems|jech|lambek|mathlogic|mypure|prooftheory|recursiontheorem|proofs|verifiedmathfoundations|yoneda|zfc|goedel",
