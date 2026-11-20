@@ -113,21 +113,24 @@ PROFILES = {
         "html_doc": "03_gemini_4_argon.html",
         "memory_entrypoint": "catalog/catalog.db (Direct SQL & FTS5)",
         "optimal_instruments": [
-            "python3 /botworkspace/catalog/cognition.py audit",
-            "python3 /botworkspace/catalog/irregularity_detector.py",
-            "python3 /botworkspace/catalog/cognition.py sql 'SELECT ...'",
-            "Whole-repository architectural reconciliation"
+            "invoke_subagent (TypeName='self') to parallelize independent tickets or repositories",
+            "python3 /botworkspace/tools/ticket_chunker.py create-batch / list-batch",
+            "python3 /botworkspace/tools/blast_radius_analyzer.py <file>",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>",
+            "bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> '<msg>'",
+            "python3 /botworkspace/catalog/cognition.py status"
         ],
         "prohibited_instruments": [
-            "Using micro-queries when holistic SQL / multi-file views are available",
-            "Committing changes without running compiler and unit test verification",
-            "Inventing imaginary dependencies without filesystem path checks"
+            "Executing 2+ independent tickets or repositories sequentially in one thread when invoke_subagent can run them in parallel",
+            "Delaying git commits until the end of a run instead of committing each small atomic block immediately",
+            "Reading multi-MB generated/*.html files instead of lightweight generated/*.txt mirrors",
+            "Committing changes without running compiler and unit test verification"
         ],
         "tramline": [
-            "1. Whole-Catalog Audit: Run 'python3 catalog/cognition.py audit'.",
-            "2. Detect Inconsistencies: Run 'python3 catalog/irregularity_detector.py' across all repos.",
-            "3. Synthesize Solutions: Formulate unified patches resolving multi-repository discrepancies.",
-            "4. Sync Knowledge Graph: Sync SQLite catalog via 'python3 catalog/cognition.py sync'."
+            "1. Inspect & Chunk Tasks: Check open tickets ('manage_tickets.py' / 'ticket_chunker.py'); if given a multi-part task, create tickets first.",
+            "2. Spawn Subagents by Default: Whenever 2+ independent tasks/tickets or confirmed repositories exist, call 'invoke_subagent' (TypeName='self') to run them in parallel.",
+            "3. Pre-Flight & Sidecars: Before editing any file, run 'blast_radius_analyzer.py <file>' and check any adjacent '<file>.dev.md' sidecar.",
+            "4. Atomic Block Commits: Commit immediately after each small verified block via 'hostramdisk_workspace.sh commit <repo> \"<msg>\"'."
         ]
     },
     "gemini-4-argon-medium": {
