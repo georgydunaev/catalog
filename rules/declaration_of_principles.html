@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Declaration of Principles &amp; Mathematical Points of View</title>
+  <style>
+    body { font: 13px/1.6 sans-serif; background: #1f1e24; color: #ececef; padding: 14px; max-width: 960px; margin: auto; }
+    a { color: #60a5fa; }
+    h2, h3 { color: #38bdf8; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+    th, td { padding: 8px; border: 1px solid #2b2a33; text-align: left; vertical-align: top; }
+    th { background: #262530; color: #c084fc; }
+    code { background: #141318; padding: 2px 5px; border-radius: 4px; color: #fbbf24; }
+  </style>
+</head>
+<body>
+  <a href="../index.html">Catalog</a> | <a href="../user_directives.html">Directives</a> | <a href="set_theory_rules.html">Set Theory Rules</a>
+  <h2>Declaration of Principles &amp; The Seven Mathematical Points of View</h2>
+  <p>
+    <strong>Canonical Sources:</strong>
+    <code>/hostramdisk/set_theory_prover/docs/DECLARATION_OF_PRINCIPLES.md</code>,
+    <code>/hostramdisk/set_theory_prover/docs/MATHEMATICAL_POINTS_OF_VIEW.md</code>, and
+    <code>/hostramdisk/obeliskproofassistant.github.io/points_of_view.html</code>.
+  </p>
+  <h3>1. Core Meta-Principles (Crystallized from 164 Operator Requests)</h3>
+  <ul>
+    <li><strong>Principles Over Ad-Hoc Hacks:</strong> Prioritize creating and perfecting the Declaration of Principles over fast-and-bad ad-hoc implementations, especially in the kernel (<code>typetheory.ML</code>, <code>newchecker/</code>) and constructor namings. Never delete meaningful parts or historical commented-out ML blocks.</li>
+    <li><strong>Anti-Bikeshedding Attention Allocation:</strong> Allocate &gt;=80% of cognitive effort to deep mathematical, kernel, and architectural problems rather than letting trivial surface tweaks dominate attention.</li>
+    <li><strong>Simplify Without Oversimplifying (Non-Contradiction Boundary):</strong> Unify genuinely isomorphic concepts (0-ary ops = constants; conglomerates = predicates on classes) while decoupling concepts whose conflation causes paradoxes:
+      <code>MKTD1</code> vs. <code>MKTD2</code>; Metalevel <code>0</code> ($\mathrm{Fm}_0$, guarded by <code>is_object_level_fm0</code>) vs. Metalevel <code>+1</code>/<code>+2</code> (<code>TpHolds</code>, <code>FFI</code>, <code>IFV</code>); Semantic <code>Class</code> (<code>Nonstored.t</code>) vs. Symbol (<code>Cp*</code>/<code>Tp*</code>) vs. <code>.Expre</code> (<code>CH*</code>/<code>HP*</code>) vs. <code>.Expression</code> (<code>C*</code>/<code>F*_&lt;ArgTypes&gt;_*_Expression</code>) vs. Reflected Term; Binder (<code>VarPos_Binder</code>) vs. Occurrence; Dunaev pairs <code>(A,B)</code> vs. Kuratowski set pairs <code>opairK(a,b)</code>; Semantic Completeness (<code>3.73</code>) vs. Syntactic Negation-Completeness (<code>3.74</code>); and the 4 arrows (<code>&mdash;&rarr;</code> implication, <code>&rarr;</code> MKTD2 type arrow, <code>&Longrightarrow;</code> meta-constructor arrow, and relational shorthand <code>f : A &rarr; B</code>).</li>
+  </ul>
+  <h3>2. The Seven Mathematical Points of View</h3>
+  <table>
+    <tr><th>View</th><th>System / Layer</th><th>How &ldquo;What Has What Type&rdquo; Is Modeled</th></tr>
+    <tr><td><strong>View 1</strong></td><td><code>MKTD1-theory</code> (Metalevel 0)</td><td>Pure Class Ontology: every object is a <code>Class</code>; sets are elements ($x \in V$); Dunaev tagged pairs $(A, B) = \mathrm{mark}(A, 0) \cup \mathrm{mark}(B, 1)$.</td></tr>
+    <tr><td><strong>View 2</strong></td><td><code>Huge_Col</code> / <code>LPredicate</code></td><td>Conglomerates-as-Types: a type of classes is a predicate $T : \mathrm{Class} \to \mathrm{Bool}$, with default <code>TClass = &lambda;X.&top;</code>.</td></tr>
+    <tr><td><strong>View 3</strong></td><td>Internal Set-Theoretic Type Models</td><td>Dependent sums <code>Sigma(B)</code> (<code>#DefSigmaModel</code>), dependent products <code>PiModel(B)</code> (<code>#DefPiPredicateModel</code>), $\omega$, $V_\alpha$ via <code>TransfiniteRec(G)</code>, and universes $U = V_{U \cap \mathrm{On}}$ (<code>#ThmUniverseEqVonNeumannStageInterOn</code>).</td></tr>
+    <tr><td><strong>View 4</strong></td><td><code>MKTD2-system</code> / <code>MKTD2-theory</code></td><td>Constructive Curry-Howard Propositions-as-Types: formulas are types (<code>Fm : Type</code>), proofs are $\lambda$-terms (<code>p : A</code>), bridged via <code>variant_bridge.ML</code>.</td></tr>
+    <tr><td><strong>View 5</strong></td><td>SML Metalanguage (<code>typetheory.ML</code>)</td><td>Off-by-One Functorial Tower: semantic <code>Class = Nonstored.t</code>; SML stores <code>.Expre</code> $\hookrightarrow$ <code>.Expression</code> $\hookrightarrow$ <code>.Expression.Expression</code> via <code>MAKE</code>.</td></tr>
+    <tr><td><strong>View 6</strong></td><td>Vereschagin &amp; Shen <code>WireBoxSchema</code></td><td>Combinatorial Wire-and-Box Syntax: bound variable names erased to canonical de Bruijn wires in <code>ai_playground/symbol_ontology.ML</code>.</td></tr>
+    <tr><td><strong>View 7</strong></td><td>Self-Referential Metatheory</td><td>Gödel coding (<code>Enc</code>, <code>Dec</code>), object-level substitution <code>SubstVar(t, x, v)</code> (<code>#DefReducedVarSubst</code>), and internal derivability proving <code>#ThmLoeb</code> and <code>#ThmSecondIncompleteness</code>.</td></tr>
+  </table>
+</body>
+</html>
