@@ -21,17 +21,17 @@ code{background:#eee;padding:2px 4px}
 <h3>Resolved Architectural Decisions (1–8)</h3>
 <p>&bull; <strong>1. Host Local LLM:</strong> Suspended under <code>ban_local_llm: true</code> in <code>network_config.json</code>.<br>
 &bull; <strong>2. Foundational Axioms:</strong> Morse-Kelley (MK) with impredicative comprehension and Dunaev Tagged Pairs.<br>
-&bull; <strong>3. Physical Strata:</strong> Preserved <code>01_lambda</code> through <code>05_lcf</code> in <code>program/approaches/</code>.<br>
+&bull; <strong>3. Physical Strata:</strong> <code>01_lambda</code> through <code>05_lcf</code> moved to <code>set_theory_prover/archive/approaches/</code> (nothing loads them).<br>
 &bull; <strong>4. Obelisk Portal:</strong> Classic <code>index.html</code> default portal; modern <code>obelisk_ai.html</code> showcase.<br>
 &bull; <strong>5. Ordinal Induction (#19):</strong> Derived formally as a Theorem Schema from Set Foundation and Class Comprehension.<br>
 &bull; <strong>6. Proper Class Pairing (#20):</strong> Mandatory Dunaev Tagged Pairs <code>[A,B]_D</code> per FACTBOOK.md; Kuratowski pairs strictly prohibited for proper classes.<br>
 &bull; <strong>7. Incompleteness Statements (#21):</strong> Isolated into <code>program/incompleteness.ML</code>, keeping core LCF kernel clean.<br>
-&bull; <strong>8. Web REPL Architecture (#22):</strong> Hybrid architecture connecting to <code>/api/obelisk/compile</code> on GitLab with JS fallback.</p>
+&bull; <strong>8. Web REPL Architecture (#22):</strong> Browser-only; the <code>/api/obelisk/compile</code> backend call was removed (#8091).</p>
 </div>
 
 <div class="card priority">
 <h3>9. Elevating manual.html as Primary Showcase (#23)</h3>
-<p>Manual contains 49 machine-checked statements, reflected metatheory, and proof certificates.<br>
+<p>Counts of checked statements: see the generated <code>obeliskproofassistant.github.io/generated/theory_db.json</code> (AGENTS.md §1; no hand-written counts).<br>
 &bull; <strong>(Rec) A:</strong> Full Elevation: Feature manual.html as primary hero CTA and dedicated interactive showcase section on obelisk_ai.html.<br>
 &bull; <strong>B:</strong> Make manual.html root index.html.<br>
 &bull; <strong>C:</strong> Keep narrative landing page as default.</p>
