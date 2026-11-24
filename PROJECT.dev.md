@@ -16,7 +16,7 @@
 
 ## Verification & Test Commands
 ```bash
-python3 /hostramdisk/catalog/cognition.py status
-python3 /hostramdisk/catalog/correction_memory.py list
-python3 -m unittest discover -s /hostramdisk/catalog/tests
+python3 /botworkspace/catalog/cognition.py status
+python3 /botworkspace/catalog/correction_memory.py list
+python3 -m unittest discover -s /botworkspace/catalog/tests
 ```

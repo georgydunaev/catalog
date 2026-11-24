@@ -40,11 +40,11 @@
   - Priority 1 (`set_theory_prover`) is mapped down to `program/kernel`, `types`, `nbg`, `approaches`, `cli`, and `tests`.
   - Priority 2 (`mybot`) is mapped down to `secure_gateway`, `local_gitlab`, and `scripts`.
   - 88 HTML memory nodes currently exist with 0 broken links (verified by python3 catalog/cognition.py audit).
-  - Mandatory Step 0 & Immutable Fact Book: /botworkspace/FACTBOOK.md (Facts 1 to 14; mandatory escalation on conflict).
-  - Two Proof Assistant Variants Co-Exist: MKTD1 (1st-Order Sequent Calculus) and MKTD2 (Curry-Howard Formulas-as-Types), bridged via program/variant_bridge.ML (User Directive #15 / Fact 14).
+  - Mandatory Step 0 & Fact Book: /botworkspace/FACTBOOK.md (symlinked to set_theory_prover/FACTBOOK.md; FACTBOOK and code must agree).
+  - Two Formal Systems Co-Exist: MKTD1 (classical sequent calculus in program/newchecker/) and MKTD2 (classical propositions-as-types dependent type theory in program/dependent_typechecker.ML), bridged via program/variant_bridge.ML (FACTBOOK §1).
   - Dual CakeML & Poly/ML Compatibility Mandate (User Directive #16): All ML kernel/compiler code must run on CakeML and Poly/ML with SML'97 core compatibility.
   - Strict ML-Only Formula Generation (User Directive #17): LaTeX/Unicode formulas never edited directly; modify only .ML in set_theory_prover; never touch generated/.
-  - Primary Work Directory: /hostramdisk/<repo> with polite pull/commit workflow.
+  - Primary Work Directory: /botworkspace/<repo> (/hostramdisk is banned per AGENTS.md §3).
   - GitHub synchronization handled by /botworkspace/scripts/pushingwatchdog.sh (beacon.sh is obsolete and removed).
   - Local GPU LLMs temporarily banned (ban_local_llm: true in network_config.json).
   - Railway Block Signaling: bash /botworkspace/tools/railway.sh status.

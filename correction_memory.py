@@ -27,7 +27,7 @@ CORE_DIRECTIVES = [
         "category": "authoritative_fact_book_maintenance",
         "trigger": "fact|factbook|contradict|weaken|escalate|rule",
         "lesson": "User explicitly instructed: '1. FACTBOOK is no longer immutable. 2. Do whatever is reasonable to do.' and confirmed unifying the Fact Book directives.",
-        "directive": "FACTBOOK.md serves as the authoritative registry of core facts (Facts 1 to 14): agents may update FACTBOOK.md when reasonable to reflect explicit user directives, taxonomy alignments, and system evolution, and MUST stop and ask the user whenever any task, ticket, or test contradicts a recorded fact."
+        "directive": "set_theory_prover/FACTBOOK.md (symlinked at /botworkspace/FACTBOOK.md) defines what Obelisk's entities are. The FACTBOOK and the code must agree: when they disagree, fix whichever is wrong in the same commit and state why in the commit message."
     },
     {
         "priority": 115,
@@ -39,9 +39,9 @@ CORE_DIRECTIVES = [
     {
         "priority": 113,
         "category": "atomic_block_commits_and_modular_plans",
-        "trigger": "commit|commits|pushingwatchdog|monolithic|plan|sync|hostramdisk",
-        "lesson": "User instructed: agents must never delay committing until the end of the run or bundle compound tasks into one big commit, may create multiple focused plans instead of one monolithic plan, and host pushingwatchdog.sh must push /hostramdisk to gitlab first before fetching/pulling/merging from gitlab in /botworkspace and pushing to github.",
-        "directive": "Commit immediately in small atomic blocks as each logical step completes (never delay commits until the end of the run). Split multi-topic plans into separate focused plan documents. In host pushingwatchdog.sh, always push /hostramdisk/<repo> to gitlab first, then fetch/pull/merge from gitlab in /botworkspace/<repo>, and finally push to github."
+        "trigger": "commit|commits|pushingwatchdog|monolithic|plan|sync|botworkspace",
+        "lesson": "User instructed: agents must never delay committing until the end of the run or bundle compound tasks into one big commit, may create multiple focused plans instead of one monolithic plan, and work directly in /botworkspace/<repo> (/hostramdisk is banned).",
+        "directive": "Commit immediately in small atomic blocks as each logical step completes (never delay commits until the end of the run). Split multi-topic plans into separate focused plan documents. Work directly in /botworkspace/<repo> (/hostramdisk is banned); pull before editing and commit via 'bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> \"<msg>\"'."
     },
     {
         "priority": 113,
@@ -75,8 +75,8 @@ CORE_DIRECTIVES = [
         "priority": 110,
         "category": "two_proof_assistant_variants",
         "trigger": "nbg|mktd|first-order|higher-order|formulas-as-types|newchecker|variant",
-        "lesson": "Two distinct proof assistant variants and theories co-exist: MKTD1 (Sequent Calculus in newchecker.ML) and MKTD2 (Curry-Howard Formulas-as-Types in nbg_compiler.ML).",
-        "directive": "Both proof assistant variants and theories (MKTD1 and MKTD2) must be actively maintained and developed. Never delete, discard, or replace one approach in favor of the other. Interconnect via program/variant_bridge.ML (User Directive #15 / Fact 14)."
+        "lesson": "Two distinct formal systems co-exist for MKTD: MKTD1 (classical sequent calculus checked by program/newchecker/) and MKTD2 (classical propositions-as-types dependent type theory checked by program/dependent_typechecker.ML + dependent_eval.ML, with nbg_compiler.ML for .nbg surface files).",
+        "directive": "Both formal systems (MKTD1 and MKTD2) must be actively maintained and developed. Never merge, delete, or discard one in favor of the other. Statement translations and consistency checks are in program/variant_bridge.ML (FACTBOOK §1)."
     },
     {
         "priority": 108,
@@ -130,9 +130,9 @@ CORE_DIRECTIVES = [
     {
         "priority": 105,
         "category": "hostramdisk_workflow",
-        "trigger": "hostramdisk|ramdisk|pull|commit|fast|sync",
-        "lesson": "Persistent host RAMdisk (/hostramdisk) provides maximum speed and reliable isolation across multi-repo workspace.",
-        "directive": "Always work directly in /hostramdisk/<repo>. Run 'hostramdisk_workspace.sh pull <repo>' before editing, and commit via 'hostramdisk_workspace.sh commit <repo> \"<msg>\"' to automatically push to GitLab and sync /botworkspace/<repo>."
+        "trigger": "botworkspace|hostramdisk|ramdisk|pull|commit|fast|sync",
+        "lesson": "/hostramdisk is banned (AGENTS.md §3); all repositories live in /botworkspace/<repo>.",
+        "directive": "Always work directly in /botworkspace/<repo> (/hostramdisk is banned). Run 'bash /botworkspace/scripts/hostramdisk_workspace.sh pull <repo>' before editing, and commit via 'bash /botworkspace/scripts/hostramdisk_workspace.sh commit <repo> \"<msg>\"' after each verified block."
     },
     {
         "priority": 100,

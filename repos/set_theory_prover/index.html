@@ -22,9 +22,9 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 
 <div class="alert">
 <strong>CRITICAL INVARIANTS:</strong><br>
-1. <strong>Preserve Commented-Out ML Code:</strong> In <code>program/approaches/early_checker_prototype/checker.ML</code>, <code>program/DEPRECATED/computation-free.ML</code>, <code>program/types/PreChar.ML</code>, and <code>program/newchecker.ML</code>, large commented chunks are working code temporarily commented out for fast tests. NEVER delete them.<br>
-2. <strong>Zero CLI Hangs:</strong> Execute Poly/ML with non-interactive safe runners (<code>stdin=subprocess.DEVNULL</code>, finite timeouts).<br>
-3. <strong>Multi-Approach Mandate (Directive #15):</strong> You are explicitly allowed to create subprojects and copy code so that all approaches (<code>program/types/foundations.ML</code>, <code>program/newchecker.ML</code>, and restored <code>checker.ML</code>) are actively implemented and maintained in parallel. Never discard an approach.
+1. <strong>Preserve Commented-Out ML Code:</strong> In <code>program/newchecker/</code>, <code>program/types/PreChar.ML</code>, and <code>archive/</code> (where <code>approaches/</code> and <code>DEPRECATED/</code> live), large commented chunks are historical working code. NEVER delete them.<br>
+2. <strong>Zero CLI Hangs:</strong> Execute Poly/ML with non-interactive safe runners (<code>stdin=subprocess.DEVNULL</code>, finite timeouts). Gate kernel changes with <code>bash tools/verify_kernels.sh</code>.<br>
+3. <strong>Two Formal Systems (FACTBOOK &sect;1):</strong> Both <code>MKTD1</code> (<code>program/newchecker/</code>, <code>program/types/</code>) and <code>MKTD2</code> (<code>program/dependent_typechecker.ML</code>, <code>program/verified_theorems.ML</code>) are actively maintained. Counts and verification status live only in generated reports (<code>obeliskproofassistant.github.io/generated/theory_db.json</code>, <code>docs/MKTD2_AXIOM_FOOTPRINT.txt</code>).
 </div>
 
 <hr>
@@ -34,16 +34,16 @@ pre, code { font-family: monospace; background: #eee; padding: 2px 4px; }
 <ul>
   <li>
     <p><strong><a href="dunaev_pairs.html">dunaev_pairs.html (DUNAEV TAGGED PAIRS)</a></strong><br>
-    <em>Navigate here for:</em> The formal mathematical definition, rank hierarchy analysis, and 4 verified theorems for Dunaev Tagged Ordered Pairs <code>[A, B]_D</code>.</p>
+    <em>Navigate here for:</em> The formal mathematical definition, rank hierarchy analysis, and verified theorems for Dunaev Tagged Ordered Pairs <code>(A, B) = mark(A, 1) &cup; mark(B, 2)</code>.</p>
   </li>
   <li>
     <p><strong><a href="approaches/index.html">approaches/ (ARCHITECTURAL TAXONOMY &amp; STRATA)</a></strong><br>
-    <em>Navigate here for:</em> The taxonomy of the multi-year pet project: winning demo path vs early checker, lambda calculus strings, and Rocq transpilers.</p>
+    <em>Navigate here for:</em> The taxonomy of the project: active trusted kernels vs archived prototypes in <code>archive/</code>.</p>
   </li>
 
   <li>
     <p><strong><a href="theorems.html">theorems.html (CERTIFIED THEOREMS CATALOG)</a></strong><br>
-    <em>Navigate here for:</em> The 145 NBG/MK Formulas-as-Types bridged programs in <code>program/variant_bridge.ML</code>, 7 Tarski quotation schemas, 225 Morse-Kelley verified records in <code>program/verified_theorems.ML</code> (<code>MKTD2-theory</code>: 202 derived, 16 definitional, 7 axiomatic), and 118 <code>MKTD1-theory</code> sequent calculus entries in <code>program/types/entries.ML</code> and <code>program/types/universe_definitions.ML</code> (including <code>3.79</code>&ndash;<code>3.90</code> proving <code>U = V_{U cap On}</code>).</p>
+    <em>Navigate here for:</em> The theorem libraries for <code>MKTD1-theory</code> (<code>program/types/entries.ML</code>, <code>program/types/universe_definitions.ML</code>) and <code>MKTD2-theory</code> (<code>program/verified_theorems.ML</code>, <code>docs/MKTD2_AXIOM_FOOTPRINT.txt</code>), statement translations in <code>program/variant_bridge.ML</code>, and surface <code>.nbg</code> programs.</p>
   </li>
   <li>
     <p><strong><a href="program/index.html">program/ (CORE SML LOGIC KERNEL)</a></strong><br>

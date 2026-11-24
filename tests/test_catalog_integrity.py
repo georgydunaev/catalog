@@ -12,7 +12,6 @@ def _resolve_catalog_root() -> str:
     if "CATALOG_ROOT" in os.environ and os.path.isdir(os.environ["CATALOG_ROOT"]):
         return os.environ["CATALOG_ROOT"]
     for candidate in [
-        "/hostramdisk/catalog",
         "/botworkspace/catalog",
         os.path.normpath(os.path.join(os.path.dirname(__file__), "..")),
     ]:
@@ -60,7 +59,9 @@ class TestCatalogIntegrity(unittest.TestCase):
         self.assertTrue(any("set_theory_prover" in p for p in relpaths))
         node = db.query_get_node("repos/set_theory_prover/theorems.html")
         self.assertIsNotNone(node)
-        self.assertIn("90 Morse-Kelley theorems", node["clean_markdown"])
+        self.assertIn("program/verified_theorems.ML", node["clean_markdown"])
+        self.assertIn("MKTD2-theory", node["clean_markdown"])
+        self.assertIn("MKTD1-theory", node["clean_markdown"])
 
     def test_03_model_profiles_attention_shield_compliance(self):
         """Ticket 7415: Verify all model profile files in catalog/models/ exist and stay within line limits."""

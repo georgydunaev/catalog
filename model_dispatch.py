@@ -64,8 +64,8 @@ PROFILES = {
         "tramline": [
             "1. Step 0 (Facts & Goals): Review /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
             "2. Concurrency Safety: Check track via 'bash /botworkspace/tools/railway.sh status' (shunt RED to siding).",
-            "3. Host RAMDisk Development: Pull via 'hostramdisk_workspace.sh pull <repo>', work in /hostramdisk/<repo>.",
-            "4. Verification & Commit: Verify with poly -q/unittests, scan with security_guard.py, commit with hostramdisk_workspace.sh."
+            "3. Workspace Development: Pull via 'hostramdisk_workspace.sh pull <repo>', work in /botworkspace/<repo> (/hostramdisk is banned).",
+            "4. Verification & Commit: Verify with verify_kernels.sh/unittests, scan with security_guard.py, commit with hostramdisk_workspace.sh."
         ]
     },
     "claude-sonnet-5-5-high": {
@@ -98,7 +98,7 @@ PROFILES = {
         "tramline": [
             "1. Priority & Facts: Inspect /botworkspace/FACTBOOK.md and identify open ticket in mybot/tickets/.",
             "2. Concurrency & Baseline: Verify green railway signal, run unittests to confirm clean tree.",
-            "3. Host RAMDisk Edits: Pull via 'hostramdisk_workspace.sh pull <repo>', edit in /hostramdisk/<repo>, check syntax.",
+            "3. Workspace Edits: Pull via 'hostramdisk_workspace.sh pull <repo>', edit in /botworkspace/<repo>, check syntax.",
             "4. Security Scan & Push: Run security_guard.py scan and commit via 'hostramdisk_workspace.sh commit <repo> \"<msg>\"'."
         ]
     },
@@ -157,7 +157,7 @@ PROFILES = {
         "tramline": [
             "1. Step 0: Check /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
             "2. Concurrency: Verify green track via 'bash /botworkspace/tools/railway.sh status'.",
-            "3. Implement: Pull in /hostramdisk/<repo> and apply calibrated changes.",
+            "3. Implement: Pull in /botworkspace/<repo> and apply calibrated changes.",
             "4. Verify & Commit: Run unit tests, security_guard.py scan, and commit via hostramdisk_workspace.sh."
         ]
     },
@@ -212,7 +212,7 @@ PROFILES = {
         "tramline": [
             "1. Grounding: Consult /botworkspace/FACTBOOK.md and run 'python3 catalog/cognition.py status'.",
             "2. Signal Check: Verify green track via 'bash /botworkspace/tools/railway.sh status'.",
-            "3. Synthesize: Pull in /hostramdisk/<repo> and author verified MKTD1 / MKTD2 or system changes.",
+            "3. Synthesize: Pull in /botworkspace/<repo> and author verified MKTD1 / MKTD2 or system changes.",
             "4. Audit & Commit: Run tests, security_guard.py scan, model_capability_guard.py audit-diff, and commit."
         ]
     },
@@ -240,7 +240,7 @@ PROFILES = {
         ],
         "tramline": [
             "1. Grounding: Consult /botworkspace/FACTBOOK.md, user_directives.html, and railway status.",
-            "2. Polite Sync: Pull latest in /hostramdisk/<repo> and inspect bounded slices (up to 400 lines).",
+            "2. Polite Sync: Pull latest in /botworkspace/<repo> and inspect bounded slices (up to 400 lines).",
             "3. Execute & Verify: Apply clean edits and run unit/integrity checks.",
             "4. Scan & Commit: Scan with security_guard.py, audit diff, and commit via hostramdisk_workspace.sh."
         ]
@@ -295,7 +295,7 @@ PROFILES = {
         "tramline": [
             "1. Grounding: Consult /botworkspace/FACTBOOK.md and set_theory_rules.html.",
             "2. Signal Check: Check track via 'bash /botworkspace/tools/railway.sh status'.",
-            "3. Prove & Compile: Pull in /hostramdisk/<repo> and verify SML/Python changes.",
+            "3. Prove & Compile: Pull in /botworkspace/<repo> and verify SML/Python changes.",
             "4. Audit & Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
         ]
     },
@@ -322,7 +322,7 @@ PROFILES = {
         ],
         "tramline": [
             "1. Grounding: Check /botworkspace/FACTBOOK.md and railway status.",
-            "2. Targeted Read: Pull in /hostramdisk/<repo> and read 50-300 line slices.",
+            "2. Targeted Read: Pull in /botworkspace/<repo> and read 50-300 line slices.",
             "3. Implement & Test: Apply edit and run non-interactive test suites.",
             "4. Commit: Scan with security_guard.py and commit via hostramdisk_workspace.sh."
         ]
