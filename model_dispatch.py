@@ -51,7 +51,7 @@ PROFILES = {
             "Deep multi-file architectural refactoring across MKTD1/MKTD2"
         ],
         "prohibited_instruments": [
-            "Weakening or contradicting FACTBOOK.md (must escalate to user)",
+            "Leaving FACTBOOK.md and code in disagreement (fix one of them in the same commit)",
             "Modifying files in obeliskproofassistant.github.io/generated/ directly (User Directive #17)",
             "Using emojis or directional arrows in names, links, or UI",
             "Mutating compiled binaries or stored PDFs",
@@ -87,7 +87,7 @@ PROFILES = {
             "python3 /botworkspace/catalog/cognition.py status"
         ],
         "prohibited_instruments": [
-            "Weakening or contradicting FACTBOOK.md",
+            "Leaving FACTBOOK.md and code in disagreement",
             "Modifying files in obeliskproofassistant.github.io/generated/ directly",
             "Using emojis or directional arrows anywhere in UI, code, or messages",
             "Running docker CLI inside ai-worker container",
